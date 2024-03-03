@@ -11,7 +11,7 @@ public class SimpleLauncher : MonoBehaviourPunCallbacks
     // Start is called before the first frame update
     void Start()
     {
-        //PhotonNetwork.ConnectUsingSettings();
+        PhotonNetwork.ConnectUsingSettings();
     }
 
     public override void OnConnectedToMaster()
@@ -25,7 +25,5 @@ public class SimpleLauncher : MonoBehaviourPunCallbacks
         Debug.Log("Joined a room.");
         PhotonNetwork.Instantiate(playerPrefab.name, Vector3.zero, Quaternion.identity);
     }
-
-
 
 }
