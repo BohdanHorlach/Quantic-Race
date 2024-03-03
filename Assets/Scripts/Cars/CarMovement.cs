@@ -27,17 +27,18 @@ public class CarMovement : MonoBehaviour
     }
 
 
+
     private void Update()
     {
-        foreach (Axle axle in _axles)
-            axle.UpdateAxle();
+            foreach (Axle axle in _axles)
+                axle.UpdateAxle();
     }
 
 
     private void Gas(float force)
     {
-        foreach(Axle axle in _axles) 
-            axle.SetMotorTorque(force);
+            foreach (Axle axle in _axles)
+                axle.SetMotorTorque(force);
     }
 
 
