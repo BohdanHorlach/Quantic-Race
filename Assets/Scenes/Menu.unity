@@ -208,8 +208,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 198869924}
-        m_TargetAssemblyTypeName: ExitButton, Assembly-CSharp
-        m_MethodName: ExitButtonClicked
+        m_TargetAssemblyTypeName: ButtonOptions, Assembly-CSharp
+        m_MethodName: ExitButton
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -266,7 +266,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 198869919}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 438b94b95de79e443a9d2a39b93a5044, type: 3}
+  m_Script: {fileID: 11500000, guid: ff9a48297c6598540a4822daf57e6f60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &203844586
@@ -731,8 +731,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 735297514}
-        m_TargetAssemblyTypeName: Button, Assembly-CSharp
-        m_MethodName: PlayButtonClicked
+        m_TargetAssemblyTypeName: ButtonOptions, Assembly-CSharp
+        m_MethodName: PlayGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -789,10 +789,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 735297509}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 43921274efcffef4d9e0b4d34e226db0, type: 3}
+  m_Script: {fileID: 11500000, guid: ff9a48297c6598540a4822daf57e6f60, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: SampleScene
 --- !u!1 &796271016
 GameObject:
   m_ObjectHideFlags: 0
@@ -1217,6 +1216,7 @@ GameObject:
   - component: {fileID: 2120724241}
   - component: {fileID: 2120724240}
   - component: {fileID: 2120724239}
+  - component: {fileID: 2120724242}
   m_Layer: 5
   m_Name: Multiplayer
   m_TagString: Untagged
@@ -1287,7 +1287,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 2120724240}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2120724242}
+        m_TargetAssemblyTypeName: ButtonOptions, Assembly-CSharp
+        m_MethodName: PlayMultiplayer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &2120724240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1326,6 +1338,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2120724237}
   m_CullTransparentMesh: 1
+--- !u!114 &2120724242
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2120724237}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ff9a48297c6598540a4822daf57e6f60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
