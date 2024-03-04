@@ -146,7 +146,7 @@ GameObject:
   - component: {fileID: 5924075070480390213}
   - component: {fileID: 5924075070480390214}
   - component: {fileID: 5924075070480390215}
-  - component: {fileID: 738312935313127953}
+  - component: {fileID: 5752410215564145730}
   m_Layer: 5
   m_Name: RoomItem
   m_TagString: Untagged
@@ -256,7 +256,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 738312935313127953}
+      - m_Target: {fileID: 5752410215564145730}
         m_TargetAssemblyTypeName: RoomItem, Assembly-CSharp
         m_MethodName: JoinRoom
         m_Mode: 1
@@ -268,7 +268,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &738312935313127953
+--- !u!114 &5752410215564145730
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

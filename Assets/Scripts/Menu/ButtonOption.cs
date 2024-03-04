@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -16,9 +16,13 @@ public class ButtonOptions : MonoBehaviour
 
     public void PlayGame()
     {
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("TrackSelect");
     }
 
+    //public void TrackSelect()
+    //{
+    //    SceneManager.LoadScene("TrackSelect");
+    //}
 
     public void MainMenu()
     {
@@ -33,7 +37,7 @@ public class ButtonOptions : MonoBehaviour
     ///////////////////////////////
     public void Track1()
     {
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("SampleScene1");
     }
 
     public void Track2()
@@ -48,11 +52,11 @@ public class ButtonOptions : MonoBehaviour
 
     public void ExitButton()
     {
-#if UNITY_EDITOR
+        #if UNITY_EDITOR
                     UnityEditor.EditorApplication.isPlaying = false;
-#else
-        Application.Quit();
-#endif
+        #else
+                Application.Quit();
+        #endif
     }
 
 }

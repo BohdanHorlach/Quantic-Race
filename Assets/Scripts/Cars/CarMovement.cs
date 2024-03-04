@@ -1,23 +1,10 @@
 using UnityEngine;
 using Photon.Pun;
 
-<<<<<<< Updated upstream
-public class CarMovement : MonoBehaviourPunCallbacks
-{
-<<<<<<< Updated upstream
-=======
-    //[SerializeField] PhotonView _photonView;
-   // [Space]
-
->>>>>>> Stashed changes
-=======
-
-    public PhotonView playerPrefab;
 
     public class CarMovement : MonoBehaviourPunCallbacks
-    {
-    public PhotonView _playerPrefab;
->>>>>>> Stashed changes
+{
+    [SerializeField] PhotonView _playerPrefab;
     [SerializeField] private InputOfCarMovement input;
     [SerializeField] private Axle[] _axles;
     [SerializeField, Min(1)] private float _motorForce;
@@ -29,31 +16,25 @@ public class CarMovement : MonoBehaviourPunCallbacks
 
     private void OnEnable()
     {
-        
         input.InputHorizontal += Steering;
         input.InputVertical += InputVerticalProcessing;
         input.InputBrake += Brake;
     }
-    
+
+
     private void OnDisable()
     {
         input.InputHorizontal -= Steering;
         input.InputVertical -= InputVerticalProcessing;
         input.InputBrake -= Brake;
     }
-    
+
 
 
     private void Update()
     {
-<<<<<<< Updated upstream
-        if (photonView.IsMine)
-        {
-
-=======
         if (_playerPrefab.IsMine)
         {
->>>>>>> Stashed changes
             foreach (Axle axle in _axles)
                 axle.UpdateAxle();
         }
@@ -62,8 +43,8 @@ public class CarMovement : MonoBehaviourPunCallbacks
 
     private void Gas(float force)
     {
-        foreach(Axle axle in _axles) 
-            axle.SetMotorTorque(force);
+            foreach (Axle axle in _axles)
+                axle.SetMotorTorque(force);
     }
 
 
@@ -94,15 +75,7 @@ public class CarMovement : MonoBehaviourPunCallbacks
         {
             force = value * _brakeForce;
         }
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
-        if (photonView.IsMine)
-=======
         if (_playerPrefab.IsMine)
->>>>>>> Stashed changes
         {
             Gas(force);
         }
