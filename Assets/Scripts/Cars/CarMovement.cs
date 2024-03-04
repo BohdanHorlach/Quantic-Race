@@ -1,6 +1,7 @@
 using UnityEngine;
+using Photon.Pun;
 
-public class CarMovement : MonoBehaviour
+public class CarMovement : MonoBehaviourPunCallbacks
 {
     [SerializeField] private InputOfCarMovement input;
     [SerializeField] private Axle[] _axles;
@@ -17,20 +18,24 @@ public class CarMovement : MonoBehaviour
         input.InputVertical += InputVerticalProcessing;
         input.InputBrake += Brake;
     }
-
-
+    
     private void OnDisable()
     {
         input.InputHorizontal -= Steering;
         input.InputVertical -= InputVerticalProcessing;
         input.InputBrake -= Brake;
     }
+    
 
 
     private void Update()
     {
-        foreach (Axle axle in _axles)
-            axle.UpdateAxle();
+        if (photonView.IsMine)
+        {
+
+            foreach (Axle axle in _axles)
+                axle.UpdateAxle();
+        }
     }
 
 
@@ -68,7 +73,9 @@ public class CarMovement : MonoBehaviour
         {
             force = value * _brakeForce;
         }
-
-        Gas(force);
+        if (photonView.IsMine)
+        {
+            Gas(force);
+        }
     }
 }
