@@ -410,7 +410,11 @@ PrefabInstance:
       addedObject: {fileID: 4031538286976844023}
     - targetCorrespondingSourceObject: {fileID: 5637452158938511115, guid: d63c65ae8097a7343906ea546733f2d6, type: 3}
       insertIndex: -1
+<<<<<<< Updated upstream
       addedObject: {fileID: -758855897234441732}
+=======
+      addedObject: {fileID: -2306967149365645030}
+>>>>>>> Stashed changes
   m_SourcePrefab: {fileID: 100100000, guid: d63c65ae8097a7343906ea546733f2d6, type: 3}
 --- !u!1 &981983052933744325 stripped
 GameObject:
@@ -436,11 +440,19 @@ MonoBehaviour:
   OwnershipTransfer: 0
   observableSearch: 2
   ObservedComponents:
+<<<<<<< Updated upstream
   - {fileID: -758855897234441732}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
 --- !u!114 &-758855897234441732
+=======
+  - {fileID: -2306967149365645030}
+  sceneViewId: 0
+  InstantiationId: 0
+  isRuntimeInstantiated: 0
+--- !u!114 &-2306967149365645030
+>>>>>>> Stashed changes
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

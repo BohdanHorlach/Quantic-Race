@@ -1,6 +1,7 @@
 using UnityEngine;
 using Photon.Pun;
 
+<<<<<<< Updated upstream
 public class CarMovement : MonoBehaviourPunCallbacks
 {
 <<<<<<< Updated upstream
@@ -8,6 +9,14 @@ public class CarMovement : MonoBehaviourPunCallbacks
     //[SerializeField] PhotonView _photonView;
    // [Space]
 
+>>>>>>> Stashed changes
+=======
+
+    public PhotonView playerPrefab;
+
+    public class CarMovement : MonoBehaviourPunCallbacks
+    {
+    public PhotonView _playerPrefab;
 >>>>>>> Stashed changes
     [SerializeField] private InputOfCarMovement input;
     [SerializeField] private Axle[] _axles;
@@ -20,6 +29,7 @@ public class CarMovement : MonoBehaviourPunCallbacks
 
     private void OnEnable()
     {
+        
         input.InputHorizontal += Steering;
         input.InputVertical += InputVerticalProcessing;
         input.InputBrake += Brake;
@@ -36,9 +46,14 @@ public class CarMovement : MonoBehaviourPunCallbacks
 
     private void Update()
     {
+<<<<<<< Updated upstream
         if (photonView.IsMine)
         {
 
+=======
+        if (_playerPrefab.IsMine)
+        {
+>>>>>>> Stashed changes
             foreach (Axle axle in _axles)
                 axle.UpdateAxle();
         }
@@ -80,10 +95,14 @@ public class CarMovement : MonoBehaviourPunCallbacks
             force = value * _brakeForce;
         }
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
 
 >>>>>>> Stashed changes
         if (photonView.IsMine)
+=======
+        if (_playerPrefab.IsMine)
+>>>>>>> Stashed changes
         {
             Gas(force);
         }
