@@ -3,6 +3,12 @@ using Photon.Pun;
 
 public class CarMovement : MonoBehaviourPunCallbacks
 {
+<<<<<<< Updated upstream
+=======
+    //[SerializeField] PhotonView _photonView;
+   // [Space]
+
+>>>>>>> Stashed changes
     [SerializeField] private InputOfCarMovement input;
     [SerializeField] private Axle[] _axles;
     [SerializeField, Min(1)] private float _motorForce;
@@ -73,6 +79,10 @@ public class CarMovement : MonoBehaviourPunCallbacks
         {
             force = value * _brakeForce;
         }
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
         if (photonView.IsMine)
         {
             Gas(force);
