@@ -1,11 +1,7 @@
 using UnityEngine;
-using Photon.Pun;
 
-public class CarMovement : MonoBehaviourPun
+public class CarMovement : MonoBehaviour
 {
-    [SerializeField] PhotonView _photonView;
-    [Space]
-
     [SerializeField] private InputOfCarMovement input;
     [SerializeField] private Axle[] _axles;
     [SerializeField, Min(1)] private float _motorForce;
@@ -33,11 +29,8 @@ public class CarMovement : MonoBehaviourPun
 
     private void Update()
     {
-        if (_photonView.IsMine)
-        {
-            foreach (Axle axle in _axles)
-                axle.UpdateAxle();
-        }
+        foreach (Axle axle in _axles)
+            axle.UpdateAxle();
     }
 
 
@@ -76,9 +69,6 @@ public class CarMovement : MonoBehaviourPun
             force = value * _brakeForce;
         }
 
-        if (_photonView.IsMine)
-        {
-            Gas(force);
-        }
+        Gas(force);
     }
 }

@@ -2359,7 +2359,7 @@ MonoBehaviour:
   _joinInput: {fileID: 1635472430}
   _maxPlayers: 10
   _menuManager: {fileID: 1865801385}
-  _gameScene: SampleScene
+  _gameScene: GAme
   _roomItemPrefab: {fileID: 738312935313127953, guid: db954c4d3fb624f0488233fd526e08d7, type: 3}
   _contentObject: {fileID: 582438599}
 --- !u!1 &1897118096
@@ -3047,7 +3047,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _anim: {fileID: 2142657578}
-  _gameScene: SampleScene
+  _gameScene: GAme
   _transitionTime: 1
   _menuManager: {fileID: 1865801385}
 --- !u!1660057539 &9223372036854775807
