@@ -2,10 +2,11 @@ using UnityEngine;
 using Photon.Pun;
 
 
-    public class CarMovement : MonoBehaviourPunCallbacks
+public class CarMovement : MonoBehaviourPunCallbacks
 {
     [SerializeField] PhotonView _playerPrefab;
-    [SerializeField] private InputOfCarMovement input;
+    [SerializeField] CarCameraSwitcher _cameraSwitcher;
+    [SerializeField] private InputOfCarMovement _input;
     [SerializeField] private Axle[] _axles;
     [SerializeField, Min(1)] private float _motorForce;
     [SerializeField, Min(1)] private float _brakeForce;
@@ -14,21 +15,32 @@ using Photon.Pun;
     [SerializeField, Min(1)] private float _dividerForReverceForce;
 
 
-    private void OnEnable()
+    public override void OnEnable()
     {
-        input.InputHorizontal += Steering;
-        input.InputVertical += InputVerticalProcessing;
-        input.InputBrake += Brake;
+        base.OnEnable();
+
+        _input.InputHorizontal += Steering;
+        _input.InputVertical += InputVerticalProcessing;
+        _input.InputBrake += Brake;
     }
 
 
-    private void OnDisable()
+    public override void OnDisable()
     {
-        input.InputHorizontal -= Steering;
-        input.InputVertical -= InputVerticalProcessing;
-        input.InputBrake -= Brake;
+        base.OnDisable();
+
+        _input.InputHorizontal -= Steering;
+        _input.InputVertical -= InputVerticalProcessing;
+        _input.InputBrake -= Brake;
     }
 
+
+    private void Awake()
+    {
+        if (_playerPrefab.IsMine == true) {
+            _cameraSwitcher.Enable();
+        }
+    }
 
 
     private void Update()
@@ -43,8 +55,8 @@ using Photon.Pun;
 
     private void Gas(float force)
     {
-            foreach (Axle axle in _axles)
-                axle.SetMotorTorque(force);
+        foreach (Axle axle in _axles)
+            axle.SetMotorTorque(force);
     }
 
 
