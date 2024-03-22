@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class BotsCarMovement : InputOfCarMovement
 {
+    [SerializeField] private Collider _brakeZone;
     [SerializeField] private BotObstacleDetector _obstacleDetector;
     [SerializeField] private Transform[] _wayPoints;
     [SerializeField, Min(1)] private float _minSteeringDistance = 1f;
@@ -27,6 +28,7 @@ public class BotsCarMovement : InputOfCarMovement
     private void Awake()
     {
         //IsMoved = _wayPoints.Length != 0;
+        _brakeZone.isTrigger = true;
         _targetPoint = GetRandomPositionFromPoint(_wayPoints[_wayPointIndex]);
     }
 
@@ -43,6 +45,24 @@ public class BotsCarMovement : InputOfCarMovement
     }
 
 
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.tag == "BotAssistant")
+            return;
+
+        SetBrake(true);
+    }
+
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.tag == "BotAssistant")
+            return;
+
+        SetBrake(false);
+    }
+
+
     private void FixedUpdate()
     {
         if (IsMoved == false)
@@ -53,7 +73,7 @@ public class BotsCarMovement : InputOfCarMovement
         {
             float verticalValue = GetMoveForce();
             float horizontalValue = GetSteeringForceToThePoint();
-            horizontalValue *= verticalValue < 0 ? -1 : 1;
+            horizontalValue *= verticalValue < 0 ? 0 : 1;
 
             MoveToNextPoint();
             UpdateEvents(verticalValue, horizontalValue);
@@ -86,7 +106,7 @@ public class BotsCarMovement : InputOfCarMovement
 
     private float GetForseFromHitDistance(float rayDistance, float hitDistance)
     {
-        return (rayDistance * 0.1f) / hitDistance;
+        return rayDistance / hitDistance;
     }
 
 
@@ -160,7 +180,7 @@ public class BotsCarMovement : InputOfCarMovement
         if (_scanerBuffer.forwardHitDistance != ObstacleScanerData.emptyValue) 
             force = GetForceFromForwardAvoidance(rightDistance, leftDistance);
         else
-            force = GetForceFromAsideAvoidance(rightDistance, leftDistance);
+            force = GetForceFromAsideAvoidance(rightDistance, leftDistance) * 0.1f;
 
         return force;
     }
@@ -208,7 +228,8 @@ public class BotsCarMovement : InputOfCarMovement
         {
             float rayDistance = _obstacleDetector.ForwardRayDistance;
             float hitDistance = _scanerBuffer.forwardHitDistance;
-            return -rayDistance / hitDistance * 0.1f;
+            float force = GetForseFromHitDistance(rayDistance, hitDistance);
+            return _isBrake == false ? force : -force;
         }
     }
 

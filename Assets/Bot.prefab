@@ -1162,10 +1162,10 @@ MonoBehaviour:
     isMotor: 1
     isSteering: 0
     isBreak: 1
-  _maxSpeed: 300
-  _motorForce: 1200
+  _maxSpeed: 270
+  _motorForce: 1000
   _brakeForce: 800
-  _steeringAngleForce: 30
+  _steeringAngleForce: 20
   _handbrakeForce: 300
   _dividerForReverceForce: 3
 --- !u!1 &7731028520094366691
@@ -1177,8 +1177,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4406612649705982543}
+  - component: {fileID: 3431005276066002674}
   - component: {fileID: 5173682993394811457}
-  m_Layer: 3
+  m_Layer: 2
   m_Name: Controller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1194,12 +1195,33 @@ Transform:
   m_GameObject: {fileID: 7731028520094366691}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0.86}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6298204409072467210}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!135 &3431005276066002674
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7731028520094366691}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0.55, z: 2.3}
 --- !u!114 &5173682993394811457
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1212,6 +1234,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9837649e2c19db44e9051d11c665c168, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _brakeZone: {fileID: 3431005276066002674}
   _obstacleDetector: {fileID: 4003088639684951227}
   _wayPoints:
   - {fileID: 0}
@@ -1276,7 +1299,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 72
   _forwardRayDistance: 10
-  _asideRayDistance: 6
+  _asideRayDistance: 4
   _rayCount: 6
   _searchForwardRadius: 10
   _searchAsideRadius: 160
