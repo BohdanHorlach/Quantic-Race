@@ -66,15 +66,18 @@ public class CarMovement : MonoBehaviour
     {
         float force = 0;
 
-        if ((value >= 0 || value < 0 && _axles[0].GetCurentRPM() <= 0) && CurrentSpeed <= _maxSpeed)
+        if ((value >= 0 || value < 0 && _axles[0].GetCurentRPM() <= 0))
         {
-            force = value >= 0 ? _motorForce : _motorForce / _dividerForReverceForce;
+	    float gasForce = Mathf.Clamp(_maxSpeed / CurrentSpeed * 0.1f, 0, 1);
+            force = value >= 0 ? _motorForce * gasForce : _motorForce / _dividerForReverceForce;
             force *= value;
         }
         else if (value < 0 && _axles[0].GetCurentRPM() > 0)
         {
             force = value * _brakeForce;
         }
+
+        Debug.Log(CurrentSpeed);
 
         Gas(force);
     }
