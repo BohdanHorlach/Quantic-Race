@@ -14,6 +14,8 @@ public class CarMovement : MonoBehaviour
 
 
     public float CurrentSpeed { get => _rigidbody.velocity.sqrMagnitude; }
+    public float MaxSpeed { get => _maxSpeed; }
+    public Rigidbody Rigidbody { get => _rigidbody; }
 
 
     private void OnEnable()

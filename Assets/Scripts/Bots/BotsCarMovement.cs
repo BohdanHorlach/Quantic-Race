@@ -21,6 +21,8 @@ public class BotsCarMovement : InputOfCarMovement
     public override event Action<float> InputHorizontal;
     public override event Action<float> InputVertical;
     public override event Action<float> InputBrake;
+    public override event Action UseAbility;
+
 
     public bool IsMoved = true;
 
