@@ -8,7 +8,7 @@
 		Offset -4, -4
 		ZWrite Off
 		Alphatest Greater 0
-		Tags{ "Queue" = "Transparent"  "RenderType" = "Transparent" }
+		Tags{ "Queue" = "Geometry"  "RenderType" = "Transparent" }
 
 		SubShader{
 			ColorMaterial AmbientAndDiffuse

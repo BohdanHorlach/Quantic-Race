@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class Accelerator : Abilities
 {
-    [SerializeField] private CarMovement _carMovement;
+    [SerializeField] private CarMovement _car;
+    [SerializeField] private ParticleSystem _particle;
     [SerializeField] private Transform _acceleratorPoint;
+    [SerializeField] private Transform _decelerationPoint;
     [SerializeField, Min(10)] private float _accelerationforce = 20f;
     [SerializeField, Min(1)] private float _accelerationTime = 5f;
     [SerializeField, Min(1)] private float _maxSpeedOfAcceleration = 400f;
     [SerializeField, Min(10)] private float _constantDecelerationForce = 30f;
-
 
     private bool _isActivate = false;
 
@@ -18,26 +19,32 @@ public class Accelerator : Abilities
     private IEnumerator Acceleration()
     {
         float timer = 0;
+        _particle.Play();
 
         while (timer < _accelerationTime)
         {
-            Vector3 force = _carMovement.transform.forward * _accelerationforce;
+            Vector3 force = _car.transform.forward * _accelerationforce;
 
-            if(_carMovement.CurrentSpeed < _maxSpeedOfAcceleration)
-                _carMovement.Rigidbody.AddForceAtPosition(force, _acceleratorPoint.position);
+            if(_car.CurrentSpeed < _maxSpeedOfAcceleration)
+                _car.Rigidbody.AddForceAtPosition(force, _acceleratorPoint.position);
 
             timer += Time.fixedDeltaTime;
             yield return null;
         }
+
+	    StartCoroutine("SlowDownToMaxSpeed");
     }
 
 
     private IEnumerator SlowDownToMaxSpeed()
     {
-        while(_carMovement.CurrentSpeed > _carMovement.MaxSpeed)
+        _particle.Stop();
+
+        while(_car.CurrentSpeed > _car.MaxSpeed)
         {
-            float force = Mathf.Lerp(_carMovement.CurrentSpeed, _carMovement.MaxSpeed, Time.fixedDeltaTime);
-            _carMovement.Rigidbody.velocity -= _carMovement.transform.forward * (force + _constantDecelerationForce);
+            float decelerateForce = Mathf.Lerp(_car.CurrentSpeed, _car.MaxSpeed, Time.fixedDeltaTime) * 0.1f;
+            Vector3 force = -_car.transform.forward * _constantDecelerationForce;
+            _car.Rigidbody.AddForceAtPosition(force * decelerateForce, _decelerationPoint.position);
 
             yield return null;
         }
@@ -52,12 +59,11 @@ public class Accelerator : Abilities
     }
 
 
-    protected override void Activate()
+    public override void Activate()
     {
         if (_isActivate == false)
             CallAcceleration(true, "SlowDownToMaxSpeed", "Acceleration");
         else
             CallAcceleration(false, "Acceleration", "SlowDownToMaxSpeed");
-
     }
 }

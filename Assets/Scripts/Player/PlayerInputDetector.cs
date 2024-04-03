@@ -16,6 +16,11 @@ public class PlayerInputDetector : InputOfCarMovement
     {
         ReadMoveInput();
         ReadBrakeInput();
+    }
+
+
+    private void Update()
+    {
         DetectInputOfAbilityUse();
     }
 

@@ -77,8 +77,6 @@ public class CarMovement : MonoBehaviour
             force = value * _brakeForce;
         }
 
-        Debug.Log(CurrentSpeed);
-
         Gas(force);
     }
 
