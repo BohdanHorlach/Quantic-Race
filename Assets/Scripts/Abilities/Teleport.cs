@@ -1,7 +1,7 @@
 using UnityEngine;
 
 
-public class Teleport : Abilities
+public class Teleport : Abilitiy
 {
     [SerializeField] private Transform _car;
     [SerializeField] private Animator _animator;
@@ -13,6 +13,9 @@ public class Teleport : Abilities
     private Vector3 _telportPosition;
     private Vector3 _updatedTeleportPosition;
     private bool _canTeleported;
+    private TypeAbility _type = TypeAbility.Teleport;
+
+    public override TypeAbility Type { get => _type; }
 
 
     private void Update()

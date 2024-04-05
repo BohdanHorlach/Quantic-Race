@@ -3,13 +3,16 @@ using UnityEngine;
 
 
 [RequireComponent(typeof(SphereCollider))]
-public class PowerWave : Abilities
+public class PowerWave : Abilitiy
 {
     [SerializeField] private ParticleSystem _particle;
     [SerializeField, Min(1)] private float _pushForce = 10f;
     [SerializeField] private SphereCollider _collider;
 
     private HashSet<CarMovement> _enteredTheCoverageArea;
+    private TypeAbility _type = TypeAbility.PowerWave;
+
+    public override TypeAbility Type { get => _type; }
 
 
     private void Awake()

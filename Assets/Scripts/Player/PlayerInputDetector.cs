@@ -4,12 +4,12 @@ using UnityEngine;
 
 public class PlayerInputDetector : InputOfCarMovement
 {
+    [SerializeField] private Abilitiy _abilty;
     [SerializeField] private KeyCode _abilitiesKeyKode;
 
     public override event Action<float> InputHorizontal;
     public override event Action<float> InputVertical;
     public override event Action<float> InputBrake;
-    public override event Action UseAbility;
 
 
     private void FixedUpdate()
@@ -46,6 +46,6 @@ public class PlayerInputDetector : InputOfCarMovement
     private void DetectInputOfAbilityUse()
     {
         if (Input.GetKeyDown(_abilitiesKeyKode) == true)
-            UseAbility?.Invoke();
+            _abilty.Activate();
     }
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 
 
-public class Accelerator : Abilities
+public class Accelerator : Abilitiy
 {
     [SerializeField] private CarMovement _car;
     [SerializeField] private ParticleSystem _particle;
@@ -14,6 +14,9 @@ public class Accelerator : Abilities
     [SerializeField, Min(10)] private float _constantDecelerationForce = 30f;
 
     private bool _isActivate = false;
+    private TypeAbility _type = TypeAbility.Accelerator;
+
+    public override TypeAbility Type { get => _type; }
 
 
     private IEnumerator Acceleration()

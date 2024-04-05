@@ -18,26 +18,20 @@ public class ChargeStation : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.TryGetComponent(out AbilitiesController abilitiesController) == true)
+        if(other.TryGetComponent(out AbilitiyController abilitiesController) == true)
             GiveCharge(abilitiesController);
     }
 
 
     private IEnumerator Recovery()
     {
-        float currentTime = 0f;
-
-        while(currentTime < _recoveryTime)
-        {
-            currentTime += Time.deltaTime;
-            yield return null;
-        }
+        yield return new WaitForSeconds(_recoveryTime);
 
         _collider.enabled = true;
     }
 
 
-    private void GiveCharge(AbilitiesController abilitiesController)
+    private void GiveCharge(AbilitiyController abilitiesController)
     {
         _collider.enabled = false;
 
