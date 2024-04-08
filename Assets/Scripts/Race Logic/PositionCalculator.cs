@@ -13,7 +13,7 @@ public class PositionCalculator : MonoBehaviour
     private Transform[] _racePositions;
     private string[] _names;
 
-    private void Awake()
+    private void Start()
     {
         _racePositions = new Transform[_cars.Length];
         _names = new string[_cars.Length];

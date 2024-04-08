@@ -7,22 +7,18 @@ public class BotsCarMovement : InputOfCarMovement
 {
     [SerializeField] private Collider _brakeZone;
     [SerializeField] private BotObstacleDetector _obstacleDetector;
-    [SerializeField] private Transform[] _wayPoints;
-    [SerializeField, Min(1)] private float _minSteeringDistance = 1f;
-
+    [SerializeField] private WayPont _wayPoint;
+    
+    private const float CHANCE_SELECT_ALTERNATIVE_POINT = 0.5f;
     private const float _maxInputValue = 1f;
     private const float _normalizationAngle = 90f;
-    private int _wayPointIndex = 0;
     private Vector3 _targetPoint;
     private bool _isBrake = false;
     private ObstacleScanerData _scanerBuffer;
 
-
     public override event Action<float> InputHorizontal;
     public override event Action<float> InputVertical;
     public override event Action<float> InputBrake;
-    public override event Action UseAbility;
-
 
     public bool IsMoved = true;
 
@@ -31,7 +27,7 @@ public class BotsCarMovement : InputOfCarMovement
     {
         //IsMoved = _wayPoints.Length != 0;
         _brakeZone.isTrigger = true;
-        _targetPoint = GetRandomPositionFromPoint(_wayPoints[_wayPointIndex]);
+        _targetPoint = GetRandomPositionFromPoint(_wayPoint.transform);
     }
 
 
@@ -188,17 +184,33 @@ public class BotsCarMovement : InputOfCarMovement
     }
 
 
+    private void SetTargetPoint(WayPont wayPont)
+    {
+        Transform point;
+
+        point = wayPont.transform;
+        _wayPoint = wayPont;
+
+        _targetPoint = GetRandomPositionFromPoint(point);
+    }
+
+
     private void MoveToNextPoint()
     {
-        if (_minSteeringDistance < Vector3.Distance(transform.position, _targetPoint))
+        if (_wayPoint.DistanceToGetNext < Vector3.Distance(transform.position, _targetPoint))
             return;
 
-        _wayPointIndex++;
-
-        if (_wayPointIndex != _wayPoints.Length)
-            _targetPoint = GetRandomPositionFromPoint(_wayPoints[_wayPointIndex]);
+        if (_wayPoint.NextPoint != null)
+        {
+            if (UnityEngine.Random.value <= CHANCE_SELECT_ALTERNATIVE_POINT)
+                SetTargetPoint(_wayPoint.GetRandomAlternativePoint());
+            else
+                SetTargetPoint(_wayPoint.NextPoint);
+        }
         else
+        {
             IsMoved = false;
+        }
     }
 
 

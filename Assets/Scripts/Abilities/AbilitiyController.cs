@@ -6,9 +6,7 @@ using System;
 
 public class AbilitiyController : Abilitiy
 {
-    [SerializeField] private InputOfCarMovement _input;
     [SerializeField] private Abilitiy _ability;
-    [SerializeField] private Slider _slider;
     [SerializeField] private float _cooldownTime;
     [SerializeField] private int _maxChargeCount;
 
@@ -17,12 +15,6 @@ public class AbilitiyController : Abilitiy
 
     public override TypeAbility Type { get => _ability.Type; }
     public event Action UseAbility;
-
-
-    private void Update()
-    {
-        _slider.value = _currentChargeCount;
-    }
 
 
     private IEnumerator Cooldown()

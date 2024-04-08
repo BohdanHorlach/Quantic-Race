@@ -6,7 +6,7 @@ public class CheckPointHandler : MonoBehaviour
 {
     private Transform[] _chekPointsPosition;
     private Queue<Transform> _chekPoints;
-    private float _minDistanceForScoring;
+    private float _minDistanceForScoring = -1f;
     private int _countLaps;
     private int _currentLaps;
 
@@ -42,6 +42,9 @@ public class CheckPointHandler : MonoBehaviour
 
     private void FillCheckPoints(Transform[] checkPoints)
     {
+        if (checkPoints == null)
+            return;
+
         foreach (Transform transform in checkPoints)
             _chekPoints.Enqueue(transform);
 
@@ -51,6 +54,9 @@ public class CheckPointHandler : MonoBehaviour
 
     public Transform GetCurrentCheckPoint()
     {
+        if (_chekPoints == null || _chekPoints.Count == 0)
+            return null;
+
         if (_chekPoints.TryPeek(out Transform checkPoint))
             return checkPoint;
 
@@ -60,6 +66,9 @@ public class CheckPointHandler : MonoBehaviour
 
     public float GetDistanceToCheckPoint()
     {
+        if (_chekPoints == null || _chekPoints.Count == 0)
+            return 0f;
+
         if (_chekPoints.TryPeek(out Transform chekPoint))
             return Vector3.Distance(transform.position, chekPoint.position);
 

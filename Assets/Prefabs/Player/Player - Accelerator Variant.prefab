@@ -58,7 +58,7 @@ Transform:
   m_GameObject: {fileID: 6667595740626416341}
   serializedVersion: 2
   m_LocalRotation: {x: -1, y: 0, z: 0, w: 0}
-  m_LocalPosition: {x: -0.04, y: 0.57, z: 2.39}
+  m_LocalPosition: {x: 0, y: 0.1, z: 2.39}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1684,7 +1684,7 @@ ParticleSystem:
         m_RotationOrder: 4
     orbitalX:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 0
       minScalar: 0
       maxCurve:
@@ -1737,7 +1737,7 @@ ParticleSystem:
         m_RotationOrder: 4
     orbitalY:
       serializedVersion: 2
-      minMaxState: 0
+      minMaxState: 3
       scalar: 0
       minScalar: 0
       maxCurve:
@@ -1790,9 +1790,9 @@ ParticleSystem:
         m_RotationOrder: 4
     orbitalZ:
       serializedVersion: 2
-      minMaxState: 0
-      scalar: 2
-      minScalar: 0
+      minMaxState: 3
+      scalar: 1
+      minScalar: -1
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -4913,10 +4913,10 @@ MonoBehaviour:
   _particle: {fileID: 614085339832944579}
   _acceleratorPoint: {fileID: 5501988152122283010}
   _decelerationPoint: {fileID: 2387840202136504353}
-  _accelerationforce: 10000
+  _accelerationforce: 1000
   _accelerationTime: 5
   _maxSpeedOfAcceleration: 2000
-  _constantDecelerationForce: 100
+  _constantDecelerationForce: 1000
 --- !u!1 &8837766624859297837
 GameObject:
   m_ObjectHideFlags: 0
@@ -5040,17 +5040,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8158572159484617359, guid: d63c65ae8097a7343906ea546733f2d6, type: 3}
   m_PrefabInstance: {fileID: 7627867134770159764}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &2327485243336758443 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5302781586701759551, guid: d63c65ae8097a7343906ea546733f2d6, type: 3}
-  m_PrefabInstance: {fileID: 7627867134770159764}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2875513590189905823}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76f2c928c94a8b14a951c65c13e0f214, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &2875513590189905823 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5637452158938511115, guid: d63c65ae8097a7343906ea546733f2d6, type: 3}
@@ -5068,10 +5057,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46d77b037649b0d41bc976a9a1adb1b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _input: {fileID: 2327485243336758443}
-  _abilities: {fileID: 1444617483984509824}
-  _cooldown: 1
-  _maxCharge: 5
+  _ability: {fileID: 0}
+  _cooldownTime: 0
+  _maxChargeCount: 0
 --- !u!114 &4080697122511118457 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5871054366812782829, guid: d63c65ae8097a7343906ea546733f2d6, type: 3}
