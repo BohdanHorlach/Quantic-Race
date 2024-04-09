@@ -42,7 +42,7 @@ public class ButtonOptions : MonoBehaviour
 
     public void Track2()
     {
-        SceneManager.LoadScene("SampleScene2");
+        SceneManager.LoadScene("TestScene");
     }
 
     public void Track3()
