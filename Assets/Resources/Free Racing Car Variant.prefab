@@ -507,6 +507,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5637452158938511115, guid: d63c65ae8097a7343906ea546733f2d6, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1184362595713869531}
+    - targetCorrespondingSourceObject: {fileID: 5637452158938511115, guid: d63c65ae8097a7343906ea546733f2d6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2053658447440615642}
   m_SourcePrefab: {fileID: 100100000, guid: d63c65ae8097a7343906ea546733f2d6, type: 3}
 --- !u!114 &506933893608682185 stripped
 MonoBehaviour:
@@ -572,6 +575,7 @@ MonoBehaviour:
   observableSearch: 2
   ObservedComponents:
   - {fileID: 1184362595713869531}
+  - {fileID: 2053658447440615642}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -582,7 +586,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 981983052933744325}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8efc6b1d64977384eb3405357896c656, type: 3}
   m_Name: 
@@ -608,6 +612,22 @@ MonoBehaviour:
     InterpolateOption: 0
     InterpolateMoveTowardsSpeed: 1
     InterpolateLerpSpeed: 0
+--- !u!114 &2053658447440615642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 981983052933744325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 627855c7f81362d41938ffe0b1475957, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SynchronizePosition: 1
+  m_SynchronizeRotation: 1
+  m_SynchronizeScale: 0
+  m_UseLocal: 1
 --- !u!114 &2703857470416611844 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7357470807681915850, guid: d63c65ae8097a7343906ea546733f2d6, type: 3}

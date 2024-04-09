@@ -13,7 +13,7 @@ public class Car : MonoBehaviour
     //[SerializeField] GameObject _needle;
     //[SerializeField] float _vehicleSpeed;
 
-    float _startPosition = 0f, _endPosition = 0f;
+    //float _startPosition = 0f, _endPosition = 0f;
     float _desiredPosition;
 
     void Awake()
