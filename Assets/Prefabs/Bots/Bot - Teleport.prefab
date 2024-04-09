@@ -132,7 +132,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7521826613607082126, guid: 9766c96ac133dd8469a46885f7452bd1, type: 3}
       propertyPath: m_Name
-      value: Bot - Teleport Variant
+      value: Bot - Teleport
       objectReference: {fileID: 0}
     - target: {fileID: 7521826613607082126, guid: 9766c96ac133dd8469a46885f7452bd1, type: 3}
       propertyPath: m_IsActive

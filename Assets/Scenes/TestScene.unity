@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.43667486, g: 0.475263, b: 0.5157652, a: 1}
+  m_IndirectSpecularColor: {r: 0.17238694, g: 0.20642382, b: 0.24648249, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -3610,34 +3610,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 127088109330577844, guid: afbdab67943417a499ab704a41057031, type: 3}
-      propertyPath: m_CollisionDetection
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 936354401185102173, guid: afbdab67943417a499ab704a41057031, type: 3}
-      propertyPath: _rayCount
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 936354401185102173, guid: afbdab67943417a499ab704a41057031, type: 3}
-      propertyPath: _searchRadius
-      value: 120
-      objectReference: {fileID: 0}
-    - target: {fileID: 936354401185102173, guid: afbdab67943417a499ab704a41057031, type: 3}
-      propertyPath: _asideRayDistance
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 936354401185102173, guid: afbdab67943417a499ab704a41057031, type: 3}
-      propertyPath: _searchAsideRadius
-      value: 160
-      objectReference: {fileID: 0}
-    - target: {fileID: 936354401185102173, guid: afbdab67943417a499ab704a41057031, type: 3}
-      propertyPath: _forwardRayDistance
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 936354401185102173, guid: afbdab67943417a499ab704a41057031, type: 3}
-      propertyPath: _searchForwardRadius
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 2206578597347192634, guid: afbdab67943417a499ab704a41057031, type: 3}
       propertyPath: skidmarksController
       value: 
@@ -3646,22 +3618,6 @@ PrefabInstance:
       propertyPath: skidmarksController
       value: 
       objectReference: {fileID: 231304932}
-    - target: {fileID: 5501080763771738766, guid: afbdab67943417a499ab704a41057031, type: 3}
-      propertyPath: _maxSpeed
-      value: 1000
-      objectReference: {fileID: 0}
-    - target: {fileID: 5501080763771738766, guid: afbdab67943417a499ab704a41057031, type: 3}
-      propertyPath: _brakeForce
-      value: 300
-      objectReference: {fileID: 0}
-    - target: {fileID: 5501080763771738766, guid: afbdab67943417a499ab704a41057031, type: 3}
-      propertyPath: _motorForce
-      value: 1000
-      objectReference: {fileID: 0}
-    - target: {fileID: 5501080763771738766, guid: afbdab67943417a499ab704a41057031, type: 3}
-      propertyPath: _steeringAngleForce
-      value: 25
-      objectReference: {fileID: 0}
     - target: {fileID: 5985758647248055656, guid: afbdab67943417a499ab704a41057031, type: 3}
       propertyPath: m_Name
       value: Bot - PowerWave (1)
@@ -3720,77 +3676,17 @@ PrefabInstance:
       objectReference: {fileID: 231304932}
     - target: {fileID: 8989140807442712487, guid: afbdab67943417a499ab704a41057031, type: 3}
       propertyPath: IsMoved
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8989140807442712487, guid: afbdab67943417a499ab704a41057031, type: 3}
       propertyPath: _wayPoint
       value: 
       objectReference: {fileID: 1830959524}
-    - target: {fileID: 8989140807442712487, guid: afbdab67943417a499ab704a41057031, type: 3}
-      propertyPath: _minSteeringDistance
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 8989140807442712487, guid: afbdab67943417a499ab704a41057031, type: 3}
-      propertyPath: _wayPoints.Array.size
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 8989140807442712487, guid: afbdab67943417a499ab704a41057031, type: 3}
-      propertyPath: _wayPoints.Array.data[0]
-      value: 
-      objectReference: {fileID: 1830959520}
-    - target: {fileID: 8989140807442712487, guid: afbdab67943417a499ab704a41057031, type: 3}
-      propertyPath: _wayPoints.Array.data[1]
-      value: 
-      objectReference: {fileID: 1877529859}
-    - target: {fileID: 8989140807442712487, guid: afbdab67943417a499ab704a41057031, type: 3}
-      propertyPath: _wayPoints.Array.data[2]
-      value: 
-      objectReference: {fileID: 1778505791}
-    - target: {fileID: 8989140807442712487, guid: afbdab67943417a499ab704a41057031, type: 3}
-      propertyPath: _wayPoints.Array.data[3]
-      value: 
-      objectReference: {fileID: 398338461}
-    - target: {fileID: 8989140807442712487, guid: afbdab67943417a499ab704a41057031, type: 3}
-      propertyPath: _wayPoints.Array.data[4]
-      value: 
-      objectReference: {fileID: 618237294}
-    - target: {fileID: 8989140807442712487, guid: afbdab67943417a499ab704a41057031, type: 3}
-      propertyPath: _wayPoints.Array.data[5]
-      value: 
-      objectReference: {fileID: 297951562}
-    - target: {fileID: 8989140807442712487, guid: afbdab67943417a499ab704a41057031, type: 3}
-      propertyPath: _wayPoints.Array.data[6]
-      value: 
-      objectReference: {fileID: 552278202}
-    - target: {fileID: 8989140807442712487, guid: afbdab67943417a499ab704a41057031, type: 3}
-      propertyPath: _wayPoints.Array.data[7]
-      value: 
-      objectReference: {fileID: 326374415}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 5985758647248055656, guid: afbdab67943417a499ab704a41057031, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 862452645}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: afbdab67943417a499ab704a41057031, type: 3}
---- !u!1 &862452644 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5985758647248055656, guid: afbdab67943417a499ab704a41057031, type: 3}
-  m_PrefabInstance: {fileID: 862452643}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &862452645
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 862452644}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99c14b149e2565b48a8c69df9afdf383, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &915410429
 GameObject:
   m_ObjectHideFlags: 0
@@ -4009,7 +3905,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 1}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -5237,86 +5133,18 @@ PrefabInstance:
       propertyPath: skidmarksController
       value: 
       objectReference: {fileID: 231304932}
-    - target: {fileID: 3587787587835824810, guid: 752e6075501c0e741a01f6b6cb05044f, type: 3}
-      propertyPath: m_CollisionDetection
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4393113444808870467, guid: 752e6075501c0e741a01f6b6cb05044f, type: 3}
-      propertyPath: _rayCount
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4393113444808870467, guid: 752e6075501c0e741a01f6b6cb05044f, type: 3}
-      propertyPath: _searchRadius
-      value: 120
-      objectReference: {fileID: 0}
-    - target: {fileID: 4393113444808870467, guid: 752e6075501c0e741a01f6b6cb05044f, type: 3}
-      propertyPath: _asideRayDistance
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4393113444808870467, guid: 752e6075501c0e741a01f6b6cb05044f, type: 3}
-      propertyPath: _searchAsideRadius
-      value: 160
-      objectReference: {fileID: 0}
-    - target: {fileID: 4393113444808870467, guid: 752e6075501c0e741a01f6b6cb05044f, type: 3}
-      propertyPath: _forwardRayDistance
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 4393113444808870467, guid: 752e6075501c0e741a01f6b6cb05044f, type: 3}
-      propertyPath: _searchForwardRadius
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 5422038822269940407, guid: 752e6075501c0e741a01f6b6cb05044f, type: 3}
       propertyPath: skidmarksController
       value: 
       objectReference: {fileID: 231304932}
     - target: {fileID: 5527666937708344505, guid: 752e6075501c0e741a01f6b6cb05044f, type: 3}
       propertyPath: IsMoved
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5527666937708344505, guid: 752e6075501c0e741a01f6b6cb05044f, type: 3}
       propertyPath: _wayPoint
       value: 
       objectReference: {fileID: 1830959524}
-    - target: {fileID: 5527666937708344505, guid: 752e6075501c0e741a01f6b6cb05044f, type: 3}
-      propertyPath: _minSteeringDistance
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 5527666937708344505, guid: 752e6075501c0e741a01f6b6cb05044f, type: 3}
-      propertyPath: _wayPoints.Array.size
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 5527666937708344505, guid: 752e6075501c0e741a01f6b6cb05044f, type: 3}
-      propertyPath: _wayPoints.Array.data[0]
-      value: 
-      objectReference: {fileID: 1830959520}
-    - target: {fileID: 5527666937708344505, guid: 752e6075501c0e741a01f6b6cb05044f, type: 3}
-      propertyPath: _wayPoints.Array.data[1]
-      value: 
-      objectReference: {fileID: 1877529859}
-    - target: {fileID: 5527666937708344505, guid: 752e6075501c0e741a01f6b6cb05044f, type: 3}
-      propertyPath: _wayPoints.Array.data[2]
-      value: 
-      objectReference: {fileID: 1778505791}
-    - target: {fileID: 5527666937708344505, guid: 752e6075501c0e741a01f6b6cb05044f, type: 3}
-      propertyPath: _wayPoints.Array.data[3]
-      value: 
-      objectReference: {fileID: 398338461}
-    - target: {fileID: 5527666937708344505, guid: 752e6075501c0e741a01f6b6cb05044f, type: 3}
-      propertyPath: _wayPoints.Array.data[4]
-      value: 
-      objectReference: {fileID: 618237294}
-    - target: {fileID: 5527666937708344505, guid: 752e6075501c0e741a01f6b6cb05044f, type: 3}
-      propertyPath: _wayPoints.Array.data[5]
-      value: 
-      objectReference: {fileID: 297951562}
-    - target: {fileID: 5527666937708344505, guid: 752e6075501c0e741a01f6b6cb05044f, type: 3}
-      propertyPath: _wayPoints.Array.data[6]
-      value: 
-      objectReference: {fileID: 552278202}
-    - target: {fileID: 5527666937708344505, guid: 752e6075501c0e741a01f6b6cb05044f, type: 3}
-      propertyPath: _wayPoints.Array.data[7]
-      value: 
-      objectReference: {fileID: 326374415}
     - target: {fileID: 6095208559905361222, guid: 752e6075501c0e741a01f6b6cb05044f, type: 3}
       propertyPath: _positionCalculator
       value: 
@@ -5373,47 +5201,11 @@ PrefabInstance:
       propertyPath: skidmarksController
       value: 
       objectReference: {fileID: 231304932}
-    - target: {fileID: 8961639839661877648, guid: 752e6075501c0e741a01f6b6cb05044f, type: 3}
-      propertyPath: _maxSpeed
-      value: 1000
-      objectReference: {fileID: 0}
-    - target: {fileID: 8961639839661877648, guid: 752e6075501c0e741a01f6b6cb05044f, type: 3}
-      propertyPath: _brakeForce
-      value: 300
-      objectReference: {fileID: 0}
-    - target: {fileID: 8961639839661877648, guid: 752e6075501c0e741a01f6b6cb05044f, type: 3}
-      propertyPath: _motorForce
-      value: 1000
-      objectReference: {fileID: 0}
-    - target: {fileID: 8961639839661877648, guid: 752e6075501c0e741a01f6b6cb05044f, type: 3}
-      propertyPath: _steeringAngleForce
-      value: 25
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 7140545159608983158, guid: 752e6075501c0e741a01f6b6cb05044f, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1312336557}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 752e6075501c0e741a01f6b6cb05044f, type: 3}
---- !u!1 &1312336556 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7140545159608983158, guid: 752e6075501c0e741a01f6b6cb05044f, type: 3}
-  m_PrefabInstance: {fileID: 1312336555}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1312336557
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1312336556}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99c14b149e2565b48a8c69df9afdf383, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1326994818
 GameObject:
   m_ObjectHideFlags: 0
@@ -5888,9 +5680,9 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1371559395}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1395986607 stripped
+--- !u!114 &1395986614 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 4711542009258131365, guid: e09887aa83e4bf94ea25599a8517acee, type: 3}
+  m_CorrespondingSourceObject: {fileID: 3267530937461598645, guid: e09887aa83e4bf94ea25599a8517acee, type: 3}
   m_PrefabInstance: {fileID: 5398803887775677150}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
@@ -6226,6 +6018,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1556060925892704005, guid: e09887aa83e4bf94ea25599a8517acee, type: 3}
+      propertyPath: m_ForceAppPointDistance
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 2006227243582945338, guid: e09887aa83e4bf94ea25599a8517acee, type: 3}
       propertyPath: skidmarksController
       value: 
@@ -6243,9 +6039,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 231304932}
     - target: {fileID: 4956247822574630121, guid: e09887aa83e4bf94ea25599a8517acee, type: 3}
+      propertyPath: IsMoved
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4956247822574630121, guid: e09887aa83e4bf94ea25599a8517acee, type: 3}
       propertyPath: _wayPoint
       value: 
       objectReference: {fileID: 1830959524}
+    - target: {fileID: 5153515632450603235, guid: e09887aa83e4bf94ea25599a8517acee, type: 3}
+      propertyPath: m_ForceAppPointDistance
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 6080717037217909666, guid: e09887aa83e4bf94ea25599a8517acee, type: 3}
       propertyPath: m_LocalPosition.x
       value: 65.92379
@@ -6285,6 +6089,14 @@ PrefabInstance:
     - target: {fileID: 6080717037217909666, guid: e09887aa83e4bf94ea25599a8517acee, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6505422265256860326, guid: e09887aa83e4bf94ea25599a8517acee, type: 3}
+      propertyPath: m_ForceAppPointDistance
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6704705837661668966, guid: e09887aa83e4bf94ea25599a8517acee, type: 3}
+      propertyPath: m_ForceAppPointDistance
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 7047588913028557354, guid: e09887aa83e4bf94ea25599a8517acee, type: 3}
       propertyPath: skidmarksController
@@ -6338,9 +6150,8 @@ MonoBehaviour:
   - {fileID: 552278202}
   - {fileID: 326374415}
   _cars:
-  - {fileID: 1732079269}
-  - {fileID: 1395986607}
-  - {fileID: 1312336557}
+  - {fileID: 1610823491}
+  - {fileID: 1610823491}
   _numberOfLaps: 2
   _minDistanceForScoring: 20
 --- !u!4 &1545277572
@@ -6634,6 +6445,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1418841485580956459, guid: 58a4d8566f02e1b41a5c9206ba0e68b6, type: 3}
   m_PrefabInstance: {fileID: 499145804}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1610823491 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3267530937461598645, guid: e09887aa83e4bf94ea25599a8517acee, type: 3}
+  m_PrefabInstance: {fileID: 1530892442}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99c14b149e2565b48a8c69df9afdf383, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1713560756
 GameObject:
   m_ObjectHideFlags: 0
@@ -6949,17 +6771,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1729587148}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1732079269 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 163651218952416966, guid: afbdab67943417a499ab704a41057031, type: 3}
-  m_PrefabInstance: {fileID: 5470995536290226323}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99c14b149e2565b48a8c69df9afdf383, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1732079270 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7788128102986578156, guid: afbdab67943417a499ab704a41057031, type: 3}
@@ -8594,6 +8405,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 231304932}
     - target: {fileID: 5527666937708344505, guid: 752e6075501c0e741a01f6b6cb05044f, type: 3}
+      propertyPath: IsMoved
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5527666937708344505, guid: 752e6075501c0e741a01f6b6cb05044f, type: 3}
       propertyPath: _wayPoint
       value: 
       objectReference: {fileID: 1830959524}
@@ -8645,6 +8460,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bot - Teleport
       objectReference: {fileID: 0}
+    - target: {fileID: 7140545159608983158, guid: 752e6075501c0e741a01f6b6cb05044f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7615593770789612154, guid: 752e6075501c0e741a01f6b6cb05044f, type: 3}
       propertyPath: skidmarksController
       value: 
@@ -8671,6 +8490,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 231304932}
     - target: {fileID: 2684477234715394972, guid: e09887aa83e4bf94ea25599a8517acee, type: 3}
+      propertyPath: _checkPointHandler
+      value: 
+      objectReference: {fileID: 1395986614}
+    - target: {fileID: 2684477234715394972, guid: e09887aa83e4bf94ea25599a8517acee, type: 3}
       propertyPath: _positionCalculator
       value: 
       objectReference: {fileID: 1545277571}
@@ -8682,6 +8505,10 @@ PrefabInstance:
       propertyPath: skidmarksController
       value: 
       objectReference: {fileID: 231304932}
+    - target: {fileID: 4956247822574630121, guid: e09887aa83e4bf94ea25599a8517acee, type: 3}
+      propertyPath: IsMoved
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4956247822574630121, guid: e09887aa83e4bf94ea25599a8517acee, type: 3}
       propertyPath: _wayPoint
       value: 
@@ -8734,6 +8561,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bot - Accelerator
       objectReference: {fileID: 0}
+    - target: {fileID: 7738970952867454502, guid: e09887aa83e4bf94ea25599a8517acee, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -8747,6 +8578,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1508190941611553556, guid: afbdab67943417a499ab704a41057031, type: 3}
+      propertyPath: m_Center.y
+      value: 0.7
+      objectReference: {fileID: 0}
     - target: {fileID: 2206578597347192634, guid: afbdab67943417a499ab704a41057031, type: 3}
       propertyPath: skidmarksController
       value: 
@@ -8758,6 +8593,10 @@ PrefabInstance:
     - target: {fileID: 5985758647248055656, guid: afbdab67943417a499ab704a41057031, type: 3}
       propertyPath: m_Name
       value: Bot - PowerWave
+      objectReference: {fileID: 0}
+    - target: {fileID: 5985758647248055656, guid: afbdab67943417a499ab704a41057031, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6465451715264387428, guid: afbdab67943417a499ab704a41057031, type: 3}
       propertyPath: skidmarksController
@@ -8807,6 +8646,10 @@ PrefabInstance:
       propertyPath: skidmarksController
       value: 
       objectReference: {fileID: 231304932}
+    - target: {fileID: 8989140807442712487, guid: afbdab67943417a499ab704a41057031, type: 3}
+      propertyPath: IsMoved
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8989140807442712487, guid: afbdab67943417a499ab704a41057031, type: 3}
       propertyPath: _wayPoint
       value: 

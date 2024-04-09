@@ -14,6 +14,7 @@ public class BotsCarMovement : InputOfCarMovement
     private const float _normalizationAngle = 90f;
     private Vector3 _targetPoint;
     private bool _isBrake = false;
+    private bool _hasNextPoint = false;
     private ObstacleScanerData _scanerBuffer;
 
     public override event Action<float> InputHorizontal;
@@ -25,7 +26,6 @@ public class BotsCarMovement : InputOfCarMovement
 
     private void Awake()
     {
-        //IsMoved = _wayPoints.Length != 0;
         _brakeZone.isTrigger = true;
         _targetPoint = GetRandomPositionFromPoint(_wayPoint.transform);
     }
@@ -63,7 +63,7 @@ public class BotsCarMovement : InputOfCarMovement
 
     private void FixedUpdate()
     {
-        if (IsMoved == false)
+        if (IsMoved == false || _hasNextPoint == false)
         {
             UpdateEvents(0, 0);
         }
@@ -76,6 +76,12 @@ public class BotsCarMovement : InputOfCarMovement
             MoveToNextPoint();
             UpdateEvents(verticalValue, horizontalValue);
         }
+    }
+
+
+    private void LateUpdate()
+    {
+        _hasNextPoint = _wayPoint.NextPoint == null;
     }
 
 
