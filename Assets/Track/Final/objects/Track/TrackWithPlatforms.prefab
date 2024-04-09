@@ -1105,6 +1105,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 289963566693256276}
     m_Modifications:
+    - target: {fileID: -8931316986187227184, guid: 91acdf35733bdbf42b2d9a682e041e4b, type: 3}
+      propertyPath: m_Name
+      value: Road
+      objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 91acdf35733bdbf42b2d9a682e041e4b, type: 3}
       propertyPath: m_LocalScale.x
       value: 15
@@ -1161,9 +1165,45 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 293622570104744700, guid: 91acdf35733bdbf42b2d9a682e041e4b, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 293622570104744700, guid: 91acdf35733bdbf42b2d9a682e041e4b, type: 3}
+      propertyPath: m_ProvidesContacts
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 91acdf35733bdbf42b2d9a682e041e4b, type: 3}
       propertyPath: m_Name
       value: Track1LowPoly
+      objectReference: {fileID: 0}
+    - target: {fileID: 2500714175386496569, guid: 91acdf35733bdbf42b2d9a682e041e4b, type: 3}
+      propertyPath: m_ProvidesContacts
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3586785549408355985, guid: 91acdf35733bdbf42b2d9a682e041e4b, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3586785549408355985, guid: 91acdf35733bdbf42b2d9a682e041e4b, type: 3}
+      propertyPath: m_ProvidesContacts
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4769646177997271703, guid: 91acdf35733bdbf42b2d9a682e041e4b, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4769646177997271703, guid: 91acdf35733bdbf42b2d9a682e041e4b, type: 3}
+      propertyPath: m_ProvidesContacts
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5699272804866566284, guid: 91acdf35733bdbf42b2d9a682e041e4b, type: 3}
+      propertyPath: m_Convex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5699272804866566284, guid: 91acdf35733bdbf42b2d9a682e041e4b, type: 3}
+      propertyPath: m_ProvidesContacts
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
