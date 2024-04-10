@@ -22,6 +22,8 @@ public class PositionCalculator : MonoBehaviour
         {
             car.Initialize(_checkPoints, _minDistanceForScoring, _numberOfLaps);
         }
+
+        UpdateRacePositions();
     }
 
 

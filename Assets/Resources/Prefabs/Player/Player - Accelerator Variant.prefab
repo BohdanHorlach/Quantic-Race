@@ -4968,9 +4968,25 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: c4c2ee3e832cffd48bb9d156c2b21376, type: 2}
+    - target: {fileID: 5302781586701759551, guid: d63c65ae8097a7343906ea546733f2d6, type: 3}
+      propertyPath: _abilty
+      value: 
+      objectReference: {fileID: 7034502291159356040}
+    - target: {fileID: 5302781586701759551, guid: d63c65ae8097a7343906ea546733f2d6, type: 3}
+      propertyPath: _abilitiesKeyKode
+      value: 101
+      objectReference: {fileID: 0}
     - target: {fileID: 5637452158938511115, guid: d63c65ae8097a7343906ea546733f2d6, type: 3}
       propertyPath: m_Name
       value: Player - Accelerator Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 5871054366812782829, guid: d63c65ae8097a7343906ea546733f2d6, type: 3}
+      propertyPath: _input
+      value: 
+      objectReference: {fileID: 2327485243336758443}
+    - target: {fileID: 5871054366812782829, guid: d63c65ae8097a7343906ea546733f2d6, type: 3}
+      propertyPath: _maxSpeed
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 6383490611247466024, guid: d63c65ae8097a7343906ea546733f2d6, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -5040,6 +5056,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8158572159484617359, guid: d63c65ae8097a7343906ea546733f2d6, type: 3}
   m_PrefabInstance: {fileID: 7627867134770159764}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2327485243336758443 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5302781586701759551, guid: d63c65ae8097a7343906ea546733f2d6, type: 3}
+  m_PrefabInstance: {fileID: 7627867134770159764}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2875513590189905823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76f2c928c94a8b14a951c65c13e0f214, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2875513590189905823 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5637452158938511115, guid: d63c65ae8097a7343906ea546733f2d6, type: 3}
@@ -5057,9 +5084,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46d77b037649b0d41bc976a9a1adb1b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ability: {fileID: 0}
-  _cooldownTime: 0
-  _maxChargeCount: 0
+  _ability: {fileID: 1444617483984509824}
+  _cooldownTime: 1
+  _maxChargeCount: 5
 --- !u!114 &4080697122511118457 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5871054366812782829, guid: d63c65ae8097a7343906ea546733f2d6, type: 3}

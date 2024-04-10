@@ -20,9 +20,25 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: fd43fb44a42fe9e499934ff3d786e644, type: 2}
+    - target: {fileID: 5302781586701759551, guid: d63c65ae8097a7343906ea546733f2d6, type: 3}
+      propertyPath: _abilty
+      value: 
+      objectReference: {fileID: 1390239464116795359}
+    - target: {fileID: 5302781586701759551, guid: d63c65ae8097a7343906ea546733f2d6, type: 3}
+      propertyPath: _abilitiesKeyKode
+      value: 101
+      objectReference: {fileID: 0}
     - target: {fileID: 5637452158938511115, guid: d63c65ae8097a7343906ea546733f2d6, type: 3}
       propertyPath: m_Name
       value: Player - Teleport
+      objectReference: {fileID: 0}
+    - target: {fileID: 5871054366812782829, guid: d63c65ae8097a7343906ea546733f2d6, type: 3}
+      propertyPath: _input
+      value: 
+      objectReference: {fileID: 7391927051424587980}
+    - target: {fileID: 5871054366812782829, guid: d63c65ae8097a7343906ea546733f2d6, type: 3}
+      propertyPath: _maxSpeed
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 6383490611247466024, guid: d63c65ae8097a7343906ea546733f2d6, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -116,10 +132,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46d77b037649b0d41bc976a9a1adb1b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _input: {fileID: 7391927051424587980}
-  _abilities: {fileID: 1390239464116795359}
-  _slider: {fileID: 0}
-  _cooldown: 1
+  _ability: {fileID: 1390239464116795359}
+  _cooldownTime: 1
   _maxChargeCount: 5
 --- !u!95 &8949531383510808648
 Animator:

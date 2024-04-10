@@ -4993,9 +4993,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5302781586701759551, guid: d63c65ae8097a7343906ea546733f2d6, type: 3}
+      propertyPath: _abilty
+      value: 
+      objectReference: {fileID: 7131186628462024675}
+    - target: {fileID: 5302781586701759551, guid: d63c65ae8097a7343906ea546733f2d6, type: 3}
+      propertyPath: _abilitiesKeyKode
+      value: 101
+      objectReference: {fileID: 0}
     - target: {fileID: 5637452158938511115, guid: d63c65ae8097a7343906ea546733f2d6, type: 3}
       propertyPath: m_Name
       value: Player - PowerWave
+      objectReference: {fileID: 0}
+    - target: {fileID: 5871054366812782829, guid: d63c65ae8097a7343906ea546733f2d6, type: 3}
+      propertyPath: _input
+      value: 
+      objectReference: {fileID: 3126046328825103366}
+    - target: {fileID: 5871054366812782829, guid: d63c65ae8097a7343906ea546733f2d6, type: 3}
+      propertyPath: _maxSpeed
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 8158572159484617359, guid: d63c65ae8097a7343906ea546733f2d6, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5081,7 +5097,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46d77b037649b0d41bc976a9a1adb1b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _input: {fileID: 3126046328825103366}
-  _abilities: {fileID: 8260931340626256638}
-  _cooldown: 1
-  _maxCharge: 5
+  _ability: {fileID: 8260931340626256638}
+  _cooldownTime: 1
+  _maxChargeCount: 5

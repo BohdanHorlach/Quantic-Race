@@ -4073,7 +4073,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.15675455, y: 0.58927023, z: -0.1178541, w: 0.7837723}
+  m_LocalRotation: {x: 0.15675452, y: 0.5892703, z: -0.11785414, w: 0.7837723}
   m_LocalPosition: {x: 76.293724, y: 9.508925, z: -26.42584}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5019,7 +5019,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1288999245}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.15675455, y: 0.58927023, z: -0.1178541, w: 0.7837723}
+  m_LocalRotation: {x: 0.15675452, y: 0.5892703, z: -0.11785414, w: 0.7837723}
   m_LocalPosition: {x: 76.293724, y: 9.508925, z: -26.42584}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5257,11 +5257,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 747973208479207371, guid: 752e6075501c0e741a01f6b6cb05044f, type: 3}
       propertyPath: _wallsMask.m_Bits
-      value: 0
+      value: 64
       objectReference: {fileID: 0}
     - target: {fileID: 747973208479207371, guid: 752e6075501c0e741a01f6b6cb05044f, type: 3}
       propertyPath: _obstacleMask.m_Bits
-      value: 0
+      value: 72
       objectReference: {fileID: 0}
     - target: {fileID: 1416834969155876970, guid: 752e6075501c0e741a01f6b6cb05044f, type: 3}
       propertyPath: skidmarksController
@@ -8359,11 +8359,11 @@ PrefabInstance:
       objectReference: {fileID: 231304932}
     - target: {fileID: 1390239464116795359, guid: f697028f54fd6644d8e9031274f79848, type: 3}
       propertyPath: _wallsMask.m_Bits
-      value: 0
+      value: 64
       objectReference: {fileID: 0}
     - target: {fileID: 1390239464116795359, guid: f697028f54fd6644d8e9031274f79848, type: 3}
       propertyPath: _obstacleMask.m_Bits
-      value: 0
+      value: 72
       objectReference: {fileID: 0}
     - target: {fileID: 3220246562810044842, guid: f697028f54fd6644d8e9031274f79848, type: 3}
       propertyPath: skidmarksController
@@ -8437,6 +8437,10 @@ PrefabInstance:
       propertyPath: _abilty
       value: 
       objectReference: {fileID: 938067965576591173}
+    - target: {fileID: 7391927051424587980, guid: f697028f54fd6644d8e9031274f79848, type: 3}
+      propertyPath: _abilitiesKeyKode
+      value: 101
+      objectReference: {fileID: 0}
     - target: {fileID: 7752432945245902836, guid: f697028f54fd6644d8e9031274f79848, type: 3}
       propertyPath: skidmarksController
       value: 
@@ -8676,6 +8680,10 @@ PrefabInstance:
       propertyPath: skidmarksController
       value: 
       objectReference: {fileID: 231304932}
+    - target: {fileID: 4393113444808870467, guid: 752e6075501c0e741a01f6b6cb05044f, type: 3}
+      propertyPath: _obstacleMask.m_Bits
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5422038822269940407, guid: 752e6075501c0e741a01f6b6cb05044f, type: 3}
       propertyPath: skidmarksController
       value: 
