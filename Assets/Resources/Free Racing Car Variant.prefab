@@ -409,6 +409,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5302781586701759551, guid: d63c65ae8097a7343906ea546733f2d6, type: 3}
+      propertyPath: _abilitiesKeyKode
+      value: 101
+      objectReference: {fileID: 0}
     - target: {fileID: 5637452158938511115, guid: d63c65ae8097a7343906ea546733f2d6, type: 3}
       propertyPath: m_Name
       value: Free Racing Car Variant
@@ -418,9 +422,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 723873912664819185}
     - target: {fileID: 5871054366812782829, guid: d63c65ae8097a7343906ea546733f2d6, type: 3}
+      propertyPath: _maxSpeed
+      value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 5871054366812782829, guid: d63c65ae8097a7343906ea546733f2d6, type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5871054366812782829, guid: d63c65ae8097a7343906ea546733f2d6, type: 3}
+      propertyPath: _rigidbody
+      value: 
+      objectReference: {fileID: 6877729260446126617}
     - target: {fileID: 5871054366812782829, guid: d63c65ae8097a7343906ea546733f2d6, type: 3}
       propertyPath: _playerCamera
       value: 
@@ -655,6 +667,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 49b84f0ba86f61047aa19dd47e0e7a23, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!54 &6877729260446126617 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 2084725647752274903, guid: d63c65ae8097a7343906ea546733f2d6, type: 3}
+  m_PrefabInstance: {fileID: 4872037989466255822}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &9012090406872162521 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4507422384068366615, guid: d63c65ae8097a7343906ea546733f2d6, type: 3}

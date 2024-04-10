@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayerInputDetector : InputOfCarMovement
 {
+    [SerializeField] private Abilitiy _abilty;
+    [SerializeField] private KeyCode _abilitiesKeyKode;
+
     public override event Action<float> InputHorizontal;
     public override event Action<float> InputVertical;
     public override event Action<float> InputBrake;
@@ -13,6 +16,7 @@ public class PlayerInputDetector : InputOfCarMovement
     {
         ReadMoveInput();
         ReadBrakeInput();
+        DetectInputOfAbilityUse();
     }
 
 
@@ -31,5 +35,12 @@ public class PlayerInputDetector : InputOfCarMovement
         float brakeInput = Input.GetAxis("Jump");
 
         InputBrake?.Invoke(brakeInput);
+    }
+
+
+    private void DetectInputOfAbilityUse()
+    {
+        if (Input.GetKeyDown(_abilitiesKeyKode) == true)
+            _abilty.Activate();
     }
 }

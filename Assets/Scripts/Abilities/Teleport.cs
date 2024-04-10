@@ -25,16 +25,16 @@ public class Teleport : Abilitiy
     }
 
 
-    private void OnDrawGizmos()
-    {
-        Vector3 rayPosition = GetForwardPositionFromOffset(_radiusOfSearchForFreeSpace);
-        Vector3 resultPos = GetForwardPositionFromOffset(_teleportDistance) + _car.forward * _radiusOfSearchForFreeSpace;
+    //private void OnDrawGizmos()
+    //{
+    //    Vector3 rayPosition = GetForwardPositionFromOffset(_radiusOfSearchForFreeSpace);
+    //    Vector3 resultPos = GetForwardPositionFromOffset(_teleportDistance) + _car.forward * _radiusOfSearchForFreeSpace;
 
 
-        Gizmos.color = Color.blue;
-        Gizmos.DrawSphere(resultPos, _radiusOfSearchForFreeSpace);
-        Debug.DrawRay(rayPosition, _car.forward * _teleportDistance, Color.blue);
-    }
+    //    Gizmos.color = Color.blue;
+    //    Gizmos.DrawSphere(resultPos, _radiusOfSearchForFreeSpace);
+    //    Debug.DrawRay(rayPosition, _car.forward * _teleportDistance, Color.blue);
+    //}
 
 
     private bool CanTeleportToThePosition(Vector3 position)

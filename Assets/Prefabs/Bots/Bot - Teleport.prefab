@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _ability: {fileID: 7442294715331506549}
-  _checkPointHandler: {fileID: 1569883787417879414}
+  _checkPointHandler: {fileID: 2676982037954734565}
   _positionCalculator: {fileID: 0}
   _distanceToTargetToUse: 40
   _chanceOfUse: 0.3
@@ -132,7 +132,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7521826613607082126, guid: 9766c96ac133dd8469a46885f7452bd1, type: 3}
       propertyPath: m_Name
-      value: Bot - Teleport Variant
+      value: Bot - Teleport
       objectReference: {fileID: 0}
     - target: {fileID: 7521826613607082126, guid: 9766c96ac133dd8469a46885f7452bd1, type: 3}
       propertyPath: m_IsActive
@@ -170,14 +170,22 @@ PrefabInstance:
       addedObject: {fileID: 7442294715331506549}
     - targetCorrespondingSourceObject: {fileID: 7521826613607082126, guid: 9766c96ac133dd8469a46885f7452bd1, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1569883787417879414}
-    - targetCorrespondingSourceObject: {fileID: 7521826613607082126, guid: 9766c96ac133dd8469a46885f7452bd1, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 747973208479207371}
     - targetCorrespondingSourceObject: {fileID: 7521826613607082126, guid: 9766c96ac133dd8469a46885f7452bd1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5744389234538326688}
   m_SourcePrefab: {fileID: 100100000, guid: 9766c96ac133dd8469a46885f7452bd1, type: 3}
+--- !u!114 &2676982037954734565 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: -5882784731021091043, guid: 9766c96ac133dd8469a46885f7452bd1, type: 3}
+  m_PrefabInstance: {fileID: 827161010233276152}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7140545159608983158}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99c14b149e2565b48a8c69df9afdf383, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &6637493328941272050 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6298204409072467210, guid: 9766c96ac133dd8469a46885f7452bd1, type: 3}
@@ -203,18 +211,6 @@ MonoBehaviour:
   _ability: {fileID: 747973208479207371}
   _cooldownTime: 1
   _maxChargeCount: 5
---- !u!114 &1569883787417879414
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7140545159608983158}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 99c14b149e2565b48a8c69df9afdf383, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &747973208479207371
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -233,10 +229,10 @@ MonoBehaviour:
   _radiusOfSearchForFreeSpace: 4
   _obstacleMask:
     serializedVersion: 2
-    m_Bits: 72
+    m_Bits: 0
   _wallsMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 0
 --- !u!95 &5744389234538326688
 Animator:
   serializedVersion: 5

@@ -6,14 +6,27 @@ public class CarMovement : MonoBehaviourPunCallbacks
 {
     [SerializeField] PhotonView _playerPrefab;
     [SerializeField] CarCameraSwitcher _cameraSwitcher;
+    [SerializeField] private Rigidbody _rigidbody;
     [SerializeField] private InputOfCarMovement _input;
     [SerializeField] private Axle[] _axles;
+    [SerializeField, Min(1)] private float _maxSpeed;
     [SerializeField, Min(1)] private float _motorForce;
     [SerializeField, Min(1)] private float _brakeForce;
     [SerializeField, Min(1)] private float _steeringAngleForce;
     [SerializeField, Min(1)] private float _handbrakeForce;
     [SerializeField, Min(1)] private float _dividerForReverceForce;
 
+
+    public float CurrentSpeed { get => _rigidbody.velocity.sqrMagnitude; }
+    public float MaxSpeed { get => _maxSpeed; }
+    public Rigidbody Rigidbody { get => _rigidbody; }
+
+    private void Awake()
+    {
+        if (_playerPrefab.IsMine == true) {
+            _cameraSwitcher.Enable();
+        }
+    }
 
     public override void OnEnable()
     {
@@ -32,14 +45,6 @@ public class CarMovement : MonoBehaviourPunCallbacks
         _input.InputHorizontal -= Steering;
         _input.InputVertical -= InputVerticalProcessing;
         _input.InputBrake -= Brake;
-    }
-
-
-    private void Awake()
-    {
-        if (_playerPrefab.IsMine == true) {
-            _cameraSwitcher.Enable();
-        }
     }
 
 
@@ -78,9 +83,10 @@ public class CarMovement : MonoBehaviourPunCallbacks
     {
         float force = 0;
 
-        if (value >= 0 || value < 0 && _axles[0].GetCurentRPM() <= 0)
+        if ((value >= 0 || value < 0 && _axles[0].GetCurentRPM() <= 0))
         {
-            force = value >= 0 ? _motorForce : _motorForce / _dividerForReverceForce;
+            float gasForce = Mathf.Clamp(_maxSpeed / CurrentSpeed * 0.1f, 0, 1);
+            force = value >= 0 ? _motorForce * gasForce : _motorForce / _dividerForReverceForce;
             force *= value;
         }
         else if (value < 0 && _axles[0].GetCurentRPM() > 0)
