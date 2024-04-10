@@ -81,7 +81,7 @@ public class BotsCarMovement : InputOfCarMovement
 
     private void LateUpdate()
     {
-        _hasNextPoint = _wayPoint.NextPoint == null;
+        _hasNextPoint = _wayPoint.NextPoint != null;
     }
 
 

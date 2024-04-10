@@ -3676,7 +3676,7 @@ PrefabInstance:
       objectReference: {fileID: 231304932}
     - target: {fileID: 8989140807442712487, guid: afbdab67943417a499ab704a41057031, type: 3}
       propertyPath: IsMoved
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8989140807442712487, guid: afbdab67943417a499ab704a41057031, type: 3}
       propertyPath: _wayPoint
@@ -3954,7 +3954,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.15675455, y: 0.58927023, z: -0.1178541, w: 0.7837723}
+  m_LocalRotation: {x: 0.15675452, y: 0.5892703, z: -0.11785414, w: 0.7837723}
   m_LocalPosition: {x: 76.293724, y: 9.508925, z: -26.42584}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -4900,7 +4900,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1288999245}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.15675455, y: 0.58927023, z: -0.1178541, w: 0.7837723}
+  m_LocalRotation: {x: 0.15675452, y: 0.5892703, z: -0.11785414, w: 0.7837723}
   m_LocalPosition: {x: 76.293724, y: 9.508925, z: -26.42584}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5139,7 +5139,7 @@ PrefabInstance:
       objectReference: {fileID: 231304932}
     - target: {fileID: 5527666937708344505, guid: 752e6075501c0e741a01f6b6cb05044f, type: 3}
       propertyPath: IsMoved
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5527666937708344505, guid: 752e6075501c0e741a01f6b6cb05044f, type: 3}
       propertyPath: _wayPoint
@@ -6040,7 +6040,7 @@ PrefabInstance:
       objectReference: {fileID: 231304932}
     - target: {fileID: 4956247822574630121, guid: e09887aa83e4bf94ea25599a8517acee, type: 3}
       propertyPath: IsMoved
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4956247822574630121, guid: e09887aa83e4bf94ea25599a8517acee, type: 3}
       propertyPath: _wayPoint
@@ -8406,7 +8406,7 @@ PrefabInstance:
       objectReference: {fileID: 231304932}
     - target: {fileID: 5527666937708344505, guid: 752e6075501c0e741a01f6b6cb05044f, type: 3}
       propertyPath: IsMoved
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5527666937708344505, guid: 752e6075501c0e741a01f6b6cb05044f, type: 3}
       propertyPath: _wayPoint
@@ -8507,7 +8507,7 @@ PrefabInstance:
       objectReference: {fileID: 231304932}
     - target: {fileID: 4956247822574630121, guid: e09887aa83e4bf94ea25599a8517acee, type: 3}
       propertyPath: IsMoved
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4956247822574630121, guid: e09887aa83e4bf94ea25599a8517acee, type: 3}
       propertyPath: _wayPoint
@@ -8648,7 +8648,7 @@ PrefabInstance:
       objectReference: {fileID: 231304932}
     - target: {fileID: 8989140807442712487, guid: afbdab67943417a499ab704a41057031, type: 3}
       propertyPath: IsMoved
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8989140807442712487, guid: afbdab67943417a499ab704a41057031, type: 3}
       propertyPath: _wayPoint
