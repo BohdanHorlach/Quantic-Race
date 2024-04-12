@@ -1,7 +1,11 @@
 using UnityEngine;
+using Photon.Pun;
 
-public class CarMovement : MonoBehaviour
+
+public class CarMovement : MonoBehaviourPunCallbacks
 {
+    [SerializeField] PhotonView _playerPrefab;
+    [SerializeField] CarCameraSwitcher _cameraSwitcher;
     [SerializeField] private Rigidbody _rigidbody;
     [SerializeField] private InputOfCarMovement _input;
     [SerializeField] private Axle[] _axles;
@@ -17,17 +21,27 @@ public class CarMovement : MonoBehaviour
     public float MaxSpeed { get => _maxSpeed; }
     public Rigidbody Rigidbody { get => _rigidbody; }
 
-
-    private void OnEnable()
+    private void Awake()
     {
+        if (_playerPrefab.IsMine == true) {
+            _cameraSwitcher.Enable();
+        }
+    }
+
+    public override void OnEnable()
+    {
+        base.OnEnable();
+
         _input.InputHorizontal += Steering;
         _input.InputVertical += InputVerticalProcessing;
         _input.InputBrake += Brake;
     }
 
 
-    private void OnDisable()
+    public override void OnDisable()
     {
+        base.OnDisable();
+
         _input.InputHorizontal -= Steering;
         _input.InputVertical -= InputVerticalProcessing;
         _input.InputBrake -= Brake;
@@ -36,14 +50,17 @@ public class CarMovement : MonoBehaviour
 
     private void Update()
     {
-        foreach (Axle axle in _axles)
-            axle.UpdateAxle();
+        if (_playerPrefab.IsMine)
+        {
+            foreach (Axle axle in _axles)
+                axle.UpdateAxle();
+        }
     }
 
 
     private void Gas(float force)
     {
-        foreach(Axle axle in _axles) 
+        foreach (Axle axle in _axles)
             axle.SetMotorTorque(force);
     }
 
@@ -68,7 +85,7 @@ public class CarMovement : MonoBehaviour
 
         if ((value >= 0 || value < 0 && _axles[0].GetCurentRPM() <= 0))
         {
-	    float gasForce = Mathf.Clamp(_maxSpeed / CurrentSpeed * 0.1f, 0, 1);
+            float gasForce = Mathf.Clamp(_maxSpeed / CurrentSpeed * 0.1f, 0, 1);
             force = value >= 0 ? _motorForce * gasForce : _motorForce / _dividerForReverceForce;
             force *= value;
         }
@@ -76,8 +93,9 @@ public class CarMovement : MonoBehaviour
         {
             force = value * _brakeForce;
         }
-	
-        Gas(force);
+        if (_playerPrefab.IsMine)
+        {
+            Gas(force);
+        }
     }
-
 }

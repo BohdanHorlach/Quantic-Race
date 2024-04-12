@@ -22,6 +22,8 @@ public class PositionCalculator : MonoBehaviour
         {
             car.Initialize(_checkPoints, _minDistanceForScoring, _numberOfLaps);
         }
+
+        UpdateRacePositions();
     }
 
 
@@ -57,6 +59,8 @@ public class PositionCalculator : MonoBehaviour
     {
         if (_cars.Contains(car) == false)
             return -1f;
+        if (_racePositions.Length == 1)
+            return 0f;
 
         int position = GetPositionCar(car);
         Transform opponent = position == 0 ? _racePositions[1] : _racePositions[position - 1];

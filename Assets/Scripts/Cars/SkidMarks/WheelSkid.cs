@@ -68,4 +68,10 @@ public class WheelSkid : MonoBehaviour {
 			lastSkid = -1;
 		}
 	}
+
+
+	public void Initialize(Skidmarks skidmarks)
+	{
+		skidmarksController = skidmarks;
+    }
 }

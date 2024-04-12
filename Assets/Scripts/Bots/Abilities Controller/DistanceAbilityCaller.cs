@@ -13,6 +13,10 @@ public class DistanceAbilityCaller : MonoBehaviour
 
     private void Update()
     {
+	if(_positionCalculator == null)
+	    return;
+
+
         float distance = _positionCalculator.DistanceToNextOpponent(_checkPointHandler);
 
         bool isTargetDistance = _isTeleport ? distance <= _distanceToTargetToUse : distance >= _distanceToTargetToUse;
