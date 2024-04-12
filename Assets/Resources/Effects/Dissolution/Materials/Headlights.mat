@@ -8,7 +8,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Headlights
-  m_Shader: {fileID: -6465566751694194690, guid: 572a799eadcdf0a47a27a6990b089c97, type: 3}
+  m_Shader: {fileID: 4800000, guid: f4d6e3a88c3126c4799b8e3f5317e5ae, type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
