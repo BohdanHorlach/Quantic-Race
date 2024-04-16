@@ -1,11 +1,12 @@
 using UnityEngine;
 using Photon.Pun;
+using System.Collections;
 
 
 public class CarMovement : MonoBehaviourPunCallbacks
 {
-    [SerializeField] PhotonView _playerPrefab;
-    [SerializeField] CarCameraSwitcher _cameraSwitcher;
+    [SerializeField] private PhotonView _photonView;
+    [SerializeField] private CarCameraSwitcher _cameraSwitcher;
     [SerializeField] private Rigidbody _rigidbody;
     [SerializeField] private InputOfCarMovement _input;
     [SerializeField] private Axle[] _axles;
@@ -20,10 +21,13 @@ public class CarMovement : MonoBehaviourPunCallbacks
     public float CurrentSpeed { get => _rigidbody.velocity.sqrMagnitude; }
     public float MaxSpeed { get => _maxSpeed; }
     public Rigidbody Rigidbody { get => _rigidbody; }
-
+    private bool isCoroutineRunning = false;
+    
+    
     private void Awake()
     {
-        if (_playerPrefab.IsMine == true) {
+        if (_photonView.IsMine == true)
+        {
             _cameraSwitcher.Enable();
         }
     }
@@ -48,12 +52,53 @@ public class CarMovement : MonoBehaviourPunCallbacks
     }
 
 
+    private bool isFlipped()
+    {
+        return Vector3.Dot(transform.up, Vector3.down) > 0;
+    }
+    
+
+    private void ResetCoordinates()
+    {
+        Rigidbody rb = GetComponent<Rigidbody>();
+        float currentYRotation = transform.eulerAngles.y;
+
+        transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+        transform.rotation = Quaternion.Euler(0, currentYRotation, 0);
+
+        rb.velocity = Vector3.zero;
+        rb.angularVelocity = Vector3.zero;
+    }
+
+
+    private IEnumerator ResetCarPosition()
+    {
+        isCoroutineRunning = true;
+        yield return new WaitForSeconds(1);
+        if (isFlipped())
+        {
+            ResetCoordinates();
+        }
+        isCoroutineRunning = false;
+    }
+
+
     private void Update()
     {
-        if (_playerPrefab.IsMine)
+        if (_photonView.IsMine)
         {
             foreach (Axle axle in _axles)
                 axle.UpdateAxle();
+        }
+
+        if (isFlipped() && !isCoroutineRunning)
+        {
+            StartCoroutine(ResetCarPosition());
+        }
+
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            ResetCoordinates();
         }
     }
 
@@ -83,7 +128,7 @@ public class CarMovement : MonoBehaviourPunCallbacks
     {
         float force = 0;
 
-        if ((value >= 0 || value < 0 && _axles[0].GetCurentRPM() <= 0))
+        if (value >= 0 || value < 0 && _axles[0].GetCurentRPM() <= 0)
         {
             float gasForce = Mathf.Clamp(_maxSpeed / CurrentSpeed * 0.1f, 0, 1);
             force = value >= 0 ? _motorForce * gasForce : _motorForce / _dividerForReverceForce;
@@ -93,7 +138,7 @@ public class CarMovement : MonoBehaviourPunCallbacks
         {
             force = value * _brakeForce;
         }
-        if (_playerPrefab.IsMine)
+        if (_photonView.IsMine)
         {
             Gas(force);
         }

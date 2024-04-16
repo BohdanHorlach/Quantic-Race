@@ -1,10 +1,9 @@
-
 using UnityEngine;
 using System.Collections.Generic;
-using System.Collections;
 using Photon.Pun;
 using Photon.Realtime;
 using TMPro;
+using ExitGames.Client.Photon;
 
 public class Lobby : MonoBehaviourPunCallbacks
 {
@@ -29,10 +28,17 @@ public class Lobby : MonoBehaviourPunCallbacks
     {
         if (_createInput.text.Length >= 1)
         {
-            RoomOptions _roomOptions = new RoomOptions();
-            _roomOptions.MaxPlayers = _maxPlayers;
+            RoomOptions roomOptions = new RoomOptions();
+            roomOptions.MaxPlayers = _maxPlayers;
+            
+            Hashtable indexSpawn = new Hashtable {
+                { "CurrentSpawnIndex", 0 }
+            };
 
-            PhotonNetwork.CreateRoom(_createInput.text, _roomOptions);
+            roomOptions.CustomRoomProperties = indexSpawn;
+            roomOptions.CustomRoomPropertiesForLobby = new string[] { "CurrentSpawnIndex" };
+
+            PhotonNetwork.CreateRoom(_createInput.text, roomOptions);
         }
     }
 

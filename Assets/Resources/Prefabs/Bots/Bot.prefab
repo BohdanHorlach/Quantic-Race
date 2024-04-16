@@ -162,7 +162,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerCamera: {fileID: 5228779109354619903}
   _virtualCamera: {fileID: 4780032895678481985}
-  _isActive: 0
+  _isNeedActivate: 0
 --- !u!1 &828341374820968988
 GameObject:
   m_ObjectHideFlags: 0
