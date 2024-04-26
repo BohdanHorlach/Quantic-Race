@@ -1,5 +1,5 @@
 [System.Serializable]
-public struct ObstacleScanerData
+public struct ObstacleScanerDataStruct
 {
     public static float emptyValue = -1f;
 
@@ -8,9 +8,9 @@ public struct ObstacleScanerData
     public float rightHitDistance;
 
 
-    public static ObstacleScanerData GetEmpty()
+    public static ObstacleScanerDataStruct GetEmpty()
     {
-        ObstacleScanerData data;
+        ObstacleScanerDataStruct data;
         data.forwardHitDistance = emptyValue;
         data.leftHitDistance = emptyValue;
         data.rightHitDistance = emptyValue;

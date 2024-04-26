@@ -7,12 +7,13 @@ public class FastWayPannel : MonoBehaviour
 {
     [SerializeField] private GameObject _solidPart;
     [SerializeField] private GameObject _brokenPart;
+
+    // top parent object collider to detect when to break
     [SerializeField] private BoxCollider _collider;
 
     void Start()
     {
         _collider.isTrigger = true;
-        //_collider.providesContacts = true;
         _solidPart.SetActive(true);
         _brokenPart.SetActive(false);
     }

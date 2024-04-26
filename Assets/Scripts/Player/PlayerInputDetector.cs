@@ -10,19 +10,22 @@ public class PlayerInputDetector : InputOfCarMovement
     public override event Action<float> InputHorizontal;
     public override event Action<float> InputVertical;
     public override event Action<float> InputBrake;
+    public override event Action InputResetCoordinats;
 
 
     private void FixedUpdate()
     {
         ReadMoveInput();
         ReadBrakeInput();
-        DetectInputOfAbilityUse();
+        ReadAbilityUseInput();
+        ReadResetPositionInput();
     }
 
 
+    // WHY DUPLICATION OF ReadAbilityUseInput
     private void Update()
     {
-        DetectInputOfAbilityUse();
+        ReadAbilityUseInput();
     }
 
 
@@ -44,9 +47,17 @@ public class PlayerInputDetector : InputOfCarMovement
     }
 
 
-    private void DetectInputOfAbilityUse()
+    private void ReadAbilityUseInput()
     {
         if (Input.GetKeyDown(_abilitiesKeyKode) == true)
             _abilty.Activate();
+    }
+
+    private void ReadResetPositionInput()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            InputResetCoordinats?.Invoke();
+        }
     }
 }

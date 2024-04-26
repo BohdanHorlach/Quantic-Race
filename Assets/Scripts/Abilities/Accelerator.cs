@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Accelerator : Ability
 {
-    [SerializeField] private CarMovement _car;
+    [SerializeField] private CarMovementSinglePlayer _car;
     [SerializeField] private ParticleSystem _particle;
     [SerializeField] private Transform _acceleratorPoint;
     [SerializeField] private Transform _decelerationPoint;

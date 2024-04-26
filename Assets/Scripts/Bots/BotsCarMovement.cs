@@ -2,30 +2,37 @@ using System;
 using UnityEngine;
 
 
+// TODO
+// FIX PROBLEM: BOT IS NEXT TO THE WALL AND DIRECTED TO THE FLOOR WITH FORWARD RAYS
+// AND TRIES TO GO BACKWARD BUT THE WALL IS THERE
+
 
 public class BotsCarMovement : InputOfCarMovement
 {
     [SerializeField] private Collider _brakeZone;
     [SerializeField] private BotObstacleDetector _obstacleDetector;
-    [SerializeField] private WayPont _wayPoint;
-    
+    [SerializeField] private WayPoint _wayPoint;
+
+    // TODO UNDERSTAND VARIABLES
     private const float CHANCE_SELECT_ALTERNATIVE_POINT = 0.5f;
     private const float _maxInputValue = 1f;
     private const float _normalizationAngle = 90f;
     private Vector3 _targetPoint;
     private bool _isBrake = false;
     private bool _hasNextPoint = false;
-    private ObstacleScanerData _scanerBuffer;
+    private ObstacleScanerDataStruct _scanerBuffer;
 
     public override event Action<float> InputHorizontal;
     public override event Action<float> InputVertical;
     public override event Action<float> InputBrake;
+    public override event Action InputResetCoordinats;
 
-    public bool IsMoved = true;
+    public bool IsMoved;
 
 
     private void Awake()
     {
+        IsMoved = true;
         _brakeZone.isTrigger = true;
         _targetPoint = GetRandomPositionFromPoint(_wayPoint.transform);
     }
@@ -61,6 +68,7 @@ public class BotsCarMovement : InputOfCarMovement
     }
 
 
+    // TODO UNDERSTAND
     private void FixedUpdate()
     {
         if (IsMoved == false || _hasNextPoint == false)
@@ -75,6 +83,7 @@ public class BotsCarMovement : InputOfCarMovement
 
             MoveToNextPoint();
             UpdateEvents(verticalValue, horizontalValue);
+
         }
     }
 
@@ -85,7 +94,7 @@ public class BotsCarMovement : InputOfCarMovement
     }
 
 
-    private void InitializeScanerBuffer(ObstacleScanerData scanerData)
+    private void InitializeScanerBuffer(ObstacleScanerDataStruct scanerData)
     {
         _scanerBuffer = scanerData;
     }
@@ -101,19 +110,21 @@ public class BotsCarMovement : InputOfCarMovement
 
     private Vector3 GetRandomPositionFromPoint(Transform point)
     {
-        Vector3 offset = UnityEngine.Random.insideUnitSphere * (point.lossyScale.x / 2);
-        Vector3 position = point.position + offset;
+        //Vector3 offset = UnityEngine.Random.insideUnitSphere * (point.lossyScale.x / 2);
+        Vector3 position = point.position;// + offset;
 
         return position;
     }
 
 
+    // TODO UNDERSTAND
     private float GetForseFromHitDistance(float rayDistance, float hitDistance)
     {
         return rayDistance / hitDistance;
     }
 
 
+    // TODO UNDERSTAND
     private int WhereToTurnIfObstacleForward(float rightDistance, float leftDistance)
     {
         int dontTurn = 0;
@@ -122,7 +133,7 @@ public class BotsCarMovement : InputOfCarMovement
 
         if (rightDistance == leftDistance)
         {
-            if(rightDistance != ObstacleScanerData.emptyValue)
+            if (rightDistance != ObstacleScanerDataStruct.emptyValue)
             {
                 return dontTurn;
             }
@@ -140,11 +151,12 @@ public class BotsCarMovement : InputOfCarMovement
         }
         else
         {
-            return rightDistance == ObstacleScanerData.emptyValue ? turnToLeft : turnToRight;
+            return rightDistance == ObstacleScanerDataStruct.emptyValue ? turnToLeft : turnToRight;
         }
     }
 
 
+    // TODO UNDERSTAND
     private float GetForceFromForwardAvoidance(float rightDistance, float leftDistance)
     {
         float force = GetForseFromHitDistance(_obstacleDetector.ForwardRayDistance, _scanerBuffer.forwardHitDistance);
@@ -156,17 +168,18 @@ public class BotsCarMovement : InputOfCarMovement
     }
 
 
+    // TODO UNDERSTAND
     private float GetForceFromAsideAvoidance(float rightDistance, float leftDistance)
     {
         float force;
 
-        if (rightDistance == leftDistance && rightDistance == ObstacleScanerData.emptyValue)
+        if (rightDistance == leftDistance && rightDistance == ObstacleScanerDataStruct.emptyValue)
         {
             force = 0;
         }
         else
         {
-            float currentSide = rightDistance == ObstacleScanerData.emptyValue ? leftDistance : rightDistance;
+            float currentSide = rightDistance == ObstacleScanerDataStruct.emptyValue ? leftDistance : rightDistance;
             force = GetForseFromHitDistance(_obstacleDetector.AsideRayDistance, currentSide);
             force *= currentSide == leftDistance ? 1 : -1;
         }
@@ -175,13 +188,14 @@ public class BotsCarMovement : InputOfCarMovement
     }
 
 
+    // TODO UNDERSTAND
     private float ObstacleAvoidance()
     {
         float force;
         float rightDistance = _scanerBuffer.rightHitDistance;
         float leftDistance = _scanerBuffer.leftHitDistance;
 
-        if (_scanerBuffer.forwardHitDistance != ObstacleScanerData.emptyValue) 
+        if (_scanerBuffer.forwardHitDistance != ObstacleScanerDataStruct.emptyValue)
             force = GetForceFromForwardAvoidance(rightDistance, leftDistance);
         else
             force = GetForceFromAsideAvoidance(rightDistance, leftDistance) * 0.1f;
@@ -190,7 +204,8 @@ public class BotsCarMovement : InputOfCarMovement
     }
 
 
-    private void SetTargetPoint(WayPont wayPont)
+    // TODO UNDERSTAND
+    private void SetTargetPoint(WayPoint wayPont)
     {
         Transform point;
 
@@ -201,6 +216,7 @@ public class BotsCarMovement : InputOfCarMovement
     }
 
 
+    // TODO UNDERSTAND
     private void MoveToNextPoint()
     {
         if (_wayPoint.DistanceToGetNext < Vector3.Distance(transform.position, _targetPoint))
@@ -215,11 +231,13 @@ public class BotsCarMovement : InputOfCarMovement
         }
         else
         {
+            //Debug.Log("here");
             IsMoved = false;
         }
     }
 
 
+    // TODO UNDERSTAND
     private float GetSteeringForceToThePoint()
     {
         if (IsMoved == false)
@@ -238,9 +256,10 @@ public class BotsCarMovement : InputOfCarMovement
     }
 
 
+    // TODO UNDERSTAND
     private float GetMoveForce()
     {
-        if (_scanerBuffer.forwardHitDistance == ObstacleScanerData.emptyValue)
+        if (_scanerBuffer.forwardHitDistance == ObstacleScanerDataStruct.emptyValue)
         {
             return _isBrake == false ? _maxInputValue : -_maxInputValue;
         }
@@ -251,6 +270,9 @@ public class BotsCarMovement : InputOfCarMovement
             float force = GetForseFromHitDistance(rayDistance, hitDistance);
             return _isBrake == false ? force : -force;
         }
+
+        // testing remove
+        // return 0;
     }
 
 

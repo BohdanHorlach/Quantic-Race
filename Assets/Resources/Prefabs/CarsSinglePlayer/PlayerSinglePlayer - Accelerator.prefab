@@ -78,7 +78,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 07f8da9a658fd4b4bbe69051b084497c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _car: {fileID: 5286322805786338238}
+  _car: {fileID: 9048083333090476888}
   _particle: {fileID: 186752436690194619}
   _acceleratorPoint: {fileID: 5929974729945673271}
   _decelerationPoint: {fileID: 4818578956095640509}
@@ -5044,17 +5044,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 1709464980013998413, guid: 71fc7b99f1a2bab418f3f8f1d008bc1d, type: 3}
   m_PrefabInstance: {fileID: 1920324110229221767}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5286322805786338238 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6051314044607156793, guid: 71fc7b99f1a2bab418f3f8f1d008bc1d, type: 3}
-  m_PrefabInstance: {fileID: 1920324110229221767}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6724984277479342268}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c1a582cea00d2a0428ffa4cfe5aa3603, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &6724984277479342268 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5185240810771902779, guid: 71fc7b99f1a2bab418f3f8f1d008bc1d, type: 3}
@@ -5075,3 +5064,14 @@ MonoBehaviour:
   _ability: {fileID: 5686821428235737287}
   _cooldownTime: 1
   _maxChargeCount: 5
+--- !u!114 &9048083333090476888 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7437522439865184991, guid: 71fc7b99f1a2bab418f3f8f1d008bc1d, type: 3}
+  m_PrefabInstance: {fileID: 1920324110229221767}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6724984277479342268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1a582cea00d2a0428ffa4cfe5aa3603, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

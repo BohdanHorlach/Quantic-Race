@@ -649,7 +649,7 @@ GameObject:
   - component: {fileID: 1709464980013998413}
   - component: {fileID: 8305511300026289919}
   - component: {fileID: 144822915882689704}
-  - component: {fileID: 6051314044607156793}
+  - component: {fileID: 7437522439865184991}
   - component: {fileID: 7182591400650177387}
   - component: {fileID: 8647382421413391156}
   m_Layer: 3
@@ -728,7 +728,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &6051314044607156793
+--- !u!114 &7437522439865184991
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -746,28 +746,28 @@ MonoBehaviour:
   _axles:
   - _leftWheel:
       wheelCollider: {fileID: 8795010467084740584}
-      wheelTransform: {fileID: 3197676128835396191}
+      wheelVisual: {fileID: 3197676128835396191}
     _rightWheel:
       wheelCollider: {fileID: 4918068349119104149}
-      wheelTransform: {fileID: 7189809745753806374}
+      wheelVisual: {fileID: 7189809745753806374}
     isMotor: 1
     isSteering: 1
     isBreak: 1
   - _leftWheel:
       wheelCollider: {fileID: 6550171033967739911}
-      wheelTransform: {fileID: 799980404648118765}
+      wheelVisual: {fileID: 799980404648118765}
     _rightWheel:
       wheelCollider: {fileID: 1330019134697755656}
-      wheelTransform: {fileID: 8094006155331070730}
+      wheelVisual: {fileID: 8094006155331070730}
     isMotor: 1
     isSteering: 0
     isBreak: 1
-  _maxSpeed: 1000
+  _maxSpeed: 300
   _motorForce: 1000
   _brakeForce: 800
-  _steeringAngleForce: 60
+  _steeringAngle: 60
   _handbrakeForce: 300
-  _dividerForReverceForce: 1.5
+  _dividerForReverceForce: 3
 --- !u!114 &7182591400650177387
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -3,60 +3,51 @@ using Photon.Pun;
 using System.Collections;
 
 
-public class CarMovement : MonoBehaviourPunCallbacks
+public class CarMovementSinglePlayer : MonoBehaviour
 {
-    //[SerializeField] private PhotonView _photonView;
     [SerializeField] private CarCameraSwitcher _cameraSwitcher;
     [SerializeField] private Rigidbody _rigidbody;
     [SerializeField] private InputOfCarMovement _input;
     [SerializeField] private Axle[] _axles;
-    [SerializeField, Min(1)] private float _maxSpeed;
-    [SerializeField, Min(1)] private float _motorForce;
-    [SerializeField, Min(1)] private float _brakeForce;
-    [SerializeField, Min(1)] private float _steeringAngleForce;
-    [SerializeField, Min(1)] private float _handbrakeForce;
-    [SerializeField, Min(1)] private float _dividerForReverceForce;
+    [SerializeField, Min(1)] private float _maxSpeed = 300;
+    [SerializeField, Min(1)] private float _motorForce = 1000;
+    [SerializeField, Min(1)] private float _brakeForce = 800;
+    [SerializeField, Min(1)] private float _steeringAngle = 60;
+    [SerializeField, Min(1)] private float _handbrakeForce = 300;
+    [SerializeField, Min(1)] private float _dividerForReverceForce = 3;
 
 
     public float CurrentSpeed { get => _rigidbody.velocity.sqrMagnitude; }
     public float MaxSpeed { get => _maxSpeed; }
     public Rigidbody Rigidbody { get => _rigidbody; }
-    private bool isCoroutineRunning = false;
+    private float secondsWaitToResetPosition = 3;
 
-
-    // TODO FIX
 
     private void Awake()
     {
-        //if (_photonView.IsMine == true)
-        //{
-
-            _cameraSwitcher.Enable();
-        //}
-        //private void Awake()
-        //{
-        //if (_playerPrefab.IsMine == true)
-        //{
-        //}
+        _cameraSwitcher.Enable();
     }
 
-    public override void OnEnable()
+    private void Start()
     {
-        base.OnEnable();
+        StartCoroutine(FlippingProcessing());
+    }
 
+    public void OnEnable()
+    {
         _input.InputHorizontal += Steering;
         _input.InputVertical += InputVerticalProcessing;
         _input.InputBrake += Brake;
+        _input.InputResetCoordinats += ResetCoordinates;
     }
 
 
-    public override void OnDisable()
+    public void OnDisable()
     {
-        base.OnDisable();
-
         _input.InputHorizontal -= Steering;
         _input.InputVertical -= InputVerticalProcessing;
         _input.InputBrake -= Brake;
+        _input.InputResetCoordinats -= ResetCoordinates;
     }
 
     private bool isFlipped()
@@ -69,44 +60,36 @@ public class CarMovement : MonoBehaviourPunCallbacks
         Rigidbody rb = GetComponent<Rigidbody>();
         float currentYRotation = transform.eulerAngles.y;
 
-        transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
+        // TODO WHAT IS THIS FOR
+        //transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
         transform.rotation = Quaternion.Euler(0, currentYRotation, 0);
 
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
     }
 
-    private IEnumerator ResetCarPosition()
+    private IEnumerator FlippingProcessing()
     {
-        isCoroutineRunning = true;
-        yield return new WaitForSeconds(1);
         if (isFlipped())
         {
             ResetCoordinates();
         }
-        isCoroutineRunning = false;
+        yield return new WaitForSeconds(secondsWaitToResetPosition);
+        StartCoroutine(FlippingProcessing());
     }
 
 
     private void Update()
     {
-        //if (_photonView.IsMine)
-        //{
-        foreach (Axle axle in _axles)
-            axle.UpdateAxle();
-        //}
+        UpdateAxles();
 
-        if (isFlipped() && !isCoroutineRunning)
-        {
-            StartCoroutine(ResetCarPosition());
-        }
-
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            ResetCoordinates();
-        }
     }
 
+    private void UpdateAxles()
+    {
+        foreach (Axle axle in _axles)
+            axle.UpdateAxle();
+    }
 
     private void Gas(float force)
     {
@@ -118,7 +101,7 @@ public class CarMovement : MonoBehaviourPunCallbacks
     private void Steering(float force)
     {
         foreach (Axle axle in _axles)
-            axle.SetSteering(force * _steeringAngleForce);
+            axle.SetSteering(force * _steeringAngle);
     }
 
 
@@ -143,9 +126,7 @@ public class CarMovement : MonoBehaviourPunCallbacks
         {
             force = value * _brakeForce;
         }
-        //if (_photonView.IsMine)
-        //{
+
         Gas(force);
-        //}
     }
 }

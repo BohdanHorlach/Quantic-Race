@@ -8,45 +8,48 @@ public class BotObstacleDetector : MonoBehaviour
     [SerializeField] private Transform _leftSideRayPosition;
     [SerializeField] private Transform _rightSideRayPosition;
     [SerializeField] private LayerMask _obstacleMask;
-    [SerializeField] private float _forwardRayDistance;
-    [SerializeField] private float _asideRayDistance;
-    [SerializeField] private int _rayCount = 4;
-    [SerializeField] private float _searchForwardRadius = 60f;
-    [SerializeField] private float _searchAsideRadius = 90f;
+    [SerializeField] private float _forwardRayDistance = 10;
+    [SerializeField] private float _asideRayDistance = 4;
+    [SerializeField] private int _rayCount = 6;
+    [SerializeField] private float _searchForwardRaysAngle = 60f;
+    [SerializeField] private float _searchAsideRaysAngle = 90f;
     
     
-    public event Action<ObstacleScanerData> ScanerUpdate;
+    public event Action<ObstacleScanerDataStruct> ScanerUpdate;
     public float ForwardRayDistance { get => _forwardRayDistance; }
     public float AsideRayDistance { get => _asideRayDistance; }
     public float LeftHitInfiniteDistance { get; private set; }
     public float RightHitInfiniteDistance { get; private set; }
 
-
+    
     private void FixedUpdate()
     {
-        ObstacleScanerData scanerData;
+        ObstacleScanerDataStruct scanerData;
 
-        scanerData.forwardHitDistance = GetMinDistanceFromRay(_forwardRayPosition.position, transform.forward, _forwardRayDistance, _searchForwardRadius, _rayCount);
-        scanerData.leftHitDistance = GetMinDistanceFromRay(_leftSideRayPosition.position, -transform.right, _asideRayDistance, _searchAsideRadius, _rayCount);
-        scanerData.rightHitDistance = GetMinDistanceFromRay(_rightSideRayPosition.position, transform.right, _asideRayDistance, _searchAsideRadius, _rayCount);
+        scanerData.forwardHitDistance = GetMinDistanceFromRay(_forwardRayPosition.position, transform.forward, _forwardRayDistance, _searchForwardRaysAngle, _rayCount);
+        scanerData.leftHitDistance = GetMinDistanceFromRay(_leftSideRayPosition.position, -transform.right, _asideRayDistance, _searchAsideRaysAngle, _rayCount);
+        scanerData.rightHitDistance = GetMinDistanceFromRay(_rightSideRayPosition.position, transform.right, _asideRayDistance, _searchAsideRaysAngle, _rayCount);
 
-        LeftHitInfiniteDistance = GetMinDistanceFromRay(_leftSideRayPosition.position, -transform.right, Mathf.Infinity, _searchAsideRadius, 3);
-        RightHitInfiniteDistance = GetMinDistanceFromRay(_rightSideRayPosition.position, transform.right, Mathf.Infinity, _searchAsideRadius, 3);
+
+        // TODO UNDERSTAND
+        int infinityRayCount = 3;
+        LeftHitInfiniteDistance = GetMinDistanceFromRay(_leftSideRayPosition.position, -transform.right, Mathf.Infinity, _searchAsideRaysAngle, infinityRayCount);
+        RightHitInfiniteDistance = GetMinDistanceFromRay(_rightSideRayPosition.position, transform.right, Mathf.Infinity, _searchAsideRaysAngle, infinityRayCount);
 
         ScanerUpdate?.Invoke(scanerData);
     }
 
 
+    
+    private void OnDrawGizmos()
+    {
+        DrawRay(_forwardRayPosition.position, transform.forward, _forwardRayDistance, _searchForwardRaysAngle, _rayCount);
+        DrawRay(_leftSideRayPosition.position, -transform.right, _asideRayDistance, _searchAsideRaysAngle, _rayCount);
+        DrawRay(_rightSideRayPosition.position, transform.right, _asideRayDistance, _searchAsideRaysAngle, _rayCount);
+    }
 
-    //private void OnDrawGizmos()
-    //{
-    //    DrawRay(_forwardRayPosition.position, transform.forward, _forwardRayDistance, _searchForwardRadius, _rayCount);
-    //    DrawRay(_leftSideRayPosition.position, -transform.right, _asideRayDistance, _searchAsideRadius, _rayCount);
-    //    DrawRay(_rightSideRayPosition.position, transform.right, _asideRayDistance, _searchAsideRadius, _rayCount);
-    //}
 
-
-
+    
     private void DrawRay(Vector3 position, Vector3 direction, float distance, float radius, int rayCount)
     {
         float angleStep = radius / (rayCount - 1);
@@ -60,7 +63,7 @@ public class BotObstacleDetector : MonoBehaviour
         }
     }
 
-
+    
     private float GetDistanceFromRay(Vector3 position, Vector3 direction, float distance)
     {
         RaycastHit hit;
@@ -70,13 +73,13 @@ public class BotObstacleDetector : MonoBehaviour
     }
 
 
-
-    private float GetMinDistanceFromRay(Vector3 position, Vector3 direction, float distance, float radius, int count)
+    
+    private float GetMinDistanceFromRay(Vector3 position, Vector3 direction, float distance, float radius, int numberOfRays)
     {
         float minDistance = distance;
-        float angleStep = radius / (count - 1);
+        float angleStep = radius / (numberOfRays - 1);
 
-        for (int i = 0; i < count; i++)
+        for (int i = 0; i < numberOfRays; i++)
         {
             float angle = -radius / 2f + i * angleStep;
             Vector3 rayDirection = Quaternion.Euler(0, angle, 0) * direction;
@@ -86,6 +89,6 @@ public class BotObstacleDetector : MonoBehaviour
                 minDistance = rayDistance;
         }
 
-        return minDistance == distance ? ObstacleScanerData.emptyValue : minDistance;
+        return minDistance == distance ? ObstacleScanerDataStruct.emptyValue : minDistance;
     }
 }

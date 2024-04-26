@@ -33,7 +33,7 @@ public class PowerWave : Ability
 
     private void Interract(Transform interactableObject)
     {
-        if (interactableObject.TryGetComponent(out CarMovement car))
+        if (interactableObject.TryGetComponent(out CarMovementSinglePlayer car))
         {
             Vector3 direction = car.transform.position - transform.position;
             float force = _collider.radius / Vector3.Distance(transform.position, car.transform.position);

@@ -2,8 +2,8 @@ using UnityEngine;
 
 
 [System.Serializable]
-public struct WheelData
+public struct WheelColliderAndVisual
 {
     public WheelCollider wheelCollider;
-    public Transform wheelTransform;
+    public Transform wheelVisual;
 }
