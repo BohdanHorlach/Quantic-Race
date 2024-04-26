@@ -5,11 +5,14 @@ using UnityEngine;
 [RequireComponent(typeof(SphereCollider))]
 public class PowerWave : Ability
 {
+    private const string CAR_TAG = "Car";
+    private const string BREACABLE_WALL_TAG = "BreakableWall";
+
+
     [SerializeField] private ParticleSystem _particle;
     [SerializeField, Min(1)] private float _pushForce = 10f;
     [SerializeField] private SphereCollider _collider;
 
-    //private HashSet<CarMovement> _enteredTheCoverageArea;
     private HashSet<Transform> _enteredTheCoverageArea;
     private TypeAbility _type = TypeAbility.PowerWave;
 
@@ -17,26 +20,43 @@ public class PowerWave : Ability
 
 
     private void Awake()
+    {       
+        _enteredTheCoverageArea = new HashSet<Transform>();
+    }
+
+    private bool CanInteract(Collider other)
     {
-        //_enteredTheCoverageArea = new HashSet<CarMovement>();        
-        _enteredTheCoverageArea = new HashSet<Transform>();        
+        if (other.tag == CAR_TAG) return true;
+        if (other.tag == BREACABLE_WALL_TAG) return true;
+        return false;
+    }
+
+    private void Interract(Transform interactableObject)
+    {
+        if (interactableObject.TryGetComponent(out CarMovement car))
+        {
+            Vector3 direction = car.transform.position - transform.position;
+            float force = _collider.radius / Vector3.Distance(transform.position, car.transform.position);
+            car.Rigidbody.AddForce(direction.normalized * force * _pushForce, ForceMode.Impulse);
+        }
+        if (interactableObject.TryGetComponent(out FastWayPannel pannel))
+        {
+            pannel.Break();
+        }
     }
 
 
-    // TODO change tag to something like Pushable
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Car")
+        if (CanInteract(other))
             _enteredTheCoverageArea.Add(other.GetComponent<Transform>());
-            //_enteredTheCoverageArea.Add(other.GetComponent<CarMovement>());
     }
 
 
     private void OnTriggerExit(Collider other)
     {
-        if(other.tag == "Car")
+        if (CanInteract(other))
             _enteredTheCoverageArea.Remove(other.GetComponent<Transform>());
-            //_enteredTheCoverageArea.Remove(other.GetComponent<CarMovement>());
     }
 
 
@@ -44,14 +64,9 @@ public class PowerWave : Ability
     // if power wave is from behind it's accelerate opponent
     private void PushCarsNearby()
     {
-        foreach (Transform car in _enteredTheCoverageArea)
-        //foreach (CarMovement car in _enteredTheCoverageArea)
+        foreach (Transform interactableObject in _enteredTheCoverageArea)
         {
-            Vector3 direction = car.transform.position - transform.position;
-            float force = _collider.radius / Vector3.Distance(transform.position, car.transform.position);
-
-            car.GetComponent<Rigidbody>().AddForce(direction.normalized * force * _pushForce, ForceMode.Impulse);
-            //car.Rigidbody.AddForce(direction.normalized * force * _pushForce, ForceMode.Impulse);
+            Interract(interactableObject);
         }
     }
 

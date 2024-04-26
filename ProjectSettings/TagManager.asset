@@ -7,6 +7,7 @@ TagManager:
   - Car
   - Bullet
   - BotAssistant
+  - BreakableWall
   layers:
   - Default
   - TransparentFX
