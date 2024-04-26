@@ -53,6 +53,14 @@ public class Teleport : Ability
         return obstacle.Length == 0;
     }
 
+    //private bool IsWallForward(RaycastHit[] raycastHitsArray)
+    //{
+    //    foreach (RaycastHit raycastHit in raycastHitsArray)
+    //    {
+
+    //    }
+    //}
+
     private Vector3 GetForwardPositionFromOffset(float offset)
     {
         BoxCollider carBoxCollider = _car.GetComponent<BoxCollider>();
@@ -69,8 +77,8 @@ public class Teleport : Ability
         Vector3 sizeFromCenter = Vector3.Scale(carBoxCollider.size, carBoxCollider.transform.lossyScale) * 0.5f;
         float safeTeleportDistance = _teleportDistance + _freeSpaceRadius;
 
-
-        if (Physics.BoxCast(center, sizeFromCenter, _car.forward, Quaternion.identity, safeTeleportDistance, _wallsMask))
+        //RaycastHit[] raycastHitArray = Physics.BoxCastAll(center, sizeFromCenter, _car.forward, Quaternion.identity, safeTeleportDistance, _wallsMask).Length >0;
+        if (Physics.BoxCastAll(center, sizeFromCenter, _car.forward, Quaternion.identity, safeTeleportDistance, _wallsMask).Length > 0)//IsWallForward())
         {
             return Vector3.zero;
         }
