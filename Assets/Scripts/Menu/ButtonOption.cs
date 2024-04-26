@@ -3,6 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
+// TODO
+//
+// rename later:
+//                  PlayGame -> PlaySinglePlayer
+//                  
+
+
+
+
+//
+// menu -> Single player TrackSelect -> 
+//      -> Multiplayer TrackSelect -> 
+//
+
 public class ButtonOptions : MonoBehaviour
 {
     // sceneName Track 

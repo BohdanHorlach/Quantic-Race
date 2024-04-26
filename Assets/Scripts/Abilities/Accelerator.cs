@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 
 
-public class Accelerator : Abilitiy
+public class Accelerator : Ability
 {
     [SerializeField] private CarMovement _car;
     [SerializeField] private ParticleSystem _particle;
@@ -13,7 +13,8 @@ public class Accelerator : Abilitiy
     [SerializeField, Min(1)] private float _maxSpeedOfAcceleration = 400f;
     [SerializeField, Min(10)] private float _constantDecelerationForce = 30f;
 
-    private bool _isActivate = false;
+    private bool _isAccelerationActive = false;
+    private bool _isDecelerationActive = false;
     private TypeAbility _type = TypeAbility.Accelerator;
 
     public override TypeAbility Type { get => _type; }
@@ -21,6 +22,7 @@ public class Accelerator : Abilitiy
 
     private IEnumerator Acceleration()
     {
+        _isAccelerationActive = true;
         float timer = 0;
         _particle.Play();
 
@@ -28,45 +30,70 @@ public class Accelerator : Abilitiy
         {
             Vector3 force = _car.transform.forward * _accelerationforce;
 
-            if(_car.CurrentSpeed < _maxSpeedOfAcceleration)
+            if (_car.CurrentSpeed < _maxSpeedOfAcceleration)
                 _car.Rigidbody.AddForceAtPosition(force, _acceleratorPoint.position);
 
             timer += Time.fixedDeltaTime;
             yield return null;
         }
 
-	    StartCoroutine("SlowDownToMaxSpeed");
+        _isAccelerationActive = false;
+
+        StartCoroutine(SlowDownToMaxSpeed());
     }
 
 
     private IEnumerator SlowDownToMaxSpeed()
     {
+        _isDecelerationActive = true;
         _particle.Stop();
 
-        while(_car.CurrentSpeed > _car.MaxSpeed)
+        while (_car.CurrentSpeed > _car.MaxSpeed)
         {
-            float decelerateForce = Mathf.Lerp(_car.CurrentSpeed, _car.MaxSpeed, Time.fixedDeltaTime) * 0.1f;
+            // TODO maybe change formula
+            float decelerateCoefficient = 0.1f;
+            float decelerateForce = Mathf.Lerp(_car.CurrentSpeed, _car.MaxSpeed, Time.fixedDeltaTime) * decelerateCoefficient;
             Vector3 force = -_car.transform.forward * _constantDecelerationForce;
             _car.Rigidbody.AddForceAtPosition(force * decelerateForce, _decelerationPoint.position);
 
             yield return null;
         }
+        _isDecelerationActive = false;
     }
 
 
-    private void CallAcceleration(bool isActive, string stopedCoroutine, string startCoroutine)
+    private void ToggleAcceleration()
     {
-        _isActivate = isActive;
-        StopCoroutine(stopedCoroutine);
-        StartCoroutine(startCoroutine);
+        // Check the current state
+        if (_isAccelerationActive)
+        {
+            // If currently accelerating, stop acceleration and start deceleration
+            StopCoroutine(Acceleration());
+            StartCoroutine(SlowDownToMaxSpeed());
+        }
+        else if (_isDecelerationActive)
+        {
+            // If currently decelerating, stop deceleration and start acceleration
+            StopCoroutine(SlowDownToMaxSpeed());
+            StartCoroutine(Acceleration());
+        }
+        else
+        {
+            // If not accelerating or decelerating, start acceleration
+            StartCoroutine(Acceleration());
+        }
     }
+
 
 
     public override void Activate()
     {
-        if (_isActivate == false)
-            CallAcceleration(true, "SlowDownToMaxSpeed", "Acceleration");
-        else
-            CallAcceleration(false, "Acceleration", "SlowDownToMaxSpeed");
+        ToggleAcceleration();
+    }
+
+
+    public override bool IsActive()
+    {
+        return _isAccelerationActive;
     }
 }

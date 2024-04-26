@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class DistanceAbilityCaller : MonoBehaviour
 {
-    [SerializeField] private Abilitiy _ability;
+    [SerializeField] private Ability _ability;
     [SerializeField] private CheckPointHandler _checkPointHandler;
     [SerializeField] private PositionCalculator _positionCalculator;
     [SerializeField, Min(0)] private float _distanceToTargetToUse;

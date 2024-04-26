@@ -6,8 +6,8 @@
 public class WheelSkid : MonoBehaviour {
 
 	[SerializeField] private Rigidbody rb;
-	[SerializeField] private Skidmarks skidmarksController;
 	[SerializeField] private WheelCollider wheelCollider;
+	private Skidmarks skidmarksController;
 	
 	
 	private WheelHit wheelHitInfo;
@@ -18,11 +18,14 @@ public class WheelSkid : MonoBehaviour {
 	private float lastFixedUpdateTime;
 
 	
-	protected void Awake() {
-		if(wheelCollider == null)
-			wheelCollider = GetComponent<WheelCollider>();
+	protected void Start() {
+		//if(wheelCollider == null)
+		wheelCollider = GetComponent<WheelCollider>();
+        skidmarksController = Skidmarks.Instance;
 
 		lastFixedUpdateTime = Time.time;
+
+        Debug.Log("WheelSkid initialized");
 	}
 
 
@@ -70,8 +73,8 @@ public class WheelSkid : MonoBehaviour {
 	}
 
 
-	public void Initialize(Skidmarks skidmarks)
-	{
-		skidmarksController = skidmarks;
-    }
+	//public void Initialize(Skidmarks skidmarks)
+	//{
+	//	skidmarksController = skidmarks;
+ //   }
 }

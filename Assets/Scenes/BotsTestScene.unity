@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.43667486, g: 0.475263, b: 0.5157652, a: 1}
+  m_IndirectSpecularColor: {r: 0.43667483, g: 0.47526366, b: 0.5157655, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1056,104 +1056,17 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 201541309}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!1 &231304931
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 231304935}
-  - component: {fileID: 231304933}
-  - component: {fileID: 231304934}
-  - component: {fileID: 231304932}
-  m_Layer: 0
-  m_Name: SkidMarksController
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &231304932
+--- !u!114 &231304932 stripped
 MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 2887676926962951025, guid: 43658850107b45b46b92e6aa837870a0, type: 3}
+  m_PrefabInstance: {fileID: 1095109125345756055}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 231304931}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 07c84a8b0d4f3e349842d978754011f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mr: {fileID: 231304934}
-  mf: {fileID: 231304933}
---- !u!33 &231304933
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 231304931}
-  m_Mesh: {fileID: 0}
---- !u!23 &231304934
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 231304931}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_StaticShadowCaster: 0
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 2
-  m_RayTraceProcedural: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 2100000, guid: 1a95f6734ae83a04080c7424fdeeb5ec, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_AdditionalVertexStreams: {fileID: 0}
---- !u!4 &231304935
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 231304931}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &296762297
 GameObject:
   m_ObjectHideFlags: 0
@@ -4149,7 +4062,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.15675455, y: 0.58927023, z: -0.1178541, w: 0.7837723}
+  m_LocalRotation: {x: 0.15675452, y: 0.5892703, z: -0.11785414, w: 0.7837723}
   m_LocalPosition: {x: 76.293724, y: 9.508925, z: -26.42584}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5103,7 +5016,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1288999245}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.15675455, y: 0.58927023, z: -0.1178541, w: 0.7837723}
+  m_LocalRotation: {x: 0.15675452, y: 0.5892703, z: -0.11785414, w: 0.7837723}
   m_LocalPosition: {x: 76.293724, y: 9.508925, z: -26.42584}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -8509,6 +8422,10 @@ PrefabInstance:
       propertyPath: skidmarksController
       value: 
       objectReference: {fileID: 231304932}
+    - target: {fileID: 3579401539814274831, guid: f697028f54fd6644d8e9031274f79848, type: 3}
+      propertyPath: sceneViewId
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5267198405817110329, guid: f697028f54fd6644d8e9031274f79848, type: 3}
       propertyPath: skidmarksController
       value: 
@@ -8627,6 +8544,63 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46d77b037649b0d41bc976a9a1adb1b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1001 &1095109125345756055
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2959460008474281941, guid: 43658850107b45b46b92e6aa837870a0, type: 3}
+      propertyPath: m_Name
+      value: SkidMarksController
+      objectReference: {fileID: 0}
+    - target: {fileID: 4603652634687209662, guid: 43658850107b45b46b92e6aa837870a0, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4603652634687209662, guid: 43658850107b45b46b92e6aa837870a0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4603652634687209662, guid: 43658850107b45b46b92e6aa837870a0, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4603652634687209662, guid: 43658850107b45b46b92e6aa837870a0, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4603652634687209662, guid: 43658850107b45b46b92e6aa837870a0, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4603652634687209662, guid: 43658850107b45b46b92e6aa837870a0, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4603652634687209662, guid: 43658850107b45b46b92e6aa837870a0, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4603652634687209662, guid: 43658850107b45b46b92e6aa837870a0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4603652634687209662, guid: 43658850107b45b46b92e6aa837870a0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4603652634687209662, guid: 43658850107b45b46b92e6aa837870a0, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 43658850107b45b46b92e6aa837870a0, type: 3}
 --- !u!1001 &1367333119569370557
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8722,6 +8696,10 @@ PrefabInstance:
     - target: {fileID: 7131186628462024675, guid: d3a54f71952857049a2ab414402b4756, type: 3}
       propertyPath: _maxChargeCount
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8959914016404542405, guid: d3a54f71952857049a2ab414402b4756, type: 3}
+      propertyPath: sceneViewId
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9280,6 +9258,10 @@ PrefabInstance:
       propertyPath: skidmarksController
       value: 
       objectReference: {fileID: 231304932}
+    - target: {fileID: 8607807970053702504, guid: f622293df85d66642ac405bc3ef8e2f3, type: 3}
+      propertyPath: sceneViewId
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -9307,7 +9289,7 @@ SceneRoots:
   - {fileID: 1466912101}
   - {fileID: 1299815720}
   - {fileID: 1545277572}
-  - {fileID: 231304935}
+  - {fileID: 1095109125345756055}
   - {fileID: 710718315}
   - {fileID: 5470995536290226323}
   - {fileID: 4534672897403836649}

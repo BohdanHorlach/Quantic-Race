@@ -4,38 +4,43 @@ using UnityEngine.UI;
 using System;
 
 
-public class AbilitiyController : Abilitiy
+public class AbilitiyController : Ability
 {
-    [SerializeField] private Abilitiy _ability;
+    [SerializeField] private Ability _ability;
     [SerializeField] private float _cooldownTime;
     [SerializeField] private int _maxChargeCount;
 
     private int _currentChargeCount = 0;
-    private bool _isActive = true;
+    private bool _canActivate = true;
 
     public override TypeAbility Type { get => _ability.Type; }
     public event Action UseAbility;
+
+    public override bool IsActive()
+    {
+        return _ability.IsActive();
+    }
 
 
     private IEnumerator Cooldown()
     {
         yield return new WaitForSeconds(_cooldownTime);
 
-        _isActive = true;
+        _canActivate = true;
     }
 
 
     private void Recharge()
     {
         _currentChargeCount--;
-        _isActive = false;
-        StartCoroutine("Cooldown");
+        _canActivate = false;
+        StartCoroutine(Cooldown());
     }
 
 
     public override void Activate()
     {
-        if (_isActive == false || _currentChargeCount <= 0)
+        if (_canActivate == false || _currentChargeCount <= 0)
             return;
 
         _ability.Activate();

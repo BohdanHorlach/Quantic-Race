@@ -5,7 +5,7 @@ using System.Collections;
 
 public class CarMovement : MonoBehaviourPunCallbacks
 {
-    [SerializeField] private PhotonView _photonView;
+    //[SerializeField] private PhotonView _photonView;
     [SerializeField] private CarCameraSwitcher _cameraSwitcher;
     [SerializeField] private Rigidbody _rigidbody;
     [SerializeField] private InputOfCarMovement _input;
@@ -23,16 +23,21 @@ public class CarMovement : MonoBehaviourPunCallbacks
     public Rigidbody Rigidbody { get => _rigidbody; }
     private bool isCoroutineRunning = false;
 
-    
+
+    // TODO FIX
+
     private void Awake()
     {
-        if (_photonView.IsMine == true)
-    private void Awake()
-    {
-        if (_playerPrefab.IsMine == true)
-        {
+        //if (_photonView.IsMine == true)
+        //{
+
             _cameraSwitcher.Enable();
-        }
+        //}
+        //private void Awake()
+        //{
+        //if (_playerPrefab.IsMine == true)
+        //{
+        //}
     }
 
     public override void OnEnable()
@@ -82,44 +87,14 @@ public class CarMovement : MonoBehaviourPunCallbacks
         isCoroutineRunning = false;
     }
 
-    private bool isFlipped()
-    {
-        return Vector3.Dot(transform.up, Vector3.down) > 0;
-    }
-    
-
-    private void ResetCoordinates()
-    {
-        Rigidbody rb = GetComponent<Rigidbody>();
-        float currentYRotation = transform.eulerAngles.y;
-
-        transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
-        transform.rotation = Quaternion.Euler(0, currentYRotation, 0);
-
-        rb.velocity = Vector3.zero;
-        rb.angularVelocity = Vector3.zero;
-    }
-
-
-    private IEnumerator ResetCarPosition()
-    {
-        isCoroutineRunning = true;
-        yield return new WaitForSeconds(1);
-        if (isFlipped())
-        {
-            ResetCoordinates();
-        }
-        isCoroutineRunning = false;
-    }
-
 
     private void Update()
     {
-        if (_photonView.IsMine)
-        {
-            foreach (Axle axle in _axles)
-                axle.UpdateAxle();
-        }
+        //if (_photonView.IsMine)
+        //{
+        foreach (Axle axle in _axles)
+            axle.UpdateAxle();
+        //}
 
         if (isFlipped() && !isCoroutineRunning)
         {
@@ -168,9 +143,9 @@ public class CarMovement : MonoBehaviourPunCallbacks
         {
             force = value * _brakeForce;
         }
-        if (_photonView.IsMine)
-        {
-            Gas(force);
-        }
+        //if (_photonView.IsMine)
+        //{
+        Gas(force);
+        //}
     }
 }
