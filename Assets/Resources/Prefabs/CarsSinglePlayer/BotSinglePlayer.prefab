@@ -336,7 +336,7 @@ MonoBehaviour:
     isMotor: 1
     isSteering: 0
     isBreak: 1
-  _maxSpeed: 300
+  _maxSpeed: 3000
   _motorForce: 1000
   _brakeForce: 800
   _steeringAngle: 60
@@ -1726,5 +1726,5 @@ MonoBehaviour:
   _forwardRayDistance: 10
   _asideRayDistance: 4
   _rayCount: 6
-  _searchForwardRaysAngle: 10
+  _searchForwardRaysAngle: 20
   _searchAsideRaysAngle: 90

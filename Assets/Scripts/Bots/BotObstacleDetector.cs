@@ -1,4 +1,5 @@
 using System;
+using Unity.Burst.CompilerServices;
 using UnityEngine;
 
 
@@ -13,15 +14,15 @@ public class BotObstacleDetector : MonoBehaviour
     [SerializeField] private int _rayCount = 6;
     [SerializeField] private float _searchForwardRaysAngle = 60f;
     [SerializeField] private float _searchAsideRaysAngle = 90f;
-    
-    
+
+
     public event Action<ObstacleScanerDataStruct> ScanerUpdate;
     public float ForwardRayDistance { get => _forwardRayDistance; }
     public float AsideRayDistance { get => _asideRayDistance; }
     public float LeftHitInfiniteDistance { get; private set; }
     public float RightHitInfiniteDistance { get; private set; }
 
-    
+
     private void FixedUpdate()
     {
         ObstacleScanerDataStruct scanerData;
@@ -29,6 +30,7 @@ public class BotObstacleDetector : MonoBehaviour
         scanerData.forwardHitDistance = GetMinDistanceFromRay(_forwardRayPosition.position, transform.forward, _forwardRayDistance, _searchForwardRaysAngle, _rayCount);
         scanerData.leftHitDistance = GetMinDistanceFromRay(_leftSideRayPosition.position, -transform.right, _asideRayDistance, _searchAsideRaysAngle, _rayCount);
         scanerData.rightHitDistance = GetMinDistanceFromRay(_rightSideRayPosition.position, transform.right, _asideRayDistance, _searchAsideRaysAngle, _rayCount);
+        scanerData.forwardHitAngle = GetAngleFromRay(_forwardRayPosition.position, transform.forward, _forwardRayDistance);
 
 
         // TODO UNDERSTAND
@@ -40,7 +42,7 @@ public class BotObstacleDetector : MonoBehaviour
     }
 
 
-    
+
     private void OnDrawGizmos()
     {
         DrawRay(_forwardRayPosition.position, transform.forward, _forwardRayDistance, _searchForwardRaysAngle, _rayCount);
@@ -49,7 +51,7 @@ public class BotObstacleDetector : MonoBehaviour
     }
 
 
-    
+
     private void DrawRay(Vector3 position, Vector3 direction, float distance, float radius, int rayCount)
     {
         float angleStep = radius / (rayCount - 1);
@@ -63,7 +65,7 @@ public class BotObstacleDetector : MonoBehaviour
         }
     }
 
-    
+
     private float GetDistanceFromRay(Vector3 position, Vector3 direction, float distance)
     {
         RaycastHit hit;
@@ -72,8 +74,26 @@ public class BotObstacleDetector : MonoBehaviour
         return isHit == true ? hit.distance : distance;
     }
 
+    private float GetAngleFromRay(Vector3 position, Vector3 direction, float distance)
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(position, direction, out hit, distance, _obstacleMask))
+        {
 
-    
+            Vector3 hitNormal = hit.normal;
+            float angle = Vector3.Angle(hitNormal, direction);
+
+            return angle;
+        }
+        else
+        {
+            return ObstacleScanerDataStruct.angleEmptyValue;
+        }
+
+    }
+
+
+
     private float GetMinDistanceFromRay(Vector3 position, Vector3 direction, float distance, float radius, int numberOfRays)
     {
         float minDistance = distance;
