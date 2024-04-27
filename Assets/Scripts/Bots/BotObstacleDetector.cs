@@ -19,8 +19,6 @@ public class BotObstacleDetector : MonoBehaviour
     public event Action<ObstacleScanerDataStruct> ScanerUpdate;
     public float ForwardRayDistance { get => _forwardRayDistance; }
     public float AsideRayDistance { get => _asideRayDistance; }
-    public float LeftHitInfiniteDistance { get; private set; }
-    public float RightHitInfiniteDistance { get; private set; }
 
 
     private void FixedUpdate()
@@ -32,38 +30,13 @@ public class BotObstacleDetector : MonoBehaviour
         scanerData.rightHitDistance = GetMinDistanceFromRay(_rightSideRayPosition.position, transform.right, _asideRayDistance, _searchAsideRaysAngle, _rayCount);
         scanerData.forwardHitAngle = GetAngleFromRay(_forwardRayPosition.position, transform.forward, _forwardRayDistance);
 
-
-        // TODO UNDERSTAND
         int infinityRayCount = 3;
-        LeftHitInfiniteDistance = GetMinDistanceFromRay(_leftSideRayPosition.position, -transform.right, Mathf.Infinity, _searchAsideRaysAngle, infinityRayCount);
-        RightHitInfiniteDistance = GetMinDistanceFromRay(_rightSideRayPosition.position, transform.right, Mathf.Infinity, _searchAsideRaysAngle, infinityRayCount);
+        scanerData.leftHitInfiniteDistance = GetMinDistanceFromRay(_leftSideRayPosition.position, -transform.right, Mathf.Infinity, _searchAsideRaysAngle, infinityRayCount);
+        scanerData.rightHitInfiniteDistance = GetMinDistanceFromRay(_rightSideRayPosition.position, transform.right, Mathf.Infinity, _searchAsideRaysAngle, infinityRayCount);
 
         ScanerUpdate?.Invoke(scanerData);
     }
 
-
-
-    private void OnDrawGizmos()
-    {
-        DrawRay(_forwardRayPosition.position, transform.forward, _forwardRayDistance, _searchForwardRaysAngle, _rayCount);
-        DrawRay(_leftSideRayPosition.position, -transform.right, _asideRayDistance, _searchAsideRaysAngle, _rayCount);
-        DrawRay(_rightSideRayPosition.position, transform.right, _asideRayDistance, _searchAsideRaysAngle, _rayCount);
-    }
-
-
-
-    private void DrawRay(Vector3 position, Vector3 direction, float distance, float radius, int rayCount)
-    {
-        float angleStep = radius / (rayCount - 1);
-
-        for (int i = 0; i < rayCount; i++)
-        {
-            float angle = -radius / 2f + i * angleStep;
-            Vector3 rayDirection = Quaternion.Euler(0, angle, 0) * direction;
-
-            Debug.DrawRay(position, rayDirection * distance, Color.red);
-        }
-    }
 
 
     private float GetDistanceFromRay(Vector3 position, Vector3 direction, float distance)
@@ -110,5 +83,29 @@ public class BotObstacleDetector : MonoBehaviour
         }
 
         return minDistance == distance ? ObstacleScanerDataStruct.emptyValue : minDistance;
+    }
+
+
+    // visual for testing
+    private void OnDrawGizmos()
+    {
+        DrawRay(_forwardRayPosition.position, transform.forward, _forwardRayDistance, _searchForwardRaysAngle, _rayCount);
+        DrawRay(_leftSideRayPosition.position, -transform.right, _asideRayDistance, _searchAsideRaysAngle, _rayCount);
+        DrawRay(_rightSideRayPosition.position, transform.right, _asideRayDistance, _searchAsideRaysAngle, _rayCount);
+    }
+
+
+
+    private void DrawRay(Vector3 position, Vector3 direction, float distance, float radius, int rayCount)
+    {
+        float angleStep = radius / (rayCount - 1);
+
+        for (int i = 0; i < rayCount; i++)
+        {
+            float angle = -radius / 2f + i * angleStep;
+            Vector3 rayDirection = Quaternion.Euler(0, angle, 0) * direction;
+
+            Debug.DrawRay(position, rayDirection * distance, Color.red);
+        }
     }
 }

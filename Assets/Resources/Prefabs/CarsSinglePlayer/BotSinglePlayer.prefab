@@ -1588,7 +1588,7 @@ MonoBehaviour:
   _brakeZone: {fileID: 2953090764871441193}
   _obstacleDetector: {fileID: 5312452345706478582}
   _wayPoint: {fileID: 0}
-  IsMoved: 0
+  _isMoved: 0
 --- !u!1 &8839230761356286189
 GameObject:
   m_ObjectHideFlags: 0
@@ -1726,5 +1726,5 @@ MonoBehaviour:
   _forwardRayDistance: 10
   _asideRayDistance: 4
   _rayCount: 6
-  _searchForwardRaysAngle: 20
-  _searchAsideRaysAngle: 90
+  _searchForwardRaysAngle: 15
+  _searchAsideRaysAngle: 140

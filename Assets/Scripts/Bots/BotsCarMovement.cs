@@ -1,4 +1,6 @@
 using System;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -7,34 +9,39 @@ using UnityEngine;
 // AND TRIES TO GO BACKWARD BUT THE WALL IS THERE
 
 
+
 public class BotsCarMovement : InputOfCarMovement
 {
+
     [SerializeField] private Collider _brakeZone;
     [SerializeField] private BotObstacleDetector _obstacleDetector;
     [SerializeField] private WayPoint _wayPoint;
-    // error can be allowed when comparing world distance
-    [SerializeField] private float ALLOWED_DISTANCE_ERROR = 3;
 
-    // TODO UNDERSTAND VARIABLES
+
     private const float CHANCE_SELECT_ALTERNATIVE_POINT = 0.5f;
     private const float MAX_INPUT_VALUE = 1f;
-    private const float MAX_STEERING_ANGLE = 90f;
+    private const float ANGLE_NORMALZIER = 90f;
+
+
+
     private Vector3 _targetPoint;
-    //private bool _isBrake = false;
     private bool _hasNextPoint = false;
     private ObstacleScanerDataStruct _scanerBuffer;
+
+    //private bool _isBrake = false;
+    public bool _isMoved;
 
     public override event Action<float> InputHorizontal;
     public override event Action<float> InputVertical;
     public override event Action<float> InputBrake;
     public override event Action InputResetCoordinats;
 
-    public bool IsMoved;
+
 
 
     private void Awake()
     {
-        IsMoved = true;
+        _isMoved = true;
         _brakeZone.isTrigger = true;
         _targetPoint = GetWayPointCenter(_wayPoint.transform);
     }
@@ -71,12 +78,9 @@ public class BotsCarMovement : InputOfCarMovement
     //}
 
 
-    // TODO UNDERSTAND
     private void FixedUpdate()
     {
-        // if can move forward -> force = 1
-        // else 
-        if (IsMoved == false || _hasNextPoint == false)
+        if (_isMoved == false || _hasNextPoint == false)
         {
             InvokeEvents(0, 0);
         }
@@ -84,6 +88,7 @@ public class BotsCarMovement : InputOfCarMovement
         {
             float verticalValue = GetMoveForce();
             float horizontalValue = GetSteeringForce();
+
             horizontalValue *= verticalValue < 0 ? 0 : 1;
 
             MoveToNextPoint();
@@ -115,164 +120,108 @@ public class BotsCarMovement : InputOfCarMovement
 
 
 
-
-    private float GetForseFromHitDistance(float rayDistance, float hitDistance)
+    // TODO ADD COMMENT
+    private float GetForseFromHitDistance()
     {
-        // TODO TEST
-        //return rayDistance / hitDistance;
-        //return hitDistance / rayDistance;
         return MAX_INPUT_VALUE;
     }
-    
+
+    // steering force to avoid accident
     private float GetSteeringForseFromHitDistance(float rayDistance, float hitDistance)
     {
         return MAX_INPUT_VALUE - hitDistance / rayDistance;
     }
 
-
-    // TODO TRY FIX
+    // getting moving force
     private float GetMoveForce()
     {
-        // TODO
-        _scanerBuffer.CanMoveForward();
         if (_scanerBuffer.forwardHitDistance == ObstacleScanerDataStruct.emptyValue)
         {
             // can move forward
-            //return _isBrake == false ? _maxInputValue : -_maxInputValue;
-            return MAX_INPUT_VALUE;
+            return GetForseFromHitDistance();
         }
         else
         {
             // obstacle detected
-            // TODO
-            // CASE 1 GO BACK
-            // CASE 2 GO FORWARD AND TURN LEFT/RIGHT
-            float rayDistance = _obstacleDetector.ForwardRayDistance;
-            float hitDistance = _scanerBuffer.forwardHitDistance;
-            float force = GetForseFromHitDistance(rayDistance, hitDistance);
+            float force = GetForseFromHitDistance();
             //return _isBrake == false ? force : -force;
             return force;
         }
     }
 
-
-    // TODO TRY FIX
-    private int WhereToTurnIfObstacleForward(/*float rightDistance, float leftDistance*/)
+    // steering force to avoid forward obstacle
+    private float GetSteeringForceFromForwardAvoidance()
     {
-        //int forward = 0;
-        int left = -1;
-        int right = 1;
-        float rightDistance = _scanerBuffer.rightHitDistance;
-        float leftDistance = _scanerBuffer.leftHitDistance;
-
-
-        if (Approximately(rightDistance, leftDistance, ALLOWED_DISTANCE_ERROR))
-        {
-            // if left and right distances are approximately equal
-
-            //if (rightDistance != ObstacleScanerDataStruct.emptyValue)
-            //{
-            //    return forward;
-            //}
-            //else
-            //{
-            if (_obstacleDetector.LeftHitInfiniteDistance > _obstacleDetector.RightHitInfiniteDistance)
-            {
-                return left;
-            }
-            else
-            {
-                return right;
-            }
-            //}
-        }
-        else
-        {
-            return rightDistance == ObstacleScanerDataStruct.emptyValue ? left : right;
-        }
-    }
-
-
-    // TODO TRY FIX
-    private float GetSteeringForceFromForwardAvoidance(/*float rightDistance, float leftDistance*/)
-    {
-        float steeringForce = GetForseFromHitDistance(_obstacleDetector.ForwardRayDistance, _scanerBuffer.forwardHitDistance);
-        int SideSign = WhereToTurnIfObstacleForward(/*rightDistance, leftDistance*/);
+        float steeringForce = MAX_INPUT_VALUE;
+        int SideSign = _scanerBuffer.GetSideWithMoreSpace();
 
         steeringForce *= SideSign;
+
 
         return steeringForce;
     }
 
 
-    // TODO TRY FIX
-    private float GetSteeringForceFromAsideAvoidance(/*float rightDistance, float leftDistance*/)
+    // steering force to avoid left or right obstacle
+    private float GetSteeringForceFromAsideAvoidance()
     {
         float rightDistance = _scanerBuffer.rightHitDistance;
         float leftDistance = _scanerBuffer.leftHitDistance;
         float steeringForce;
         float SideSign;
 
-        //if (Approximately(rightDistance, leftDistance, ALLOWED_DISTANCE_ERROR) && rightDistance == ObstacleScanerDataStruct.emptyValue)
-        //{
-        //    steeringForce = 0;
-        //}
-        //else
-        //{
-        float nearestSideDistance;// = rightDistance == ObstacleScanerDataStruct.emptyValue ? leftDistance : rightDistance;
-
-        if(rightDistance == ObstacleScanerDataStruct.emptyValue)
+        if (rightDistance == ObstacleScanerDataStruct.emptyValue)
         {
-            nearestSideDistance = leftDistance;
+            // if can turn on the right
+            steeringForce = GetSteeringForseFromHitDistance(_obstacleDetector.AsideRayDistance, leftDistance);
             SideSign = 1;
         }
-        else if(leftDistance == ObstacleScanerDataStruct.emptyValue)
+        else if (leftDistance == ObstacleScanerDataStruct.emptyValue)
         {
-            nearestSideDistance = rightDistance;
+            // if can turn on the left
+            steeringForce = GetSteeringForseFromHitDistance(_obstacleDetector.AsideRayDistance, rightDistance);
             SideSign = -1;
         }
         else
         {
-            nearestSideDistance = 0;
+            steeringForce = 0;
             SideSign = 0;
         }
-        steeringForce = GetSteeringForseFromHitDistance(_obstacleDetector.AsideRayDistance, nearestSideDistance);
         steeringForce *= SideSign;
-        //}
 
         return steeringForce;
     }
 
 
-    // TODO TRY FIX
-    private float GetSteeringForceObstacleAvoidance()
-    {
-        float steeringForce;
-
-
-        if (_scanerBuffer.forwardHitDistance != ObstacleScanerDataStruct.emptyValue)
-            steeringForce = GetSteeringForceFromForwardAvoidance(/*rightDistance, leftDistance*/);
-        else
-            steeringForce = GetSteeringForceFromAsideAvoidance(/*rightDistance, leftDistance*/);// * 0.1f;
-
-        return steeringForce;
-    }
-
-
-    // TODO TRY FIX
+    // steering force to avoid any obstacle
+    // TODO ANGLE_NORMALZIER IS ?
     private float GetSteeringForce()
     {
 
         Vector3 direction = _targetPoint - transform.position;
-        float steeringAngle = Vector3.SignedAngle(transform.forward, direction, Vector3.up);
-        //Debug.Log(steeringAngle);
+        float targetAngle = Vector3.SignedAngle(transform.forward, direction, Vector3.up);
+        Debug.Log(targetAngle);
         float force;
 
         if (_scanerBuffer.IsEmpty())
-            force = steeringAngle / MAX_STEERING_ANGLE;
+        {
+            // no obstacles
+            Debug.Log("no obstacles");
+            // TODO UNDERSTAND HOW TO TRANSFORM TARGET ANGLE TO FORCE
+            force = targetAngle / ANGLE_NORMALZIER;
+        }
+        else if (_scanerBuffer.forwardHitDistance != ObstacleScanerDataStruct.emptyValue)
+        {
+            // obstacle is forward
+            Debug.Log("obstacle is forward");
+            force = GetSteeringForceFromForwardAvoidance();
+        }
         else
-            // TODO
-            force = GetSteeringForceObstacleAvoidance();
+        {
+            // obstacle is on the left or right
+            Debug.Log("obstacle is on the left or right");
+            force = GetSteeringForceFromAsideAvoidance();
+        }
 
         return force;
     }
@@ -299,20 +248,17 @@ public class BotsCarMovement : InputOfCarMovement
         return position;
     }
 
-    // TODO UNDERSTAND
     private void SetTargetPoint(WayPoint wayPont)
     {
-        Transform point;
+        Transform point = wayPont.transform;
 
-        point = wayPont.transform;
         _wayPoint = wayPont;
 
         _targetPoint = GetWayPointCenter(point);
     }
 
 
-    // TODO UNDERSTAND
-    private void MoveToNextPoint()
+    public void MoveToNextPoint()
     {
         if (_wayPoint.DistanceToGetNext < Vector3.Distance(transform.position, _targetPoint))
             return;
@@ -326,17 +272,9 @@ public class BotsCarMovement : InputOfCarMovement
         }
         else
         {
-            IsMoved = false;
+            _isMoved = false;
         }
     }
 
-
-
-    // helper functions
-
-    public static bool Approximately(float a, float b, float allowedError)
-    {
-        return Mathf.Abs(a - b) <= allowedError;
-    }
 
 }
