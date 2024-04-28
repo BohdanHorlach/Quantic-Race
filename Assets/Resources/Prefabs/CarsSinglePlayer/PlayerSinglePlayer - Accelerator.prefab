@@ -5012,6 +5012,10 @@ PrefabInstance:
       propertyPath: _abilty
       value: 
       objectReference: {fileID: 9182297871157551950}
+    - target: {fileID: 7437522439865184991, guid: 71fc7b99f1a2bab418f3f8f1d008bc1d, type: 3}
+      propertyPath: _maxSpeed
+      value: 3000
+      objectReference: {fileID: 0}
     - target: {fileID: 7485963160203658605, guid: 71fc7b99f1a2bab418f3f8f1d008bc1d, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 

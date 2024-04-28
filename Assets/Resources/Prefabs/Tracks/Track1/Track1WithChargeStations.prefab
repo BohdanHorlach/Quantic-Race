@@ -1,5 +1,40 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5400613197775461645
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 188434285009173733}
+  m_Layer: 0
+  m_Name: FastWayPannels
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &188434285009173733
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5400613197775461645}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 3507041335243043424}
+  - {fileID: 7168885227453490114}
+  - {fileID: 4150663237760707734}
+  - {fileID: 2986525988704433267}
+  m_Father: {fileID: 289963566693256276}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8028615282452823659
 GameObject:
   m_ObjectHideFlags: 0
@@ -1075,7 +1110,7 @@ GameObject:
   m_Component:
   - component: {fileID: 289963566693256276}
   m_Layer: 0
-  m_Name: Track1WithPlatforms
+  m_Name: Track1WithChargeStations
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1096,10 +1131,7 @@ Transform:
   m_Children:
   - {fileID: 8981328195765995491}
   - {fileID: 1595316036062963184}
-  - {fileID: 3507041335243043424}
-  - {fileID: 7168885227453490114}
-  - {fileID: 4150663237760707734}
-  - {fileID: 2986525988704433267}
+  - {fileID: 188434285009173733}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &307391699603334668
@@ -1108,7 +1140,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 289963566693256276}
+    m_TransformParent: {fileID: 188434285009173733}
     m_Modifications:
     - target: {fileID: 4458015140037347994, guid: 06b6ec3f5ea3c664c8b39bddaa69cbb4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1174,7 +1206,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 289963566693256276}
+    m_TransformParent: {fileID: 188434285009173733}
     m_Modifications:
     - target: {fileID: 4458015140037347994, guid: 06b6ec3f5ea3c664c8b39bddaa69cbb4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1240,7 +1272,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 289963566693256276}
+    m_TransformParent: {fileID: 188434285009173733}
     m_Modifications:
     - target: {fileID: 4458015140037347994, guid: 06b6ec3f5ea3c664c8b39bddaa69cbb4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1260,7 +1292,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4458015140037347994, guid: 06b6ec3f5ea3c664c8b39bddaa69cbb4, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4458015140037347994, guid: 06b6ec3f5ea3c664c8b39bddaa69cbb4, type: 3}
       propertyPath: m_LocalRotation.y
@@ -1268,7 +1300,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4458015140037347994, guid: 06b6ec3f5ea3c664c8b39bddaa69cbb4, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 4458015140037347994, guid: 06b6ec3f5ea3c664c8b39bddaa69cbb4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -1306,7 +1338,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 289963566693256276}
+    m_TransformParent: {fileID: 188434285009173733}
     m_Modifications:
     - target: {fileID: 4458015140037347994, guid: 06b6ec3f5ea3c664c8b39bddaa69cbb4, type: 3}
       propertyPath: m_LocalPosition.x

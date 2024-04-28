@@ -114,8 +114,6 @@ public class CarMovementSinglePlayer : MonoBehaviour
 
     private void InputVerticalProcessing(float value)
     {
-        // TODO TESTING REMOVE
-        //Debug.Log(value);
         float force = 0;
 
         if (value >= 0 || value < 0 && _axles[0].GetCurentRPM() <= 0)

@@ -43,7 +43,7 @@ public class BotsCarMovement : InputOfCarMovement
     {
         _isMoved = true;
         _brakeZone.isTrigger = true;
-        _targetPoint = GetWayPointCenter(_wayPoint.transform);
+        _targetPoint = GetRandomPointInsideWayPoint(_wayPoint.transform);
     }
 
 
@@ -254,7 +254,7 @@ public class BotsCarMovement : InputOfCarMovement
 
         _wayPoint = wayPont;
 
-        _targetPoint = GetWayPointCenter(point);
+        _targetPoint = GetRandomPointInsideWayPoint(point);
     }
 
 
