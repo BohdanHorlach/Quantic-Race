@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -5,8 +6,11 @@ using UnityEngine;
 // script used by car
 public class CheckPointHandler : MonoBehaviour
 {
-    private Transform[] _checkPointPositionsArray;
-    private Queue<Transform> _checkPointsQueue;
+    private Dictionary<int, List<int>> _nextCheckPointsForCheckPoint;
+
+
+    private Transform[] _checkPointsArray;
+    private List<int> _targetCheckPoints;
 
     // distance from car to checkpoint to mark it as reached
     private float _minDistanceForScoring = -1f;
@@ -20,7 +24,7 @@ public class CheckPointHandler : MonoBehaviour
 
     private void Awake()
     {
-        _checkPointsQueue = new Queue<Transform>();
+        _targetCheckPoints = new List<int>(new[] { 0 });
     }
 
 
@@ -36,62 +40,66 @@ public class CheckPointHandler : MonoBehaviour
         if (_currentLap > _countLaps)
             return;
 
-        float distanceToChekPoint = GetDistanceToCheckPoint();
 
-        if (distanceToChekPoint < _minDistanceForScoring)
-            _checkPointsQueue.Dequeue();
+        bool isNext = false;
+        List<int> newTargetCheckPoints = new List<int>();
+        foreach (int index in _targetCheckPoints)
+        {
+            float distanceToChekPoint = GetDistanceToCheckPoint(index);
+            if (distanceToChekPoint < _minDistanceForScoring)
+            {
+                isNext = true;
+                newTargetCheckPoints = _nextCheckPointsForCheckPoint[index];
+            }
+        }
+        if (isNext)
+        {
+            _targetCheckPoints = newTargetCheckPoints;
+        }
 
-        if (_checkPointsQueue.Count == 0 && _currentLap <= _countLaps)
-            FillCheckPoints(_checkPointPositionsArray);
+
+
+        if (_targetCheckPoints.Count == 0 && _currentLap <= _countLaps)
+        {
+            _targetCheckPoints = new List<int>(new[] { 0 });
+            _currentLap++;
+        }
     }
 
 
-    // refill checkpoints queue and add lap to total laps count
-    private void FillCheckPoints(Transform[] checkPoints)
+    public int GetCurrentTargetCheckPoinIndex()
     {
-        if (checkPoints == null)
-            return;
-
-        foreach (Transform transform in checkPoints)
-            _checkPointsQueue.Enqueue(transform);
-
-        _currentLap++;
+        return _targetCheckPoints[0];
     }
 
-
-    public Transform GetCurrentCheckPoint()
+    // distance from the car to specific target checkpoint
+    public float GetDistanceToCheckPoint(int index)
     {
-        if (_checkPointsQueue == null || _checkPointsQueue.Count == 0)
-            return null;
-
-        if (_checkPointsQueue.TryPeek(out Transform checkPoint))
-            return checkPoint;
-
-        return null;
-    }
-
-    // distance from the car to current target checkpoint
-    public float GetDistanceToCheckPoint()
-    {
-        if (_checkPointsQueue == null || _checkPointsQueue.Count == 0)
+        if (index == -1)
             return 0f;
 
-        if (_checkPointsQueue.TryPeek(out Transform chekPoint))
-            return Vector3.Distance(transform.position, chekPoint.position);
+        return Vector3.Distance(transform.position, _checkPointsArray[index].position);
+    }
 
-        return 0f;
+    public float GetMinDistanceToCheckPoin()
+    {
+        float minDistance = float.MaxValue;
+        foreach (int index in _targetCheckPoints)
+        {
+            minDistance = Mathf.Min(minDistance, GetDistanceToCheckPoint(index));
+        }
+        return minDistance;
     }
 
 
-    public void Initialize(Transform[] checkPoints, float minDistanceForScoring, int countLaps, string playerName)
+    public void Initialize(Transform[] checkPoints, Dictionary<int, List<int>> nextCheckPointsForCheckPoint, float minDistanceForScoring, int countLaps, string playerName)
     {
-        _checkPointPositionsArray = checkPoints;
+        _checkPointsArray = checkPoints;
+        _nextCheckPointsForCheckPoint = nextCheckPointsForCheckPoint;
+        _targetCheckPoints = new List<int>(new[] { 0 });
         _countLaps = countLaps;
         _minDistanceForScoring = minDistanceForScoring;
-        _checkPointsQueue.Clear();
         _currentLap = 0;
         this.playerName = playerName;
-
-        FillCheckPoints(_checkPointPositionsArray);
     }
 }

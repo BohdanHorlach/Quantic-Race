@@ -201,7 +201,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _car: {fileID: 3013438771882122233}
   _animator: {fileID: 3578609540081400109}
-  _teleportDistance: 50
+  _teleportDistance: 30
   _freeSpaceRadius: 5
   _obstacleMask:
     serializedVersion: 2

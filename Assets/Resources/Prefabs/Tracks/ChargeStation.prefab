@@ -120,7 +120,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _collider: {fileID: 6926681530794917707}
-  _amountAddedCharges: 5
+  _amountAddedCharges: 3
   _recoveryTime: 1
 --- !u!114 &1154577418289624871
 MonoBehaviour:

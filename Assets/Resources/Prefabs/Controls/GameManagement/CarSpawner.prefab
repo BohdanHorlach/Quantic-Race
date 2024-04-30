@@ -44,4 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 818323c86e8c9b14a8b7dae5e02e34c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  selectedGameOptionsSO: {fileID: 11400000, guid: 8a5f410967c29174ebd346bf11038b15, type: 2}
+  firstWayPoint: {fileID: 0}
+  coutndownTimeSeconds: 3
+  positionCalculator: {fileID: 0}
+  countdownText: {fileID: 0}
+  playerCar: {fileID: 0}

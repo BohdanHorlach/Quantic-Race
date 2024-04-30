@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,11 +10,14 @@ public class CarSpawner : MonoBehaviour
 {
     private List<int> freeSpawnPoints;
     [SerializeField] private WayPoint firstWayPoint;
-    [SerializeField] private TextMeshProUGUI countdownText;
     [SerializeField] private int coutndownTimeSeconds = 3;
+    [SerializeField] private PositionCalculator positionCalculator;
+
+    [SerializeField] private TextMeshProUGUI countdownText;
 
     private int _currentSpawnPoint;
     private List<GameObject> bots;
+    public GameObject playerCar;
 
     private void Awake()
     {
@@ -24,6 +29,9 @@ public class CarSpawner : MonoBehaviour
     {
         SpawnPlayer();
         SpawnBots();
+        PositionCalculatorInit();
+        InitUI();
+        //NumberOfCarsUIInit();
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
@@ -108,7 +116,7 @@ public class CarSpawner : MonoBehaviour
     {
 
         GameObject car = UserDataManager.selectedGameOptionsSO.selectedCarInformationSO.singlePlayerUserPrefab;
-        Spawn(car);
+        playerCar = Spawn(car);
     }
 
     private void SpawnBots()
@@ -145,5 +153,32 @@ public class CarSpawner : MonoBehaviour
         {
             car.transform.Find("Controller").GetComponent<BotsCarMovement>()._isMoved = true;
         }
+    }
+
+
+
+
+    private void InitUI()
+    {
+        if (playerCar.TryGetComponent(out DisplayUI displayUI))
+        {
+            displayUI.GetPositionCalculator(positionCalculator);
+        }
+        else
+        {
+            Debug.Log("Cannot get Countdown TextMeshProUGUI from user car");
+        }
+
+    }
+
+    private void PositionCalculatorInit()
+    {
+        CheckPointHandler[] checkPointHandlers = bots.Select(bot => bot.GetComponent<CheckPointHandler>())
+                                                     .Concat(new[] { playerCar.GetComponent<CheckPointHandler>() })
+                                                     .ToArray();
+
+        //new CheckPointHandler[UserDataManager.selectedGameOptionsSO.spawnPoints.Length];
+
+        positionCalculator.Initialize(checkPointHandlers);
     }
 }

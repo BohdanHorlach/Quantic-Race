@@ -4885,7 +4885,7 @@ MonoBehaviour:
   _decelerationPoint: {fileID: 5864903679534929472}
   _accelerationforce: 1000
   _accelerationTime: 5
-  _maxSpeedOfAcceleration: 2000
+  _maxSpeedOfAcceleration: 5000
   _constantDecelerationForce: 1000
 --- !u!114 &516609602456562147
 MonoBehaviour:

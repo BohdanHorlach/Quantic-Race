@@ -54,4 +54,19 @@ public class AbilitiyController : Ability
     {
         _currentChargeCount = Mathf.Clamp(_currentChargeCount + amountCharges, 0, _maxChargeCount);
     }
+
+    //public int GetMaxChargeCount()
+    //{
+    //    return _maxChargeCount;
+    //}
+
+    public int GetCurrentChargeCount()
+    {
+        return _currentChargeCount;
+    }
+
+    public float GetChargeFillPercentage()
+    {
+        return (float)_currentChargeCount / _maxChargeCount;
+    }
 }

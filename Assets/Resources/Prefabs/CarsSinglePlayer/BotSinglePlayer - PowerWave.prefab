@@ -4968,7 +4968,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 10
+  m_Radius: 20
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &381710267737772732
 MonoBehaviour:
@@ -4983,7 +4983,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _particle: {fileID: 956979730980693029}
-  _pushForce: 8000
+  _pushForce: 20000
   _collider: {fileID: 7976760136353011142}
 --- !u!1 &9074109254147473706
 GameObject:
@@ -5038,7 +5038,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 6
+  m_Radius: 10
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &4438294221207580204
 MonoBehaviour:
@@ -5065,7 +5065,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1929091546342553378, guid: 508469e7c1923a54593e81435a227567, type: 3}
       propertyPath: m_Name
-      value: BotSinglePlayer - PowerWave Variant
+      value: BotSinglePlayer - PowerWave
       objectReference: {fileID: 0}
     - target: {fileID: 4768230217538739871, guid: 508469e7c1923a54593e81435a227567, type: 3}
       propertyPath: _isNeedActivate

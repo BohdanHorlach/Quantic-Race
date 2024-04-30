@@ -200,26 +200,26 @@ public class BotsCarMovement : InputOfCarMovement
 
         Vector3 direction = _targetPoint - transform.position;
         float targetAngle = Vector3.SignedAngle(transform.forward, direction, Vector3.up);
-        Debug.Log(targetAngle);
+        //Debug.Log(targetAngle);
         float force;
 
         if (_scanerBuffer.IsEmpty())
         {
             // no obstacles
-            Debug.Log("no obstacles");
+            //Debug.Log("no obstacles");
             // TODO UNDERSTAND HOW TO TRANSFORM TARGET ANGLE TO FORCE
             force = targetAngle / ANGLE_NORMALZIER;
         }
         else if (_scanerBuffer.forwardHitDistance != ObstacleScanerDataStruct.emptyValue)
         {
             // obstacle is forward
-            Debug.Log("obstacle is forward");
+            //Debug.Log("obstacle is forward");
             force = GetSteeringForceFromForwardAvoidance();
         }
         else
         {
             // obstacle is on the left or right
-            Debug.Log("obstacle is on the left or right");
+            //Debug.Log("obstacle is on the left or right");
             force = GetSteeringForceFromAsideAvoidance();
         }
 

@@ -188,9 +188,25 @@ PrefabInstance:
       propertyPath: m_Convex
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3259365376055550348, guid: f31ac72ac3cd3e4439d388b8d132e768, type: 3}
+      propertyPath: m_ProvidesContacts
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3371357061880860193, guid: f31ac72ac3cd3e4439d388b8d132e768, type: 3}
       propertyPath: m_Convex
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3371357061880860193, guid: f31ac72ac3cd3e4439d388b8d132e768, type: 3}
+      propertyPath: m_ProvidesContacts
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3478623032632366963, guid: f31ac72ac3cd3e4439d388b8d132e768, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 229
+      objectReference: {fileID: 0}
+    - target: {fileID: 3478623032632366963, guid: f31ac72ac3cd3e4439d388b8d132e768, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -68.8
       objectReference: {fileID: 0}
     - target: {fileID: 3679905587293991728, guid: f31ac72ac3cd3e4439d388b8d132e768, type: 3}
       propertyPath: m_Name
@@ -198,6 +214,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3952204718060610007, guid: f31ac72ac3cd3e4439d388b8d132e768, type: 3}
       propertyPath: m_Convex
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3952204718060610007, guid: f31ac72ac3cd3e4439d388b8d132e768, type: 3}
+      propertyPath: m_ProvidesContacts
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5312594363605116021, guid: f31ac72ac3cd3e4439d388b8d132e768, type: 3}
