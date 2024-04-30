@@ -41,7 +41,7 @@ public class BotsCarMovement : InputOfCarMovement
 
     private void Awake()
     {
-        _isMoved = true;
+        //_isMoved = true;
         _brakeZone.isTrigger = true;
         _targetPoint = GetRandomPointInsideWayPoint(_wayPoint.transform);
     }
@@ -277,4 +277,8 @@ public class BotsCarMovement : InputOfCarMovement
     }
 
 
+    public void SetFirstWayPoint(WayPoint wayPont)
+    {
+        _wayPoint = wayPont;
+    }
 }

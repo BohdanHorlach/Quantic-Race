@@ -12,21 +12,26 @@ public class PlayerInputDetector : InputOfCarMovement
     public override event Action<float> InputBrake;
     public override event Action InputResetCoordinats;
 
+    private static bool _isInputPaused = false;
+
 
     private void FixedUpdate()
     {
-        ReadMoveInput();
-        ReadBrakeInput();
-        ReadAbilityUseInput();
-        ReadResetPositionInput();
+        if (_isInputPaused == false)
+        {
+            ReadMoveInput();
+            ReadBrakeInput();
+            ReadAbilityUseInput();
+            ReadResetPositionInput();
+        }
     }
 
 
-    // WHY DUPLICATION OF ReadAbilityUseInput
-    private void Update()
-    {
-        ReadAbilityUseInput();
-    }
+    //// WHY DUPLICATION OF ReadAbilityUseInput
+    //private void Update()
+    //{
+    //    ReadAbilityUseInput();
+    //}
 
 
     private void ReadMoveInput()
@@ -59,5 +64,15 @@ public class PlayerInputDetector : InputOfCarMovement
         {
             InputResetCoordinats?.Invoke();
         }
+    }
+
+    public static void PauseInput()
+    {
+        _isInputPaused = true;
+    }
+
+    public static void ResumeInput()
+    {
+        _isInputPaused = false;
     }
 }

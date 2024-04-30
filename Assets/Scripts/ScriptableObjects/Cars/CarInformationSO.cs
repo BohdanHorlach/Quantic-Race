@@ -9,8 +9,4 @@ public class CarInformationSO : ScriptableObject
     public GameObject singlePlayerUserPrefab;
     public GameObject singlePlayerBotPrefab;
     public GameObject visualPrefab;
-
-    // true -> singlePlayer
-    // false -> multiPlayer
-    public bool isSinglePlayer;
 }

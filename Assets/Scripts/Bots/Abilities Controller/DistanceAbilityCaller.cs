@@ -24,10 +24,10 @@ public class DistanceAbilityCaller : MonoBehaviour
 
     private void Update()
     {
-        if (_positionCalculator == null)
-            return;
+        //if (_positionCalculator == null)
+        //    return;
 
-        float distance = _positionCalculator.DistanceToNextOpponent(_checkPointHandler);
+        //float distance = _positionCalculator.DistanceToNextOpponent(_checkPointHandler);
         bool canAbilityImprovePosition = true;
 
         //if (_isTeleport && distance <= _distanceToTargetToUse)

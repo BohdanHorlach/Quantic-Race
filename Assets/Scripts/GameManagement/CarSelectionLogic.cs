@@ -1,25 +1,24 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class CarSelectionLogic : MonoBehaviour
 {
+    //[SerializeField] private SelectedGameOptionsSO selectedGameOptionsSO;
     [SerializeField] private TextMeshProUGUI carTitle;
-    [SerializeField] private CarInformationSO[] carInformationSOArray;
     private List<GameObject> cars;
 
-    private int selectedCarIndex = 0; // Keeps track of the currently selected car
+    private int selectedCarIndex; // Keeps track of the currently selected car
 
     // Start is called before the first frame update
     void Start()
     {
-        Debug.Log(transform.childCount);
-
         // If no car prefabs are assigned, handle the error
-        if (carInformationSOArray.Length == 0)
+        if (UserDataManager.selectedGameOptionsSO.carInformationSOArray.Length == 0)
         {
             Debug.LogError("No car prefabs assigned!");
             return;
@@ -29,7 +28,7 @@ public class CarSelectionLogic : MonoBehaviour
         HideAllCars();
 
         // Set initial car model and name
-        UpdateCarSelection(selectedCarIndex);
+        TryLoadSelectedCar();
     }
 
     public void OnNextButtonPressed()
@@ -37,7 +36,7 @@ public class CarSelectionLogic : MonoBehaviour
         HideCar(selectedCarIndex);
 
         selectedCarIndex++;
-        if (selectedCarIndex >= carInformationSOArray.Length)
+        if (selectedCarIndex >= UserDataManager.selectedGameOptionsSO.carInformationSOArray.Length)
         {
             selectedCarIndex = 0; // Wrap around if reaching the end
         }
@@ -51,7 +50,7 @@ public class CarSelectionLogic : MonoBehaviour
         selectedCarIndex--;
         if (selectedCarIndex < 0)
         {
-            selectedCarIndex = carInformationSOArray.Length - 1; // Wrap around if reaching the beginning
+            selectedCarIndex = UserDataManager.selectedGameOptionsSO.carInformationSOArray.Length - 1; // Wrap around if reaching the beginning
         }
         UpdateCarSelection(selectedCarIndex);
     }
@@ -59,7 +58,7 @@ public class CarSelectionLogic : MonoBehaviour
     private void InstantiateAllCars()
     {
         cars = new List<GameObject>();
-        foreach (CarInformationSO carInformationSO in carInformationSOArray)
+        foreach (CarInformationSO carInformationSO in UserDataManager.selectedGameOptionsSO.carInformationSOArray)
         {
             cars.Add(Instantiate(carInformationSO.visualPrefab, transform));
         }
@@ -83,10 +82,27 @@ public class CarSelectionLogic : MonoBehaviour
         }
     }
 
+
+
     private void UpdateCarSelection(int index)
     {
         ShowCar(index);
+        UserDataManager.SelectCarInfoSO(index);
 
-        carTitle.text = carInformationSOArray[index].carName;
+        carTitle.text = UserDataManager.selectedGameOptionsSO.carInformationSOArray[index].carName;
+    }
+
+    private void TryLoadSelectedCar()
+    {
+        if (UserDataManager.selectedGameOptionsSO.selectedCarInformationSO == null)
+        {
+            selectedCarIndex = 0;
+            UpdateCarSelection(selectedCarIndex);
+        }
+        else
+        {
+            selectedCarIndex = UserDataManager.GetIndexOfSelectedCar();
+            UpdateCarSelection(selectedCarIndex);
+        }
     }
 }

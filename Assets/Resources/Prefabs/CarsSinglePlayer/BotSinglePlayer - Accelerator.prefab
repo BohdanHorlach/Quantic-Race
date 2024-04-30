@@ -4991,6 +4991,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: c4c2ee3e832cffd48bb9d156c2b21376, type: 2}
+    - target: {fileID: 4949021918682671282, guid: 508469e7c1923a54593e81435a227567, type: 3}
+      propertyPath: m_CullingMask.m_Bits
+      value: 2047
+      objectReference: {fileID: 0}
     - target: {fileID: 5771382758381265281, guid: 508469e7c1923a54593e81435a227567, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
