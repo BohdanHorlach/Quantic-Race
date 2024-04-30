@@ -12,13 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6308960149f599d4c917e4018ef52f84, type: 3}
   m_Name: SelectedGameOptionsSO
   m_EditorClassIdentifier: 
-  selectedCarInformationSO: {fileID: 0}
+  selectedCarInformationSO: {fileID: 11400000, guid: 3c4428f380cb6c142b9bef52793150e9, type: 2}
   carInformationSOArray:
   - {fileID: 11400000, guid: 0ee5f784531322344856b148b18681b7, type: 2}
   - {fileID: 11400000, guid: b8ed8d29db5bfdb449bc30de95c23b45, type: 2}
   - {fileID: 11400000, guid: 3c4428f380cb6c142b9bef52793150e9, type: 2}
   selectedTrackIndex: 0
-  isSinglePlayer: 0
+  isSinglePlayer: 1
+  numberOfLaps: 1
   spawnPoints:
   - {fileID: 4880244641469711154, guid: 56c4db8a39d23f841bcc9d8e48ede129, type: 3}
   - {fileID: 8174016221227637420, guid: 7964dd7d1bc19544a90274951ad5463d, type: 3}
@@ -26,4 +27,3 @@ MonoBehaviour:
   - {fileID: 3369532856753173065, guid: 05a01420508ca3d4db8b0c4a6b87a117, type: 3}
   - {fileID: 5095307383466157927, guid: b49856323817a734d867baf2826115ff, type: 3}
   - {fileID: 1318682179396461789, guid: 58a9cbffc1675c144ab567e44c17f8d6, type: 3}
-  isSpawnPointBusy: 

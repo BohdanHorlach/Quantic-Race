@@ -16,6 +16,9 @@ public class CheckPointHandler : MonoBehaviour
     private float _minDistanceForScoring = -1f;
     private int _countLaps;
     private int _currentLap;
+    private bool _isWaitForFinishing;
+
+    public event Action handleFinishing;
 
     public int CurrentLap { get => _currentLap; }
 
@@ -24,6 +27,7 @@ public class CheckPointHandler : MonoBehaviour
 
     private void Awake()
     {
+        _isWaitForFinishing = true;
         _targetCheckPoints = new List<int>(new[] { 0 });
     }
 
@@ -31,6 +35,7 @@ public class CheckPointHandler : MonoBehaviour
     private void Update()
     {
         GoNextCheckPoint();
+        CheckFinishing();
     }
 
 
@@ -50,6 +55,7 @@ public class CheckPointHandler : MonoBehaviour
             {
                 isNext = true;
                 newTargetCheckPoints = _nextCheckPointsForCheckPoint[index];
+                break;
             }
         }
         if (isNext)
@@ -59,16 +65,32 @@ public class CheckPointHandler : MonoBehaviour
 
 
 
-        if (_targetCheckPoints.Count == 0 && _currentLap <= _countLaps)
+        if (_targetCheckPoints.Count == 0 && _currentLap < _countLaps)
         {
             _targetCheckPoints = new List<int>(new[] { 0 });
             _currentLap++;
         }
     }
 
+    public bool IsFinished()
+    {
+        return _targetCheckPoints.Count == 0 && _currentLap == _countLaps;
+    }
+
+    public void CheckFinishing()
+    {
+        if (_isWaitForFinishing && IsFinished())
+        {
+            handleFinishing?.Invoke();
+            _isWaitForFinishing = false;
+        }
+    }
+
 
     public int GetCurrentTargetCheckPoinIndex()
     {
+        if (_targetCheckPoints.Count == 0)
+            return int.MaxValue;
         return _targetCheckPoints[0];
     }
 
@@ -92,14 +114,14 @@ public class CheckPointHandler : MonoBehaviour
     }
 
 
-    public void Initialize(Transform[] checkPoints, Dictionary<int, List<int>> nextCheckPointsForCheckPoint, float minDistanceForScoring, int countLaps, string playerName)
+    public void Initialize(Transform[] checkPoints, Dictionary<int, List<int>> nextCheckPointsForCheckPoint, float minDistanceForScoring, string playerName)
     {
         _checkPointsArray = checkPoints;
         _nextCheckPointsForCheckPoint = nextCheckPointsForCheckPoint;
         _targetCheckPoints = new List<int>(new[] { 0 });
-        _countLaps = countLaps;
+        _countLaps = UserDataManager.selectedGameOptionsSO.numberOfLaps;
         _minDistanceForScoring = minDistanceForScoring;
-        _currentLap = 0;
+        _currentLap = 1;
         this.playerName = playerName;
     }
 }

@@ -12,7 +12,7 @@ public class PositionCalculator : MonoBehaviour
 
     // checkpoint handler for each car in a race
     private CheckPointHandler[] _carsRaceInfoArray = { };
-    [SerializeField, Min(1)] private int _numberOfLaps;
+    //private int _numberOfLaps;
     [SerializeField] private float _minDistanceForScoring;
 
 
@@ -21,6 +21,7 @@ public class PositionCalculator : MonoBehaviour
 
     private void Start()
     {
+        //_numberOfLaps = UserDataManager.selectedGameOptionsSO.numberOfLaps;
         UpdateRacePositions();
     }
 
@@ -51,7 +52,7 @@ public class PositionCalculator : MonoBehaviour
         var combinedArray = _carsRaceInfoArray.Zip(_playerNamesArray, (carRaceInfo, playerName) => new { carRaceInfo = carRaceInfo, playerName = playerName }).ToArray();
         foreach (var pair in combinedArray)
         {
-            pair.carRaceInfo.Initialize(_checkPoints, _nextCheckPointsForCheckPoint, _minDistanceForScoring, _numberOfLaps, pair.playerName);
+            pair.carRaceInfo.Initialize(_checkPoints, _nextCheckPointsForCheckPoint, _minDistanceForScoring, pair.playerName);
         }
     }
 
@@ -73,6 +74,16 @@ public class PositionCalculator : MonoBehaviour
     public int GetCarPosition(CheckPointHandler carRaceInfo)
     {
         return Array.IndexOf(_racePositionsArray, carRaceInfo.transform) + 1;
+    }
+
+    public int GetCurrentLap(CheckPointHandler carRaceInfo)
+    {
+        return carRaceInfo.CurrentLap;
+    }
+
+    public bool isFinished(CheckPointHandler carRaceInfo)
+    {
+        return carRaceInfo.IsFinished();
     }
 
 

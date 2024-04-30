@@ -91,15 +91,9 @@ public class Teleport : Ability
     // function called while animating
     private void Teleporting()
     {
-        GetComponent<Rigidbody>().detectCollisions = false;
-            //collisionDetectionMode = CollisionDetectionMode.Discrete;
-
         // Teleport logic here
         _car.position = _telportPosition;
 
-        // Restore original collision detection mode
-        GetComponent<Rigidbody>().detectCollisions = true;
-            //collisionDetectionMode = CollisionDetectionMode.ContinuousSpeculative;
     }
 
     public override void Activate()

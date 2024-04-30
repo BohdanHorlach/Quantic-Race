@@ -12,8 +12,10 @@ public class CarSpawner : MonoBehaviour
     [SerializeField] private WayPoint firstWayPoint;
     [SerializeField] private int coutndownTimeSeconds = 3;
     [SerializeField] private PositionCalculator positionCalculator;
+    [SerializeField] private SceneNavigator sceneNavigator;
 
     [SerializeField] private TextMeshProUGUI countdownText;
+    [SerializeField] private Canvas countdownCanvas;
 
     private int _currentSpawnPoint;
     private List<GameObject> bots;
@@ -56,7 +58,8 @@ public class CarSpawner : MonoBehaviour
         string goText = "Go!!!";
 
         PlayerInputDetector.PauseInput();
-        countdownText.enabled = true;
+        countdownCanvas.gameObject.SetActive(true);
+        //countdownText.enabled = true;
         while (coutndownTimeSeconds > 0)
         {
             Debug.Log("Countdown: " + coutndownTimeSeconds);
@@ -67,9 +70,9 @@ public class CarSpawner : MonoBehaviour
         countdownText.text = goText;
         yield return new WaitForSeconds(1);
         Debug.Log("Go!");
-        countdownText.enabled = false;
+        countdownCanvas.gameObject.SetActive(false);
         PlayerInputDetector.ResumeInput();
-        AllowBotsMove();
+        SetBotsMovement(true);
 
     }
 
@@ -147,11 +150,11 @@ public class CarSpawner : MonoBehaviour
 
     }
 
-    private void AllowBotsMove()
+    public void SetBotsMovement(bool canMove)
     {
         foreach (GameObject car in bots)
         {
-            car.transform.Find("Controller").GetComponent<BotsCarMovement>()._isMoved = true;
+            car.transform.Find("Controller").GetComponent<BotsCarMovement>()._isMoved = canMove;
         }
     }
 
@@ -162,7 +165,7 @@ public class CarSpawner : MonoBehaviour
     {
         if (playerCar.TryGetComponent(out DisplayUI displayUI))
         {
-            displayUI.GetPositionCalculator(positionCalculator);
+            displayUI.Initialize(positionCalculator, this, sceneNavigator);
         }
         else
         {
@@ -177,8 +180,8 @@ public class CarSpawner : MonoBehaviour
                                                      .Concat(new[] { playerCar.GetComponent<CheckPointHandler>() })
                                                      .ToArray();
 
-        //new CheckPointHandler[UserDataManager.selectedGameOptionsSO.spawnPoints.Length];
-
         positionCalculator.Initialize(checkPointHandlers);
     }
+
+
 }

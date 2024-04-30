@@ -262,7 +262,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6207671239401716067, guid: f31ac72ac3cd3e4439d388b8d132e768, type: 3}
       propertyPath: m_Seed
-      value: -447640
+      value: 405194779
       objectReference: {fileID: 0}
     - target: {fileID: 6207671239401716067, guid: f31ac72ac3cd3e4439d388b8d132e768, type: 3}
       propertyPath: m_Space
@@ -278,7 +278,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6207671239401716067, guid: f31ac72ac3cd3e4439d388b8d132e768, type: 3}
       propertyPath: m_Spacing.y
-      value: 100
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 6207671239401716067, guid: f31ac72ac3cd3e4439d388b8d132e768, type: 3}
       propertyPath: m_PositionOffset.max.x
@@ -306,11 +306,11 @@ PrefabInstance:
       objectReference: {fileID: 4911032706158364480, guid: a0961cab12aa7154eac768a71a118515, type: 3}
     - target: {fileID: 6207671239401716067, guid: f31ac72ac3cd3e4439d388b8d132e768, type: 3}
       propertyPath: m_ItemsToInstantiate.Array.data[0].Probability
-      value: 50
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 6207671239401716067, guid: f31ac72ac3cd3e4439d388b8d132e768, type: 3}
       propertyPath: m_ItemsToInstantiate.Array.data[1].Probability
-      value: 50
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 6531562159234938631, guid: f31ac72ac3cd3e4439d388b8d132e768, type: 3}
       propertyPath: m_LocalPosition.x
@@ -532,6 +532,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 3162276117402764590}
     m_Modifications:
+    - target: {fileID: 1132626482931616331, guid: ca1e63751064856489194fb0f0998f74, type: 3}
+      propertyPath: _minDistanceForScoring
+      value: 35
+      objectReference: {fileID: 0}
     - target: {fileID: 1132626482931616331, guid: ca1e63751064856489194fb0f0998f74, type: 3}
       propertyPath: _checkPoints.Array.data[0]
       value: 

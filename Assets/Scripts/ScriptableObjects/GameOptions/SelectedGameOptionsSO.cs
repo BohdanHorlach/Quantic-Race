@@ -13,6 +13,7 @@ public class SelectedGameOptionsSO : ScriptableObject
     // true -> singlePlayer
     // false -> multiPlayer
     public bool isSinglePlayer;
+    public int numberOfLaps;
 
     public Transform[] spawnPoints;
 }
