@@ -11,12 +11,6 @@ public class SpawnPoints : MonoBehaviourPunCallbacks
     public int CountFreePositions { get => _spawnPositions.Length - CurrentIndex; }
 
 
-    private void Start()
-    {
-        Debug.Log(CurrentIndex);
-    }
-
-
     private void UpdateIndex()
     {
         Hashtable properties = new Hashtable()
@@ -25,12 +19,6 @@ public class SpawnPoints : MonoBehaviourPunCallbacks
         };
 
         PhotonNetwork.CurrentRoom.SetCustomProperties(properties);
-    }
-
-
-    public override void OnRoomPropertiesUpdate(Hashtable propertiesThatChanged)
-    {
-        Debug.Log(propertiesThatChanged["CurrentSpawnIndex"]);
     }
 
 
@@ -47,7 +35,5 @@ public class SpawnPoints : MonoBehaviourPunCallbacks
         transform.rotation = point.rotation;
 
         UpdateIndex();
-
-        Debug.Log(CurrentIndex);
     }
 }

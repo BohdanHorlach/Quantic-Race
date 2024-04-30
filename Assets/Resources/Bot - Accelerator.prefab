@@ -4871,7 +4871,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 265763332780453267}
-  - component: {fileID: 4633324805200899571}
   - component: {fileID: 2684477234715394972}
   m_Layer: 0
   m_Name: Abilities
@@ -4898,26 +4897,6 @@ Transform:
   - {fileID: 7591036726262395842}
   m_Father: {fileID: 6080717037217909666}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4633324805200899571
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5100982047260174217}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07f8da9a658fd4b4bbe69051b084497c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _car: {fileID: 8367746509303916992}
-  _particle: {fileID: 685285707660119041}
-  _acceleratorPoint: {fileID: 5295631638925307707}
-  _decelerationPoint: {fileID: 1450224974149685734}
-  _accelerationforce: 1000
-  _accelerationTime: 5
-  _maxSpeedOfAcceleration: 2000
-  _constantDecelerationForce: 1000
 --- !u!114 &2684477234715394972
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5113,6 +5092,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 7521826613607082126, guid: 9766c96ac133dd8469a46885f7452bd1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7433177469028558224}
+    - targetCorrespondingSourceObject: {fileID: 7521826613607082126, guid: 9766c96ac133dd8469a46885f7452bd1, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8598421277504585263}
   m_SourcePrefab: {fileID: 100100000, guid: 9766c96ac133dd8469a46885f7452bd1, type: 3}
 --- !u!114 &3267530937461598645 stripped
 MonoBehaviour:
@@ -5147,9 +5129,42 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46d77b037649b0d41bc976a9a1adb1b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ability: {fileID: 4633324805200899571}
+  _photonView: {fileID: 8353984981894462593}
+  _ability: {fileID: 8598421277504585263}
   _cooldownTime: 1
   _maxChargeCount: 5
+--- !u!114 &8598421277504585263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7738970952867454502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07f8da9a658fd4b4bbe69051b084497c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _photonView: {fileID: 8353984981894462593}
+  _car: {fileID: 8367746509303916992}
+  _particle: {fileID: 685285707660119041}
+  _acceleratorPoint: {fileID: 5295631638925307707}
+  _decelerationPoint: {fileID: 1450224974149685734}
+  _accelerationforce: 1000
+  _accelerationTime: 5
+  _maxSpeedOfAcceleration: 2000
+  _constantDecelerationForce: 1000
+--- !u!114 &8353984981894462593 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8136858232676043305, guid: 9766c96ac133dd8469a46885f7452bd1, type: 3}
+  m_PrefabInstance: {fileID: 217505835987383976}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7738970952867454502}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &8367746509303916992 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8585137948818218856, guid: 9766c96ac133dd8469a46885f7452bd1, type: 3}

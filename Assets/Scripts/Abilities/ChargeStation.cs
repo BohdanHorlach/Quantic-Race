@@ -33,9 +33,12 @@ public class ChargeStation : MonoBehaviour
 
     private void GiveCharge(AbilitiyController abilitiesController)
     {
-        _collider.enabled = false;
+        bool isAdded = abilitiesController.AddCharge(_amountAddedCharges);
 
-        abilitiesController.AddCharge(_amountAddedCharges);
+        if (isAdded == false)
+            return;
+
+        _collider.enabled = false;
         StartCoroutine("Recovery");
     }
 }

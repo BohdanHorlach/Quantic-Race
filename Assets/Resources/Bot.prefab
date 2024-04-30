@@ -1346,9 +1346,11 @@ GameObject:
   - component: {fileID: 4229103539621952594}
   - component: {fileID: 8585137948818218856}
   - component: {fileID: -5882784731021091043}
+  - component: {fileID: 5028918913204051595}
   - component: {fileID: 8136858232676043305}
   - component: {fileID: 2469328813466750418}
   - component: {fileID: 2881593332983820298}
+  - component: {fileID: -49316647062585544}
   m_Layer: 3
   m_Name: Bot
   m_TagString: Car
@@ -1439,7 +1441,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1a582cea00d2a0428ffa4cfe5aa3603, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerPrefab: {fileID: 8136858232676043305}
+  _photonView: {fileID: 8136858232676043305}
   _cameraSwitcher: {fileID: 3749774906124142290}
   _rigidbody: {fileID: 4229103539621952594}
   _input: {fileID: 5173682993394811457}
@@ -1480,6 +1482,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99c14b149e2565b48a8c69df9afdf383, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5028918913204051595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7521826613607082126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78873ebaf4390df49b1d5b298d064b0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _wheelSkids:
+  - {fileID: 7118691969015372930}
+  - {fileID: 1788827815762906770}
+  - {fileID: 2732591227802987228}
+  - {fileID: 4630924287409587279}
 --- !u!114 &8136858232676043305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1520,10 +1539,10 @@ MonoBehaviour:
     SynchronizeEnabled: 1
     TeleportEnabled: 1
     TeleportIfDistanceGreaterThan: 3
-    InterpolateOption: 2
+    InterpolateOption: 4
     InterpolateMoveTowardsSpeed: 1
-    InterpolateLerpSpeed: 1
-    ExtrapolateOption: 0
+    InterpolateLerpSpeed: 10
+    ExtrapolateOption: 1
     ExtrapolateSpeed: 1
     ExtrapolateIncludingRoundTripTime: 1
     ExtrapolateNumberOfStoredPositions: 1
@@ -1553,6 +1572,20 @@ MonoBehaviour:
   m_SynchronizeRotation: 1
   m_SynchronizeScale: 0
   m_UseLocal: 1
+--- !u!114 &-49316647062585544
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7521826613607082126}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2506a4a6ef85cd46ae29c190ffeda93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rigidbody: {fileID: 4229103539621952594}
+  PhotonView: {fileID: 8136858232676043305}
 --- !u!1 &7731028520094366691
 GameObject:
   m_ObjectHideFlags: 0

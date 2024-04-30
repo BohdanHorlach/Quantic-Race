@@ -1,9 +1,11 @@
 using System.Collections;
 using UnityEngine;
+using Photon.Pun;
 
 
 public class Accelerator : Abilitiy
 {
+    [SerializeField] private PhotonView _photonView;
     [SerializeField] private CarMovement _car;
     [SerializeField] private ParticleSystem _particle;
     [SerializeField] private Transform _acceleratorPoint;
@@ -21,6 +23,7 @@ public class Accelerator : Abilitiy
 
     private IEnumerator Acceleration()
     {
+        _isActivate = true;
         float timer = 0;
         _particle.Play();
 
@@ -41,9 +44,10 @@ public class Accelerator : Abilitiy
 
     private IEnumerator SlowDownToMaxSpeed()
     {
+        _isActivate = false;
         _particle.Stop();
 
-        while(_car.CurrentSpeed > _car.MaxSpeed)
+        while (_car.CurrentSpeed > _car.MaxSpeed)
         {
             float decelerateForce = Mathf.Lerp(_car.CurrentSpeed, _car.MaxSpeed, Time.fixedDeltaTime) * 0.1f;
             Vector3 force = -_car.transform.forward * _constantDecelerationForce;
@@ -54,9 +58,12 @@ public class Accelerator : Abilitiy
     }
 
 
-    private void CallAcceleration(bool isActive, string stopedCoroutine, string startCoroutine)
+    [PunRPC]
+    private void CallAcceleration(string stopedCoroutine, string startCoroutine, int viewID)
     {
-        _isActivate = isActive;
+        if (_photonView.ViewID != viewID)
+            return;
+
         StopCoroutine(stopedCoroutine);
         StartCoroutine(startCoroutine);
     }
@@ -65,8 +72,8 @@ public class Accelerator : Abilitiy
     public override void Activate()
     {
         if (_isActivate == false)
-            CallAcceleration(true, "SlowDownToMaxSpeed", "Acceleration");
+            _photonView.RPC("CallAcceleration", RpcTarget.All, "SlowDownToMaxSpeed", "Acceleration", _photonView.ViewID);
         else
-            CallAcceleration(false, "Acceleration", "SlowDownToMaxSpeed");
+            _photonView.RPC("CallAcceleration", RpcTarget.All, "Acceleration", "SlowDownToMaxSpeed", _photonView.ViewID);
     }
 }

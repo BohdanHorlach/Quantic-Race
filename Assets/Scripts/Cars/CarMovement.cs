@@ -17,19 +17,19 @@ public class CarMovement : MonoBehaviourPunCallbacks
     [SerializeField, Min(1)] private float _handbrakeForce;
     [SerializeField, Min(1)] private float _dividerForReverceForce;
 
+    private bool isCoroutineRunning = false;
 
     public float CurrentSpeed { get => _rigidbody.velocity.sqrMagnitude; }
     public float MaxSpeed { get => _maxSpeed; }
     public Rigidbody Rigidbody { get => _rigidbody; }
-    private bool isCoroutineRunning = false;
         
+
     private void Awake()
     {
         if (_photonView.IsMine == true)
-        {
             _cameraSwitcher.Enable();
-        }
     }
+
 
     public override void OnEnable()
     {

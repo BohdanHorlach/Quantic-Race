@@ -1,11 +1,11 @@
 using UnityEngine;
 using System.Collections;
-using UnityEngine.UI;
 using System;
-
+using Photon.Pun;
 
 public class AbilitiyController : Abilitiy
 {
+    [SerializeField] private PhotonView _photonView;
     [SerializeField] private Abilitiy _ability;
     [SerializeField] private float _cooldownTime;
     [SerializeField] private int _maxChargeCount;
@@ -35,7 +35,7 @@ public class AbilitiyController : Abilitiy
 
     public override void Activate()
     {
-        if (_isActive == false || _currentChargeCount <= 0)
+        if (_isActive == false || _currentChargeCount <= 0 || _photonView.IsMine == false)
             return;
 
         _ability.Activate();
@@ -45,8 +45,12 @@ public class AbilitiyController : Abilitiy
     }
 
 
-    public void AddCharge(int amountCharges)
+    public bool AddCharge(int amountCharges)
     {
+        if(_currentChargeCount >= _maxChargeCount)
+            return false;
+
         _currentChargeCount = Mathf.Clamp(_currentChargeCount + amountCharges, 0, _maxChargeCount);
+        return true;
     }
 }

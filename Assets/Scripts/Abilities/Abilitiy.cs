@@ -1,7 +1,7 @@
-using UnityEngine;
+using Photon.Pun;
 
 
-public abstract class Abilitiy : MonoBehaviour
+public abstract class Abilitiy : MonoBehaviourPun
 {
     public abstract TypeAbility Type { get; }
 

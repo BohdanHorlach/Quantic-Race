@@ -12,6 +12,14 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: fd43fb44a42fe9e499934ff3d786e644, type: 2}
+    - target: {fileID: 2210901282553193468, guid: d63c65ae8097a7343906ea546733f2d6, type: 3}
+      propertyPath: ObservedComponents.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2210901282553193468, guid: d63c65ae8097a7343906ea546733f2d6, type: 3}
+      propertyPath: ObservedComponents.Array.data[2]
+      value: 
+      objectReference: {fileID: 1767681174810451800}
     - target: {fileID: 2288204374804703876, guid: d63c65ae8097a7343906ea546733f2d6, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -109,7 +117,21 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5637452158938511115, guid: d63c65ae8097a7343906ea546733f2d6, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1390239464116795359}
+    - targetCorrespondingSourceObject: {fileID: 5637452158938511115, guid: d63c65ae8097a7343906ea546733f2d6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1767681174810451800}
   m_SourcePrefab: {fileID: 100100000, guid: d63c65ae8097a7343906ea546733f2d6, type: 3}
+--- !u!114 &3579401539814274831 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2210901282553193468, guid: d63c65ae8097a7343906ea546733f2d6, type: 3}
+  m_PrefabInstance: {fileID: 3387311362426557683}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7007149543944725496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &6790082006168155772 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8158572159484617359, guid: d63c65ae8097a7343906ea546733f2d6, type: 3}
@@ -132,6 +154,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46d77b037649b0d41bc976a9a1adb1b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _photonView: {fileID: 3579401539814274831}
   _ability: {fileID: 1390239464116795359}
   _cooldownTime: 1
   _maxChargeCount: 5
@@ -178,6 +201,30 @@ MonoBehaviour:
   _wallsMask:
     serializedVersion: 2
     m_Bits: 64
+--- !u!114 &1767681174810451800
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7007149543944725496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b8c4a61274f60b4ea5fb4299cfdbf14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ShowLayerWeightsInspector: 1
+  ShowParameterInspector: 1
+  m_SynchronizeParameters:
+  - Type: 9
+    SynchronizeType: 1
+    Name: Activate
+  - Type: 9
+    SynchronizeType: 1
+    Name: CantTeleport
+  m_SynchronizeLayers:
+  - SynchronizeType: 0
+    LayerIndex: 0
 --- !u!114 &7391927051424587980 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5302781586701759551, guid: d63c65ae8097a7343906ea546733f2d6, type: 3}

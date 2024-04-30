@@ -1,35 +1,19 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Photon.Pun;
 
 
 public class CarPool : MonoBehaviour
 {
     [SerializeField] private GameObject[] _cars;
 
-    private Dictionary<GameObject, bool> _spawnedCars;
-
-
-    private void Awake()
-    {
-        _spawnedCars = new Dictionary<GameObject, bool>();
-
-        foreach (GameObject car in _cars)
-            _spawnedCars.Add(car, false);
-    }
-
 
     public Transform Spawn(int index)
     {
         GameObject car = _cars[index];
-        bool isSpawned = _spawnedCars[car];
 
-        if (isSpawned == true)
-            return Instantiate(car).transform;
-
-        car.SetActive(true);
-        _spawnedCars[car] = true;
-        return car.transform;
+        return PhotonNetwork.Instantiate(car.name, car.transform.position, car.transform.rotation).transform;
     }
 
 

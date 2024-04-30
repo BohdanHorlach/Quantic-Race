@@ -968,6 +968,7 @@ GameObject:
   - component: {fileID: 4995550152724334106}
   - component: {fileID: 2131835883817589565}
   - component: {fileID: 4453952136850530181}
+  - component: {fileID: 310698971429405504}
   m_Layer: 3
   m_Name: Player
   m_TagString: Car
@@ -1137,6 +1138,7 @@ MonoBehaviour:
   ObservedComponents:
   - {fileID: 4995550152724334106}
   - {fileID: 2131835883817589565}
+  - {fileID: 0}
   sceneViewId: 0
   InstantiationId: 0
   isRuntimeInstantiated: 0
@@ -1156,10 +1158,10 @@ MonoBehaviour:
     SynchronizeEnabled: 1
     TeleportEnabled: 1
     TeleportIfDistanceGreaterThan: 3
-    InterpolateOption: 2
+    InterpolateOption: 4
     InterpolateMoveTowardsSpeed: 1
-    InterpolateLerpSpeed: 1
-    ExtrapolateOption: 0
+    InterpolateLerpSpeed: 10
+    ExtrapolateOption: 1
     ExtrapolateSpeed: 1
     ExtrapolateIncludingRoundTripTime: 1
     ExtrapolateNumberOfStoredPositions: 1
@@ -1201,6 +1203,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99c14b149e2565b48a8c69df9afdf383, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &310698971429405504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5637452158938511115}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2506a4a6ef85cd46ae29c190ffeda93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rigidbody: {fileID: 2084725647752274903}
+  PhotonView: {fileID: 2210901282553193468}
 --- !u!1 &6126271333086688591
 GameObject:
   m_ObjectHideFlags: 0

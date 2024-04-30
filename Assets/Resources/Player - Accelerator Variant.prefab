@@ -4871,7 +4871,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6096044961562944849}
-  - component: {fileID: 1444617483984509824}
   m_Layer: 0
   m_Name: Abilities
   m_TagString: Untagged
@@ -4897,26 +4896,6 @@ Transform:
   - {fileID: 5281579691502117065}
   m_Father: {fileID: 1793191974021546523}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1444617483984509824
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7569212239980232747}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07f8da9a658fd4b4bbe69051b084497c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _car: {fileID: 4080697122511118457}
-  _particle: {fileID: 614085339832944579}
-  _acceleratorPoint: {fileID: 5501988152122283010}
-  _decelerationPoint: {fileID: 2387840202136504353}
-  _accelerationforce: 1000
-  _accelerationTime: 5
-  _maxSpeedOfAcceleration: 2000
-  _constantDecelerationForce: 1000
 --- !u!1 &8837766624859297837
 GameObject:
   m_ObjectHideFlags: 0
@@ -4960,6 +4939,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: c4c2ee3e832cffd48bb9d156c2b21376, type: 2}
+    - target: {fileID: 2210901282553193468, guid: d63c65ae8097a7343906ea546733f2d6, type: 3}
+      propertyPath: ObservedComponents.Array.size
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2288204374804703876, guid: d63c65ae8097a7343906ea546733f2d6, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
@@ -5050,6 +5033,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5637452158938511115, guid: d63c65ae8097a7343906ea546733f2d6, type: 3}
       insertIndex: -1
       addedObject: {fileID: 7034502291159356040}
+    - targetCorrespondingSourceObject: {fileID: 5637452158938511115, guid: d63c65ae8097a7343906ea546733f2d6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 5428486211703492949}
   m_SourcePrefab: {fileID: 100100000, guid: d63c65ae8097a7343906ea546733f2d6, type: 3}
 --- !u!4 &1793191974021546523 stripped
 Transform:
@@ -5084,9 +5070,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46d77b037649b0d41bc976a9a1adb1b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ability: {fileID: 1444617483984509824}
+  _photonView: {fileID: 8607807970053702504}
+  _ability: {fileID: 5428486211703492949}
   _cooldownTime: 1
   _maxChargeCount: 5
+--- !u!114 &5428486211703492949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2875513590189905823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07f8da9a658fd4b4bbe69051b084497c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _photonView: {fileID: 8607807970053702504}
+  _car: {fileID: 4080697122511118457}
+  _particle: {fileID: 614085339832944579}
+  _acceleratorPoint: {fileID: 5501988152122283010}
+  _decelerationPoint: {fileID: 2387840202136504353}
+  _accelerationforce: 1000
+  _accelerationTime: 5
+  _maxSpeedOfAcceleration: 2000
+  _constantDecelerationForce: 1000
 --- !u!114 &4080697122511118457 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5871054366812782829, guid: d63c65ae8097a7343906ea546733f2d6, type: 3}
@@ -5096,5 +5104,16 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c1a582cea00d2a0428ffa4cfe5aa3603, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &8607807970053702504 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2210901282553193468, guid: d63c65ae8097a7343906ea546733f2d6, type: 3}
+  m_PrefabInstance: {fileID: 7627867134770159764}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2875513590189905823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa584fbee541324448dd18d8409c7a41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
