@@ -1,6 +1,7 @@
 using UnityEngine;
 using Photon.Pun;
 using System.Collections;
+using static UnityEngine.ParticleSystem;
 
 
 public class CarMovementSinglePlayer : MonoBehaviour
@@ -128,5 +129,11 @@ public class CarMovementSinglePlayer : MonoBehaviour
         }
 
         Gas(force);
+    }
+
+
+    public void SlowDownTo0()
+    {
+        GetComponent<Rigidbody>().drag = 100f;
     }
 }

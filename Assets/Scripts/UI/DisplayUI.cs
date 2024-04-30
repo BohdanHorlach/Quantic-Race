@@ -68,6 +68,10 @@ public class DisplayUI : MonoBehaviour
 
     public void Finishing()
     {
+        if (TryGetComponent(out CarMovementSinglePlayer component))
+        {
+            component.SlowDownTo0();
+        }
         finishingCanvas.transform.Find("PlayAgain").GetComponent<Button>().onClick.AddListener(onPlayAgain);
         finishingCanvas.transform.Find("MainMenu").GetComponent<Button>().onClick.AddListener(onMainMenu);
         raceUI.gameObject.SetActive(false);
