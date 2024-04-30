@@ -2527,9 +2527,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5517470639155015546, guid: 2f3ff329d30ef184699a461b12babb5d, type: 3}
+      propertyPath: m_ProvidesContacts
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5720449729963032791, guid: 2f3ff329d30ef184699a461b12babb5d, type: 3}
+      propertyPath: m_ProvidesContacts
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5857265088254218859, guid: 2f3ff329d30ef184699a461b12babb5d, type: 3}
       propertyPath: m_Name
       value: Track1WithPlatforms
+      objectReference: {fileID: 0}
+    - target: {fileID: 6089293799273693324, guid: 2f3ff329d30ef184699a461b12babb5d, type: 3}
+      propertyPath: m_ProvidesContacts
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
