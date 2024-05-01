@@ -202,11 +202,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3478623032632366963, guid: f31ac72ac3cd3e4439d388b8d132e768, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 229
+      value: 236.6
       objectReference: {fileID: 0}
     - target: {fileID: 3478623032632366963, guid: f31ac72ac3cd3e4439d388b8d132e768, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -68.8
+      value: -64.1
       objectReference: {fileID: 0}
     - target: {fileID: 3679905587293991728, guid: f31ac72ac3cd3e4439d388b8d132e768, type: 3}
       propertyPath: m_Name
@@ -314,11 +314,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6531562159234938631, guid: f31ac72ac3cd3e4439d388b8d132e768, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 256.5
+      value: 270.8
       objectReference: {fileID: 0}
     - target: {fileID: 6531562159234938631, guid: f31ac72ac3cd3e4439d388b8d132e768, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -51.1
+      value: -44
       objectReference: {fileID: 0}
     - target: {fileID: 8356002720412127158, guid: f31ac72ac3cd3e4439d388b8d132e768, type: 3}
       propertyPath: NextPoint
@@ -534,7 +534,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1132626482931616331, guid: ca1e63751064856489194fb0f0998f74, type: 3}
       propertyPath: _minDistanceForScoring
-      value: 35
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 1132626482931616331, guid: ca1e63751064856489194fb0f0998f74, type: 3}
       propertyPath: _checkPoints.Array.data[0]
