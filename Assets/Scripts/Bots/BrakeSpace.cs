@@ -20,7 +20,7 @@ public class BrakeSpace : MonoBehaviour
         BotsCarMovement bot;
         if (other.TryGetComponent(out bot) == true)
         {
-            bot.SetBrake(value);
+            //bot.SetBrake(value);
         }
     }
 }

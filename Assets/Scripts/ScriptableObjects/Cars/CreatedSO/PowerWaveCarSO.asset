@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76cf535d1d9200d4684b8cfa804cf3dd, type: 3}
+  m_Name: PowerWaveCarSO
+  m_EditorClassIdentifier: 
+  carName: Power Wave Car
+  singlePlayerUserPrefab: {fileID: 6751871689473564333, guid: be9eca9b526dc2148a035542b95265ed, type: 3}
+  singlePlayerBotPrefab: {fileID: 2544488090336531899, guid: da906ed24a90b3d42bbb6db551b35662, type: 3}
+  visualPrefab: {fileID: 1248598967819147742, guid: c4cad50aa03bbca42938fe318344950b, type: 3}
+  isSinglePlayer: 0

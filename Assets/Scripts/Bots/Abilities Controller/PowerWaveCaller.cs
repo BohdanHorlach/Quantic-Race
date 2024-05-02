@@ -4,6 +4,8 @@ using UnityEngine;
 [RequireComponent(typeof(SphereCollider))]
 public class PowerWaveCaller : MonoBehaviour
 {
+    private const string CAR_TAG = "Car";
+
     [SerializeField] private Ability _ability;
     [SerializeField, Range(0f, 1f)] private float _chanceOfUse = 0.5f;
     [SerializeField, Min(1)] private int _amountTargetToUse = 1;
@@ -13,14 +15,14 @@ public class PowerWaveCaller : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Car")
+        if(other.tag == CAR_TAG)
             _countEnteredToArea++;
     }
 
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == "Car")
+        if (other.tag == CAR_TAG)
             _countEnteredToArea--;
     }
 

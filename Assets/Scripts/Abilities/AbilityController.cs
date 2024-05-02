@@ -1,41 +1,46 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 using System;
-using Photon.Pun;
 
-public class AbilityController : Ability
+
+public class AbilitiyController : Ability
 {
-    [SerializeField] private PhotonView _photonView;
     [SerializeField] private Ability _ability;
     [SerializeField] private float _cooldownTime;
     [SerializeField] private int _maxChargeCount;
 
     private int _currentChargeCount = 0;
-    private bool _isActive = true;
+    private bool _canActivate = true;
 
     public override TypeAbility Type { get => _ability.Type; }
     public event Action UseAbility;
+
+    public override bool IsActive()
+    {
+        return _ability.IsActive();
+    }
 
 
     private IEnumerator Cooldown()
     {
         yield return new WaitForSeconds(_cooldownTime);
 
-        _isActive = true;
+        _canActivate = true;
     }
 
 
     private void Recharge()
     {
         _currentChargeCount--;
-        _isActive = false;
-        StartCoroutine("Cooldown");
+        _canActivate = false;
+        StartCoroutine(Cooldown());
     }
 
 
     public override void Activate()
     {
-        if (_isActive == false || _currentChargeCount <= 0 || _photonView.IsMine == false)
+        if (_canActivate == false || _currentChargeCount <= 0)
             return;
 
         _ability.Activate();
@@ -45,12 +50,23 @@ public class AbilityController : Ability
     }
 
 
-    public bool AddCharge(int amountCharges)
+    public void AddCharge(int amountCharges)
     {
-        if(_currentChargeCount >= _maxChargeCount)
-            return false;
-
         _currentChargeCount = Mathf.Clamp(_currentChargeCount + amountCharges, 0, _maxChargeCount);
-        return true;
+    }
+
+    //public int GetMaxChargeCount()
+    //{
+    //    return _maxChargeCount;
+    //}
+
+    public int GetCurrentChargeCount()
+    {
+        return _currentChargeCount;
+    }
+
+    public float GetChargeFillPercentage()
+    {
+        return (float)_currentChargeCount / _maxChargeCount;
     }
 }

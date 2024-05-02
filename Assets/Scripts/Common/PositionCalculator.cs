@@ -1,86 +1,103 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using UnityEngine;
 
 
-public class PositionCalculator : MonoBehaviour 
+public class PositionCalculator : MonoBehaviour
 {
+    private Dictionary<int, List<int>> _nextCheckPointsForCheckPoint;
     [SerializeField] private Transform[] _checkPoints;
-    [SerializeField] private CheckPointHandler[] _cars;
-    [SerializeField, Min(1)] private int _numberOfLaps;
+
+    // checkpoint handler for each car in a race
+    private CheckPointHandler[] _carsRaceInfoArray = { };
+    //private int _numberOfLaps;
     [SerializeField] private float _minDistanceForScoring;
 
-    private Transform[] _racePositions;
-    private string[] _names;
 
+    private Transform[] _racePositionsArray;
+    private string[] _playerNamesArray;
 
-    private void Awake()
+    private void Start()
     {
-        SaveManager.instance.PositionCalculator = this;
+        //_numberOfLaps = UserDataManager.selectedGameOptionsSO.numberOfLaps;
+        UpdateRacePositions();
     }
 
 
     private void Update()
     {
-        if (_racePositions == null)
-            return;
-
         UpdateRacePositions();
+    }
 
-        for(int i = 0; i < _racePositions.Length; i++)
+
+    private void CheckPointsDictionaryInit()
+    {
+        _nextCheckPointsForCheckPoint = new Dictionary<int, List<int>>();
+        for (int i = 0; i < _checkPoints.Length - 1; i++)
         {
-            _names[i] = _racePositions[i].name;
+            _nextCheckPointsForCheckPoint[i] = new List<int>(new[] { i + 1 });
+        }
+        _nextCheckPointsForCheckPoint[_checkPoints.Length - 1] = new List<int>();
+        // to correctly calculate race position on the fast way branch
+        _nextCheckPointsForCheckPoint[15].Add(23);
+    }
+    public void Initialize(CheckPointHandler[] carsRaceInfoArray)
+    {
+        CheckPointsDictionaryInit();
+        _carsRaceInfoArray = carsRaceInfoArray;
+        _racePositionsArray = new Transform[_carsRaceInfoArray.Length];
+        _playerNamesArray = new string[_carsRaceInfoArray.Length];
+        var combinedArray = _carsRaceInfoArray.Zip(_playerNamesArray, (carRaceInfo, playerName) => new { carRaceInfo = carRaceInfo, playerName = playerName }).ToArray();
+        foreach (var pair in combinedArray)
+        {
+            pair.carRaceInfo.Initialize(_checkPoints, _nextCheckPointsForCheckPoint, _minDistanceForScoring, pair.playerName);
         }
     }
 
 
     private void UpdateRacePositions()
     {
-        _racePositions = _cars
-            .OrderByDescending(car => car.CurrentLaps)
-            .ThenByDescending(car => Array.IndexOf(_checkPoints, car.GetCurrentCheckPoint()))
-            .ThenBy(car => car.GetDistanceToCheckPoint())
-            .Select(car => car.transform)
+        // order first by lap number
+        // then by checkpoint number
+        // then by distance to checkpoint
+        _racePositionsArray = _carsRaceInfoArray
+            .OrderByDescending(carRaceInfo => carRaceInfo.CurrentLap)
+            .ThenByDescending(carRaceInfo => carRaceInfo.GetCurrentTargetCheckPoinIndex())
+            .ThenBy(carRaceInfo => carRaceInfo.GetMinDistanceToCheckPoin())
+            .Select(carRaceInfo => carRaceInfo.transform)
             .ToArray();
     }
 
 
-    public int GetPositionCar(CheckPointHandler car)
+    public int GetCarPosition(CheckPointHandler carRaceInfo)
     {
-        return Array.IndexOf(_racePositions, car.transform);
+        return Array.IndexOf(_racePositionsArray, carRaceInfo.transform) + 1;
+    }
+
+    public int GetCurrentLap(CheckPointHandler carRaceInfo)
+    {
+        return carRaceInfo.CurrentLap;
+    }
+
+    public bool isFinished(CheckPointHandler carRaceInfo)
+    {
+        return carRaceInfo.IsFinished();
     }
 
 
-    public float DistanceToNextOpponent(CheckPointHandler car)
+    public float DistanceToNextOpponent(CheckPointHandler carRaceInfo)
     {
-        if (_cars.Contains(car) == false)
+        if (_carsRaceInfoArray.Contains(carRaceInfo) == false)
             return -1f;
-        if (_racePositions.Length == 1)
+        if (_racePositionsArray.Length == 1)
             return 0f;
 
-        int position = GetPositionCar(car);
-        Transform opponent = position == 0 ? _racePositions[1] : _racePositions[position - 1];
-        float distance = Vector3.Distance(car.transform.position, opponent.position);
+        int position = GetCarPosition(carRaceInfo);
+        Transform opponent = position == 0 ? _racePositionsArray[1] : _racePositionsArray[position - 1];
+        float distance = Vector3.Distance(carRaceInfo.transform.position, opponent.position);
 
         return position == 0 ? -distance : distance;
-    }
-
-
-    private void InitializeCarsBuffer(Transform[] cars)
-    {
-        _cars = cars.Select(car => car.GetComponent<CheckPointHandler>()).ToArray();
-    }
-
-
-    public void Initialize(Transform[] cars)
-    {
-        InitializeCarsBuffer(cars);
-        _racePositions = new Transform[_cars.Length];
-        _names = new string[_cars.Length];
-
-        foreach (CheckPointHandler car in _cars)
-            car.Initialize(_checkPoints, _minDistanceForScoring, _numberOfLaps);
-
-        UpdateRacePositions();
     }
 }

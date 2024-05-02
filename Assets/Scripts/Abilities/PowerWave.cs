@@ -1,4 +1,3 @@
-using Photon.Pun;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,62 +5,87 @@ using UnityEngine;
 [RequireComponent(typeof(SphereCollider))]
 public class PowerWave : Ability
 {
-    [SerializeField] private PhotonPowerWaveCaller _photonPowerWaveCaller;
+    private const string CAR_TAG = "Car";
+    private const string BREACABLE_WALL_TAG = "BreakableWall";
+
+
     [SerializeField] private ParticleSystem _particle;
     [SerializeField, Min(1)] private float _pushForce = 10f;
     [SerializeField] private SphereCollider _collider;
 
-    private HashSet<PhotonView> _enteredTheCoverageArea;
+    private HashSet<Transform> _enteredTheCoverageArea;
     private TypeAbility _type = TypeAbility.PowerWave;
 
     public override TypeAbility Type { get => _type; }
 
 
     private void Awake()
+    {       
+        _enteredTheCoverageArea = new HashSet<Transform>();
+    }
+
+    private bool CanInteract(Collider other)
     {
-        _enteredTheCoverageArea = new HashSet<PhotonView>();        
+        if (other.tag == CAR_TAG) return true;
+        if (other.tag == BREACABLE_WALL_TAG) return true;
+        return false;
+    }
+
+    private void Interract(Transform interactableObject)
+    {
+        if (interactableObject.TryGetComponent(out CarMovementSinglePlayer car))
+        {
+            Vector3 direction = car.transform.position - transform.position;
+            float force = _collider.radius / Vector3.Distance(transform.position, car.transform.position);
+            car.Rigidbody.AddForce(direction.normalized * force * _pushForce, ForceMode.Impulse);
+        }
+        if (interactableObject.TryGetComponent(out FastWayPannel pannel))
+        {
+            pannel.Break();
+        }
     }
 
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Car")
-            _enteredTheCoverageArea.Add(other.GetComponent<PhotonView>());
+        if (CanInteract(other))
+            _enteredTheCoverageArea.Add(other.GetComponent<Transform>());
     }
 
 
     private void OnTriggerExit(Collider other)
     {
-        if(other.tag == "Car")
-            _enteredTheCoverageArea.Remove(other.GetComponent<PhotonView>());
+        if (CanInteract(other))
+            _enteredTheCoverageArea.Remove(other.GetComponent<Transform>());
     }
 
 
-    public Dictionary<int, SerializableVector3> GetPushCarsNearbyInfo()
+    // TODO direct push vector higher
+    // if power wave is from behind it's accelerate opponent
+    private void PushCarsNearby()
     {
-        Dictionary<int, SerializableVector3> playerIDsForceToPush = new Dictionary<int, SerializableVector3>();
-
-        foreach (PhotonView player in _enteredTheCoverageArea)
+        foreach (Transform interactableObject in _enteredTheCoverageArea)
         {
-            Vector3 direction = player.transform.position - transform.position;
-            float forceByDistance = _collider.radius / Vector3.Distance(transform.position, player.transform.position);
-
-            Vector3 resultForce = direction.normalized * forceByDistance * _pushForce;
-            playerIDsForceToPush.Add(player.ViewID, new SerializableVector3(resultForce));
+            Interract(interactableObject);
         }
-
-        return playerIDsForceToPush;
     }
 
 
-    public void PlayEffects()
+    private void PlayEffects()
     {
         _particle.Play();
+
     }
 
 
     public override void Activate()
     {
-        _photonPowerWaveCaller.RunRPC();
+        PushCarsNearby();
+        PlayEffects();
+    }
+
+    public override bool IsActive()
+    {
+        return false;
     }
 }

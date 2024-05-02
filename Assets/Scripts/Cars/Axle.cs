@@ -3,22 +3,23 @@ using UnityEngine;
 [System.Serializable]
 public class Axle
 {
-    [SerializeField] private WheelData _leftWheel;
-    [SerializeField] private WheelData _rightWheel;
+    [SerializeField] private WheelColliderAndVisual _leftWheel;
+    [SerializeField] private WheelColliderAndVisual _rightWheel;
     [SerializeField] private bool isMotor;
     [SerializeField] private bool isSteering;
     [SerializeField] private bool isBreak;
 
 
-    private void UpdateTransformDataFromWheel(WheelData wheel)
+    private void UpdateWheelVisual(WheelColliderAndVisual wheel)
     {
-        Vector3 positionWheel;
-        Quaternion rotationWheel;
+        Vector3 newWheelPositin;
+        Quaternion newWheelRotation;
 
-        wheel.wheelCollider.GetWorldPose(out positionWheel, out rotationWheel);
+        // get data from collider
+        wheel.wheelCollider.GetWorldPose(out newWheelPositin, out newWheelRotation);
 
-        wheel.wheelTransform.position = positionWheel;
-        wheel.wheelTransform.rotation = rotationWheel;
+        wheel.wheelVisual.position = newWheelPositin;
+        wheel.wheelVisual.rotation = newWheelRotation;
     }
 
 
@@ -60,7 +61,7 @@ public class Axle
 
     public void UpdateAxle()
     {
-        UpdateTransformDataFromWheel(_leftWheel);
-        UpdateTransformDataFromWheel(_rightWheel);
+        UpdateWheelVisual(_leftWheel);
+        UpdateWheelVisual(_rightWheel);
     }
 }
