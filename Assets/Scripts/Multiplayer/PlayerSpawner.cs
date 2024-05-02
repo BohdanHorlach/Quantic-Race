@@ -6,6 +6,7 @@ public class PlayerSpawner : MonoBehaviourPunCallbacks
 {
     [SerializeField] private CarPool _carPool;
     [SerializeField] private SpawnPoints _spawnPoints;
+    [SerializeField] private RaceStarter _raceStarter;
     [SerializeField] private GameObject _roomCamera;
     [SerializeField] private Skidmarks _skidmarksController;
 
@@ -16,14 +17,27 @@ public class PlayerSpawner : MonoBehaviourPunCallbacks
     }
 
 
+    private GameObject Spawn(int indexCar)
+    {
+        GameObject player = _carPool.Spawn(indexCar);
+        _spawnPoints.SetTransformToNextPoint(player.transform);
+
+        return player;
+    }
+
+
+    private void AddPlayerToRaceStarter(GameObject player)
+    {
+        CarMovement carMovement = player.GetComponent<CarMovement>();
+        _raceStarter.AddToListCars(carMovement);
+    }
+
+
     private void SpawnPlayer(int indexCar)
     {
         _roomCamera.SetActive(false);
 
-        GameObject car = _carPool.GetCarFromIndex(indexCar);
-        GameObject player = PhotonNetwork.Instantiate(car.name, car.transform.position, car.transform.rotation);
-        _spawnPoints.SetTransformToNextPoint(player.transform);
-
-        Debug.Log("Spawned Player", player);
+        GameObject player = Spawn(indexCar);
+        AddPlayerToRaceStarter(player);
     }
 }

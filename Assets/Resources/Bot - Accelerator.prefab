@@ -4962,30 +4962,6 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: c4c2ee3e832cffd48bb9d156c2b21376, type: 2}
-    - target: {fileID: 4003088639684951227, guid: 9766c96ac133dd8469a46885f7452bd1, type: 3}
-      propertyPath: _rayCount
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 4003088639684951227, guid: 9766c96ac133dd8469a46885f7452bd1, type: 3}
-      propertyPath: _searchRadius
-      value: 120
-      objectReference: {fileID: 0}
-    - target: {fileID: 4003088639684951227, guid: 9766c96ac133dd8469a46885f7452bd1, type: 3}
-      propertyPath: _asideRayDistance
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4003088639684951227, guid: 9766c96ac133dd8469a46885f7452bd1, type: 3}
-      propertyPath: _searchAsideRadius
-      value: 160
-      objectReference: {fileID: 0}
-    - target: {fileID: 4003088639684951227, guid: 9766c96ac133dd8469a46885f7452bd1, type: 3}
-      propertyPath: _forwardRayDistance
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 4003088639684951227, guid: 9766c96ac133dd8469a46885f7452bd1, type: 3}
-      propertyPath: _searchForwardRadius
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 4152301729050948865, guid: 9766c96ac133dd8469a46885f7452bd1, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 

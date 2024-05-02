@@ -1218,6 +1218,53 @@ MonoBehaviour:
     mipBias: 0
     varianceClampScale: 0.9
     contrastAdaptiveSharpening: 0
+--- !u!1 &6404700834898486672
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6088989740289539096}
+  - component: {fileID: 4051140843047076111}
+  m_Layer: 3
+  m_Name: Waypoint Stub
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6088989740289539096
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6404700834898486672}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6298204409072467210}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4051140843047076111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6404700834898486672}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: da76871166b43974892b71693b220607, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NextPoint: {fileID: 0}
+  AlternativePoint: []
+  DistanceToGetNext: 0
 --- !u!1 &6527130156449738175
 GameObject:
   m_ObjectHideFlags: 0
@@ -1379,6 +1426,7 @@ Transform:
   - {fileID: 598754470109724071}
   - {fileID: 7912689445780815827}
   - {fileID: 3791258107075964688}
+  - {fileID: 6088989740289539096}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &3449142783132600326
@@ -1467,7 +1515,7 @@ MonoBehaviour:
   _maxSpeed: 300
   _motorForce: 1000
   _brakeForce: 800
-  _steeringAngleForce: 25
+  _steeringAngleForce: 40
   _handbrakeForce: 300
   _dividerForReverceForce: 3
 --- !u!114 &-5882784731021091043
@@ -1613,7 +1661,7 @@ Transform:
   m_GameObject: {fileID: 7731028520094366691}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.86}
+  m_LocalPosition: {x: 0, y: 0.28, z: 0.86}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1654,8 +1702,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _brakeZone: {fileID: 3431005276066002674}
   _obstacleDetector: {fileID: 4003088639684951227}
-  _wayPoint: {fileID: 0}
-  IsMoved: 0
+  _wayPoint: {fileID: 4051140843047076111}
+  currentForce: 0
 --- !u!1 &8180280876340558177
 GameObject:
   m_ObjectHideFlags: 0
@@ -1708,8 +1756,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 200
   _forwardRayDistance: 10
-  _asideRayDistance: 4
-  _rayCount: 6
+  _asideRayDistance: 3
+  _rayCount: 5
   _searchForwardRadius: 10
   _searchAsideRadius: 160
 --- !u!1 &8312034114498898634

@@ -7,6 +7,8 @@ public class SaveManager : MonoBehaviour
 {
     public static SaveManager instance {  get; private set; }
     public Skidmarks Skidmarks { get; set; }
+    public PositionCalculator PositionCalculator { get; set; }
+
     public int CurrCar;
 
     private void Awake()

@@ -11,11 +11,17 @@ public class DistanceAbilityCaller : MonoBehaviour
     [SerializeField] private bool _isTeleport;
 
 
+    private void Start()
+    {
+        if (_positionCalculator == null)
+            _positionCalculator = SaveManager.instance.PositionCalculator;
+    }
+
+
     private void Update()
     {
-	if(_positionCalculator == null)
-	    return;
-
+        if (_positionCalculator == null)
+            return;
 
         float distance = _positionCalculator.DistanceToNextOpponent(_checkPointHandler);
 

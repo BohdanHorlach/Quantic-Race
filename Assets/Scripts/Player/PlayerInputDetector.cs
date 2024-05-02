@@ -11,6 +11,7 @@ public class PlayerInputDetector : InputOfCarMovement
     public override event Action<float> InputVertical;
     public override event Action<float> InputBrake;
 
+    public override bool IsCanMove { get; set; }
 
     private void FixedUpdate()
     {

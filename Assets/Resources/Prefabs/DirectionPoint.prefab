@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2070895160535989265}
   - component: {fileID: 2954744313355074265}
   - component: {fileID: 4109687648967559712}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: DirectionPoint
   m_TagString: BotAssistant
   m_Icon: {fileID: 0}

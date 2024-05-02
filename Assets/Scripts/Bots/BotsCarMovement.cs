@@ -7,7 +7,7 @@ public class BotsCarMovement : InputOfCarMovement
 {
     [SerializeField] private Collider _brakeZone;
     [SerializeField] private BotObstacleDetector _obstacleDetector;
-    [SerializeField] private WayPont _wayPoint;
+    [SerializeField] private WayPoint _wayPoint;
     
     private const float CHANCE_SELECT_ALTERNATIVE_POINT = 0.5f;
     private const float _maxInputValue = 1f;
@@ -21,7 +21,7 @@ public class BotsCarMovement : InputOfCarMovement
     public override event Action<float> InputVertical;
     public override event Action<float> InputBrake;
 
-    public bool IsMoved = true;
+    public override bool IsCanMove { get; set; }
 
 
     private void Awake()
@@ -63,7 +63,7 @@ public class BotsCarMovement : InputOfCarMovement
 
     private void FixedUpdate()
     {
-        if (IsMoved == false || _hasNextPoint == false)
+        if (IsCanMove == false || _hasNextPoint == false)
         {
             UpdateEvents(0, 0);
         }
@@ -81,7 +81,8 @@ public class BotsCarMovement : InputOfCarMovement
 
     private void LateUpdate()
     {
-        _hasNextPoint = _wayPoint.NextPoint != null;
+        if(_wayPoint != null)
+            _hasNextPoint = _wayPoint.NextPoint != null;
     }
 
 
@@ -190,7 +191,7 @@ public class BotsCarMovement : InputOfCarMovement
     }
 
 
-    private void SetTargetPoint(WayPont wayPont)
+    private void SetTargetPoint(WayPoint wayPont)
     {
         Transform point;
 
@@ -215,20 +216,20 @@ public class BotsCarMovement : InputOfCarMovement
         }
         else
         {
-            IsMoved = false;
+            IsCanMove = false;
         }
     }
 
 
     private float GetSteeringForceToThePoint()
     {
-        if (IsMoved == false)
+        if (IsCanMove == false)
             return 0;
 
         Vector3 direction = _targetPoint - transform.position;
         float steeringAngle = Vector3.SignedAngle(transform.forward, direction, Vector3.up);
         float force;
-
+	
         if (_scanerBuffer.IsEmpty())
             force = steeringAngle / _normalizationAngle;
         else
@@ -251,6 +252,13 @@ public class BotsCarMovement : InputOfCarMovement
             float force = GetForseFromHitDistance(rayDistance, hitDistance);
             return _isBrake == false ? force : -force;
         }
+    }
+
+
+    public void SetWayPoint(WayPoint wayPoint)
+    {
+        _wayPoint = wayPoint;
+	    SetTargetPoint(wayPoint);
     }
 
 

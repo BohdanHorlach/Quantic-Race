@@ -22,12 +22,15 @@ public class CarMovement : MonoBehaviourPunCallbacks
     public float CurrentSpeed { get => _rigidbody.velocity.sqrMagnitude; }
     public float MaxSpeed { get => _maxSpeed; }
     public Rigidbody Rigidbody { get => _rigidbody; }
+    public bool IsCanMove { get => _input.IsCanMove; set => _input.IsCanMove = value; }
         
 
     private void Awake()
     {
         if (_photonView.IsMine == true)
             _cameraSwitcher.Enable();
+        else
+            _rigidbody.isKinematic = true;
     }
 
 
@@ -102,6 +105,9 @@ public class CarMovement : MonoBehaviourPunCallbacks
 
     private void Gas(float force)
     {
+        if (IsCanMove == false)
+            return;
+
         foreach (Axle axle in _axles)
             axle.SetMotorTorque(force);
     }
@@ -109,6 +115,9 @@ public class CarMovement : MonoBehaviourPunCallbacks
 
     private void Steering(float force)
     {
+        if (IsCanMove == false)
+            return;
+
         foreach (Axle axle in _axles)
             axle.SetSteering(force * _steeringAngleForce);
     }
@@ -116,6 +125,9 @@ public class CarMovement : MonoBehaviourPunCallbacks
 
     private void Brake(float force)
     {
+        if (IsCanMove == false)
+            return;
+
         foreach (Axle axle in _axles)
             axle.SetBrakeTorque(force * _handbrakeForce);
     }

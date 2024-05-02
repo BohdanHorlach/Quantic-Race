@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CarSelect.unity
     guid: 71644d298508cf541846bc5c9ea15948
+  - enabled: 1
+    path: Assets/Scenes/MultiplayerTrackWithBots.unity
+    guid: 3ddd9b570d16d7545ba1392385b3f21b
   m_configObjects: {}

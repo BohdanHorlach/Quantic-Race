@@ -1,15 +1,14 @@
 using UnityEngine;
 
 
-[System.Serializable]
-public class WayPont : MonoBehaviour
+public class WayPoint : MonoBehaviour
 {
-    public WayPont NextPoint;
-    public WayPont[] AlternativePoint;
+    public WayPoint NextPoint;
+    public WayPoint[] AlternativePoint;
     public float DistanceToGetNext;
 
 
-    public WayPont GetRandomAlternativePoint()
+    public WayPoint GetRandomAlternativePoint()
     {
         if (AlternativePoint == null || AlternativePoint.Length == 0)
             return NextPoint;

@@ -2404,7 +2404,7 @@ MonoBehaviour:
   _joinInput: {fileID: 1635472430}
   _maxPlayers: 10
   _menuManager: {fileID: 1865801384}
-  _gameScene: SampleScene
+  _gameScene: MultiplayerTrackWithBots
   _roomItemPrefab: {fileID: 5752410215564145730, guid: db954c4d3fb624f0488233fd526e08d7, type: 3}
   _contentObject: {fileID: 582438599}
 --- !u!1 &1897118096

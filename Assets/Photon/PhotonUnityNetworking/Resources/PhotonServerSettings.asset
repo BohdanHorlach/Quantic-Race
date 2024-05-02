@@ -46,6 +46,8 @@ MonoBehaviour:
   - Push
   - PlayPauseParticle
   - CallAcceleration
+  - GoStart
+  - Activate
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

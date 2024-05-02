@@ -38,12 +38,12 @@ public class BotObstacleDetector : MonoBehaviour
 
 
 
-    //private void OnDrawGizmos()
-    //{
-    //    DrawRay(_forwardRayPosition.position, transform.forward, _forwardRayDistance, _searchForwardRadius, _rayCount);
-    //    DrawRay(_leftSideRayPosition.position, -transform.right, _asideRayDistance, _searchAsideRadius, _rayCount);
-    //    DrawRay(_rightSideRayPosition.position, transform.right, _asideRayDistance, _searchAsideRadius, _rayCount);
-    //}
+    private void OnDrawGizmos()
+    {
+        DrawRay(_forwardRayPosition.position, transform.forward, _forwardRayDistance, _searchForwardRadius, _rayCount);
+        DrawRay(_leftSideRayPosition.position, -transform.right, _asideRayDistance, _searchAsideRadius, _rayCount);
+        DrawRay(_rightSideRayPosition.position, transform.right, _asideRayDistance, _searchAsideRadius, _rayCount);
+    }
 
 
 

@@ -13,22 +13,18 @@ public class PositionCalculator : MonoBehaviour
     private Transform[] _racePositions;
     private string[] _names;
 
-    private void Start()
+
+    private void Awake()
     {
-        _racePositions = new Transform[_cars.Length];
-        _names = new string[_cars.Length];
-
-        foreach (CheckPointHandler car in _cars)
-        {
-            car.Initialize(_checkPoints, _minDistanceForScoring, _numberOfLaps);
-        }
-
-        UpdateRacePositions();
+        SaveManager.instance.PositionCalculator = this;
     }
 
 
     private void Update()
     {
+        if (_racePositions == null)
+            return;
+
         UpdateRacePositions();
 
         for(int i = 0; i < _racePositions.Length; i++)
@@ -67,5 +63,24 @@ public class PositionCalculator : MonoBehaviour
         float distance = Vector3.Distance(car.transform.position, opponent.position);
 
         return position == 0 ? -distance : distance;
+    }
+
+
+    private void InitializeCarsBuffer(Transform[] cars)
+    {
+        _cars = cars.Select(car => car.GetComponent<CheckPointHandler>()).ToArray();
+    }
+
+
+    public void Initialize(Transform[] cars)
+    {
+        InitializeCarsBuffer(cars);
+        _racePositions = new Transform[_cars.Length];
+        _names = new string[_cars.Length];
+
+        foreach (CheckPointHandler car in _cars)
+            car.Initialize(_checkPoints, _minDistanceForScoring, _numberOfLaps);
+
+        UpdateRacePositions();
     }
 }
