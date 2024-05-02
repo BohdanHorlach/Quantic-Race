@@ -3,7 +3,7 @@ using UnityEngine;
 using Photon.Pun;
 
 
-public class Accelerator : Abilitiy
+public class Accelerator : Ability
 {
     [SerializeField] private PhotonView _photonView;
     [SerializeField] private CarMovement _car;

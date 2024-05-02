@@ -18,7 +18,7 @@ public class ChargeStation : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.TryGetComponent(out AbilitiyController abilitiesController) == true)
+        if(other.TryGetComponent(out AbilityController abilitiesController) == true)
             GiveCharge(abilitiesController);
     }
 
@@ -31,7 +31,7 @@ public class ChargeStation : MonoBehaviour
     }
 
 
-    private void GiveCharge(AbilitiyController abilitiesController)
+    private void GiveCharge(AbilityController abilitiesController)
     {
         bool isAdded = abilitiesController.AddCharge(_amountAddedCharges);
 

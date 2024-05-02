@@ -6,7 +6,7 @@ using UnityEngine;
 [RequireComponent (typeof(SphereCollider))]
 public class HelperForUseAbility : MonoBehaviour
 {
-    [SerializeField] private AbilitiyController _abilityController;
+    [SerializeField] private AbilityController _abilityController;
     [SerializeField] private TypeAbility _targetType;
     [SerializeField, Range(0.1f, 1f)] private float _chanceOfRetaliation = 0.5f;
 

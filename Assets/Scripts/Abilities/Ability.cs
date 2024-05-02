@@ -1,7 +1,7 @@
 using Photon.Pun;
 
 
-public abstract class Abilitiy : MonoBehaviourPun
+public abstract class Ability : MonoBehaviourPun
 {
     public abstract TypeAbility Type { get; }
 

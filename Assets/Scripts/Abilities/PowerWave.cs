@@ -4,7 +4,7 @@ using UnityEngine;
 
 
 [RequireComponent(typeof(SphereCollider))]
-public class PowerWave : Abilitiy
+public class PowerWave : Ability
 {
     [SerializeField] private PhotonPowerWaveCaller _photonPowerWaveCaller;
     [SerializeField] private ParticleSystem _particle;

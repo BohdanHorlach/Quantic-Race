@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerInputDetector : InputOfCarMovement
 {
-    [SerializeField] private Abilitiy _abilty;
+    [SerializeField] private Ability _abilty;
     [SerializeField] private KeyCode _abilitiesKeyKode;
 
     public override event Action<float> InputHorizontal;

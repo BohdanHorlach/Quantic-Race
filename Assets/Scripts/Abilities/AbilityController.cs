@@ -3,10 +3,10 @@ using System.Collections;
 using System;
 using Photon.Pun;
 
-public class AbilitiyController : Abilitiy
+public class AbilityController : Ability
 {
     [SerializeField] private PhotonView _photonView;
-    [SerializeField] private Abilitiy _ability;
+    [SerializeField] private Ability _ability;
     [SerializeField] private float _cooldownTime;
     [SerializeField] private int _maxChargeCount;
 

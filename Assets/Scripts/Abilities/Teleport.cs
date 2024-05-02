@@ -1,7 +1,7 @@
 using UnityEngine;
 
 
-public class Teleport : Abilitiy
+public class Teleport : Ability
 {
     [SerializeField] private Transform _car;
     [SerializeField] private Animator _animator;
