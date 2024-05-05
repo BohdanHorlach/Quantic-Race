@@ -1,7 +1,7 @@
-using UnityEngine;
+using Photon.Pun;
 
 
-public abstract class Ability : MonoBehaviour
+public abstract class AbilityMultiplayer : MonoBehaviourPun
 {
     public abstract TypeAbility Type { get; }
 

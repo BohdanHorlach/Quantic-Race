@@ -4,25 +4,39 @@ using Photon.Pun;
 using Photon.Realtime;
 using TMPro;
 using ExitGames.Client.Photon;
+using UnityEngine.UI;
+
 
 public class Lobby : MonoBehaviourPunCallbacks
 {
-    [SerializeField] TMP_InputField _createInput;
-    [SerializeField] TMP_InputField _joinInput;
+    [SerializeField] private TMP_InputField _createInput;
+    [SerializeField] private TMP_InputField _joinInput;
+    [SerializeField] private TextMeshProUGUI _textToSlider;
+    [SerializeField] private Slider _slider;
     [Space]
-    [SerializeField] byte _maxPlayers = 10;
-    [SerializeField] MenuManager _menuManager;
-    [SerializeField] string _gameScene = "SampleScene";
+    [SerializeField, Range(2, 6)] private int _maxPlayers = 6;
+    [SerializeField] private MenuManager _menuManager;
+    [SerializeField] private string _gameScene = "SampleScene";
     [Space]
-    [SerializeField] RoomItem _roomItemPrefab;
-    [SerializeField] Transform _contentObject;
+    [SerializeField] private RoomItem _roomItemPrefab;
+    [SerializeField] private Transform _contentObject;
 
-    List<RoomItem> _roomItemsList = new List<RoomItem>();
+    private List<RoomItem> _roomItemsList = new List<RoomItem>();
 
-    void Start()
+
+    private void Start()
     {
         PhotonNetwork.JoinLobby();
+        ReadSliderValue();
     }
+
+
+    public void ReadSliderValue()
+    {
+        _maxPlayers = (int)_slider.value;
+        _textToSlider.text = _maxPlayers.ToString();
+    }
+
 
     public void CreateRoom()
     {
@@ -77,6 +91,4 @@ public class Lobby : MonoBehaviourPunCallbacks
     {
         PhotonNetwork.JoinRoom(_joinInput.text);
     }
-
-
 }

@@ -5,7 +5,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 
 
-public class PowerWaveHelper : MonoBehaviourPun
+public class PowerWaveHelperMultiplayer : MonoBehaviourPun
 {
     [SerializeField] private Rigidbody _rigidbody;
 

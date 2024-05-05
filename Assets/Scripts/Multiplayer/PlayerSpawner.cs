@@ -4,22 +4,23 @@ using Photon.Pun;
 
 public class PlayerSpawner : MonoBehaviourPunCallbacks
 {
-    [SerializeField] private CarPool _carPool;
+    [SerializeField] private PositionCalculator _positionCalculator;
+    [SerializeField] private SceneNavigator _sceneNavigator;
     [SerializeField] private SpawnPoints _spawnPoints;
     [SerializeField] private RaceStarter _raceStarter;
     [SerializeField] private GameObject _roomCamera;
-    [SerializeField] private Skidmarks _skidmarksController;
+
 
     private void Start()
     {
-        int indexCar = SaveManager.instance.CurrCar;
-        SpawnPlayer(indexCar);
+        GameObject selectedCar = UserDataManager.selectedGameOptionsSO.selectedCarInformationSO.multiplayerUserPrefab;
+        SpawnPlayer(selectedCar);
     }
 
 
-    private GameObject Spawn(int indexCar)
+    private GameObject Spawn(GameObject prefab)
     {
-        GameObject player = _carPool.Spawn(indexCar);
+        GameObject player = PhotonNetwork.Instantiate(prefab.name, prefab.transform.position, prefab.transform.rotation);
         _spawnPoints.SetTransformToNextPoint(player.transform);
 
         return player;
@@ -28,16 +29,26 @@ public class PlayerSpawner : MonoBehaviourPunCallbacks
 
     private void AddPlayerToRaceStarter(GameObject player)
     {
-        CarMovement carMovement = player.GetComponent<CarMovement>();
+        CarMovementMultiplayer carMovement = player.GetComponent<CarMovementMultiplayer>();
         _raceStarter.AddToListCars(carMovement);
     }
 
 
-    private void SpawnPlayer(int indexCar)
+    private void InitializeDisplayUIPlayer(GameObject player)
+    {
+        DisplayUIMultiplayer display = player.GetComponent<DisplayUIMultiplayer>();
+        
+        display.Initialize(_positionCalculator, _sceneNavigator);
+        display.ActiveRaceUI = false;
+    }
+
+
+    private void SpawnPlayer(GameObject selectedCar)
     {
         _roomCamera.SetActive(false);
 
-        GameObject player = Spawn(indexCar);
+        GameObject player = Spawn(selectedCar);
         AddPlayerToRaceStarter(player);
+        InitializeDisplayUIPlayer(player);
     }
 }

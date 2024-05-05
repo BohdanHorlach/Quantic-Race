@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 
@@ -29,14 +27,13 @@ public class BotsCarMovement : InputOfCarMovement
     private ObstacleScanerDataStruct _scanerBuffer;
 
     //private bool _isBrake = false;
-    public bool _isMoved;
 
     public override event Action<float> InputHorizontal;
     public override event Action<float> InputVertical;
     public override event Action<float> InputBrake;
     public override event Action InputResetCoordinats;
 
-
+    public override bool IsCanMove { get; set; }
 
 
     private void Awake()
@@ -80,7 +77,7 @@ public class BotsCarMovement : InputOfCarMovement
 
     private void FixedUpdate()
     {
-        if (_isMoved == false || _hasNextPoint == false)
+        if (IsCanMove == false || _hasNextPoint == false)
         {
             InvokeEvents(0, 0);
         }
@@ -252,8 +249,6 @@ public class BotsCarMovement : InputOfCarMovement
     {
         Transform point = wayPont.transform;
 
-        _wayPoint = wayPont;
-
         _targetPoint = GetRandomPointInsideWayPoint(point);
     }
 
@@ -266,19 +261,21 @@ public class BotsCarMovement : InputOfCarMovement
         if (_wayPoint.NextPoint != null)
         {
             if (UnityEngine.Random.value <= CHANCE_SELECT_ALTERNATIVE_POINT)
-                SetTargetPoint(_wayPoint.GetRandomAlternativePoint());
+                SetWayPoint(_wayPoint.GetRandomAlternativePoint());
             else
-                SetTargetPoint(_wayPoint.NextPoint);
+                SetWayPoint(_wayPoint.NextPoint);
         }
         else
         {
-            _isMoved = false;
+            IsCanMove = false;
         }
     }
 
 
-    public void SetFirstWayPoint(WayPoint wayPont)
+    public void SetWayPoint(WayPoint wayPoint)
     {
-        _wayPoint = wayPont;
+        _wayPoint = wayPoint;
+        SetTargetPoint(wayPoint);
     }
+
 }

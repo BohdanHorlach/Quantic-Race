@@ -15,5 +15,5 @@ MonoBehaviour:
   carName: Accelerator Car
   singlePlayerUserPrefab: {fileID: 6724984277479342268, guid: 55c0d8c7d63178c49b527629e398ed56, type: 3}
   singlePlayerBotPrefab: {fileID: 3617887480342539132, guid: 0c3f11e068b6eb641a5c2ed8535b8b9f, type: 3}
+  multiplayerUserPrefab: {fileID: 2875513590189905823, guid: f622293df85d66642ac405bc3ef8e2f3, type: 3}
   visualPrefab: {fileID: 6183048251904429594, guid: a82f70a5f0178974093910fc6fd84c38, type: 3}
-  isSinglePlayer: 0

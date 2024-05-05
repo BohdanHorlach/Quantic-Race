@@ -896,7 +896,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: efe6b8b73056a1a469c11f4e2b565bc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  abilitiyController: {fileID: 0}
+  abilityController: {fileID: 0}
   chargeAmountImageUI: {fileID: 7441111217688651389}
   chargesCountTextUI: {fileID: 3126342589261056604}
   numberOfCarsTextUI: {fileID: 7825908867607158427}

@@ -3,7 +3,7 @@ using UnityEngine;
 
 
 [RequireComponent(typeof(SphereCollider))]
-public class PowerWave : Ability
+public class PowerWaveSinglePlayer : AbilitySinglePlayer
 {
     private const string CAR_TAG = "Car";
     private const string BREACABLE_WALL_TAG = "BreakableWall";

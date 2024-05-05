@@ -1,7 +1,5 @@
 using UnityEngine;
-using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using TMPro;
 using Photon.Pun;
 
 public class MenuManager : MonoBehaviour

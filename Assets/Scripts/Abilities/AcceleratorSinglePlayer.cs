@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 
 
-public class Accelerator : Ability
+public class AcceleratorSinglePlayer : AbilitySinglePlayer
 {
     [SerializeField] private CarMovementSinglePlayer _car;
     [SerializeField] private ParticleSystem _particle;

@@ -48,6 +48,14 @@ MonoBehaviour:
   - CallAcceleration
   - GoStart
   - Activate
+  - ToggleAcceleration
+  - AddToReadyCount
+  - DisableCar
+  - GoStartRPC
+  - PrepareToRace
+  - StartCounter
+  - Break
+  - BreakRPC
   DisableAutoOpenWizard: 1
   ShowSettings: 1
   DevRegionSetOnce: 1

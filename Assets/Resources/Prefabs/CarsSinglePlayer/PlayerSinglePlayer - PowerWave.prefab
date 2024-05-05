@@ -5050,6 +5050,10 @@ PrefabInstance:
       value: PlayerSinglePlayer - PowerWave
       objectReference: {fileID: 0}
     - target: {fileID: 6347723060869844596, guid: 71fc7b99f1a2bab418f3f8f1d008bc1d, type: 3}
+      propertyPath: abilityController
+      value: 
+      objectReference: {fileID: 2399911989958968299}
+    - target: {fileID: 6347723060869844596, guid: 71fc7b99f1a2bab418f3f8f1d008bc1d, type: 3}
       propertyPath: abilitiyController
       value: 
       objectReference: {fileID: 2399911989958968299}
@@ -5069,6 +5073,10 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 07f44fe3e9c462146a7769b976c50ec4, type: 2}
+    - target: {fileID: 8647382421413391156, guid: 71fc7b99f1a2bab418f3f8f1d008bc1d, type: 3}
+      propertyPath: playerName
+      value: Player - PowerWave
+      objectReference: {fileID: 0}
     - target: {fileID: 8930173890029260203, guid: 71fc7b99f1a2bab418f3f8f1d008bc1d, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 

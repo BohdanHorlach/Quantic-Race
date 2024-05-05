@@ -2,9 +2,9 @@ using System;
 using UnityEngine;
 
 
-public class PlayerInputDetector : InputOfCarMovement
+public class PlayerInputDetectorSinglePlayer : InputOfCarMovement
 {
-    [SerializeField] private Ability _abilty;
+    [SerializeField] private AbilitySinglePlayer _abilty;
     [SerializeField] private KeyCode _abilitiesKeyKode;
 
     public override event Action<float> InputHorizontal;
@@ -26,13 +26,6 @@ public class PlayerInputDetector : InputOfCarMovement
             ReadResetPositionInput();
         }
     }
-
-
-    //// WHY DUPLICATION OF ReadAbilityUseInput
-    //private void Update()
-    //{
-    //    ReadAbilityUseInput();
-    //}
 
 
     private void ReadMoveInput()

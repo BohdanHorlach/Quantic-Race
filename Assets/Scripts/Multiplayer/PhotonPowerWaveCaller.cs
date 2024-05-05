@@ -7,9 +7,9 @@ using Photon.Pun;
 
 public class PhotonPowerWaveCaller : MonoBehaviourPun
 {
-    [SerializeField] private PowerWave _powerWave;
+    [SerializeField] private PowerWaveMultiplayer _powerWave;
     [SerializeField] private PhotonView _photonView;
-    [SerializeField] private PowerWaveHelper _powerWaveHelper;
+    [SerializeField] private PowerWaveHelperMultiplayer _powerWaveHelper;
 
 
     private byte[] SerializeDictionary(Dictionary<int, SerializableVector3> dictionary)

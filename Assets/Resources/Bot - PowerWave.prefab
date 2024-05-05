@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3073773070830136642}
   - component: {fileID: 7192946715131678816}
-  - component: {fileID: 4370839413569896127}
+  - component: {fileID: 1092322609400475005}
   m_Layer: 2
   m_Name: Ability
   m_TagString: BotAssistant
@@ -55,7 +55,7 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 10
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4370839413569896127
+--- !u!114 &1092322609400475005
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -64,12 +64,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 3472144157733732624}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b986d50f9eb0bf94084a53d4738337b0, type: 3}
+  m_Script: {fileID: 11500000, guid: aead0d4fe51ca4b499494b6f87eccbb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _photonPowerWaveCaller: {fileID: 6318901410690429724}
   _particle: {fileID: 7649759249172663740}
-  _pushForce: 10000
+  _pushForce: 15000
   _collider: {fileID: 7192946715131678816}
 --- !u!1 &4255317936590812519
 GameObject:
@@ -81,7 +81,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3321761548010322222}
   - component: {fileID: 2127256050735659521}
-  - component: {fileID: 7367725944975164374}
+  - component: {fileID: 7273427390398435759}
   m_Layer: 2
   m_Name: AbilityHelper
   m_TagString: BotAssistant
@@ -125,7 +125,7 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 6
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &7367725944975164374
+--- !u!114 &7273427390398435759
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -134,11 +134,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 4255317936590812519}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 90d7fcaf34eff064a8c44c88b024bb97, type: 3}
+  m_Script: {fileID: 11500000, guid: 27222c50f8c4dc9478d023985f356155, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ability: {fileID: 5343676053747311240}
-  _chanceOfUse: 0.1
+  _ability: {fileID: 6677506981163345198}
+  _chanceOfUse: 0.15
   _amountTargetToUse: 1
 --- !u!1 &8526297768384855606
 GameObject:
@@ -5151,7 +5151,7 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 7521826613607082126, guid: 9766c96ac133dd8469a46885f7452bd1, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 5343676053747311240}
+      addedObject: {fileID: 6677506981163345198}
     - targetCorrespondingSourceObject: {fileID: 7521826613607082126, guid: 9766c96ac133dd8469a46885f7452bd1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6318901410690429724}
@@ -5183,7 +5183,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7521826613607082126, guid: 9766c96ac133dd8469a46885f7452bd1, type: 3}
   m_PrefabInstance: {fileID: 4283849813928199654}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5343676053747311240
+--- !u!114 &6677506981163345198
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5192,12 +5192,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 5985758647248055656}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46d77b037649b0d41bc976a9a1adb1b2, type: 3}
+  m_Script: {fileID: 11500000, guid: 1eb4ea88ea6c9f24299f7bec91ddcfb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _photonView: {fileID: 5447288221841887183}
-  _ability: {fileID: 4370839413569896127}
-  _cooldownTime: 5
+  _ability: {fileID: 1092322609400475005}
+  _cooldownTime: 1
   _maxChargeCount: 5
 --- !u!114 &6318901410690429724
 MonoBehaviour:
@@ -5211,7 +5211,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40119a785415acd49a659b6c71f19d64, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _powerWave: {fileID: 4370839413569896127}
+  _powerWave: {fileID: 1092322609400475005}
   _photonView: {fileID: 5447288221841887183}
   _powerWaveHelper: {fileID: 4909909238027025118}
 --- !u!4 &7788128102986578156 stripped

@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+
 
 public class CarSpawner : MonoBehaviour
 {
@@ -57,7 +57,7 @@ public class CarSpawner : MonoBehaviour
     {
         string goText = "Go!!!";
 
-        PlayerInputDetector.PauseInput();
+        PlayerInputDetectorSinglePlayer.PauseInput();
         countdownCanvas.gameObject.SetActive(true);
         //countdownText.enabled = true;
         while (coutndownTimeSeconds > 0)
@@ -71,7 +71,7 @@ public class CarSpawner : MonoBehaviour
         yield return new WaitForSeconds(1);
         Debug.Log("Go!");
         countdownCanvas.gameObject.SetActive(false);
-        PlayerInputDetector.ResumeInput();
+        PlayerInputDetectorSinglePlayer.ResumeInput();
         SetBotsMovement(true);
 
     }
@@ -143,10 +143,10 @@ public class CarSpawner : MonoBehaviour
     private void BotInit(GameObject car)
     {
         // set first way point
-        car.transform.Find("Controller").GetComponent<BotsCarMovement>().SetFirstWayPoint(firstWayPoint);
+        car.transform.Find("Controller").GetComponent<BotsCarMovement>().SetWayPoint(firstWayPoint);
 
         // stop movement
-        car.transform.Find("Controller").GetComponent<BotsCarMovement>()._isMoved = false;
+        car.transform.Find("Controller").GetComponent<BotsCarMovement>().IsCanMove = false;
 
     }
 
@@ -154,7 +154,7 @@ public class CarSpawner : MonoBehaviour
     {
         foreach (GameObject car in bots)
         {
-            car.transform.Find("Controller").GetComponent<BotsCarMovement>()._isMoved = canMove;
+            car.transform.Find("Controller").GetComponent<BotsCarMovement>().IsCanMove = canMove;
         }
     }
 

@@ -1,7 +1,5 @@
 using UnityEngine;
-using Photon.Pun;
 using System.Collections;
-using static UnityEngine.ParticleSystem;
 
 
 public class CarMovementSinglePlayer : MonoBehaviour
@@ -58,15 +56,12 @@ public class CarMovementSinglePlayer : MonoBehaviour
 
     private void ResetCoordinates()
     {
-        Rigidbody rb = GetComponent<Rigidbody>();
         float currentYRotation = transform.eulerAngles.y;
 
-        // TODO WHAT IS THIS FOR
-        //transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
         transform.rotation = Quaternion.Euler(0, currentYRotation, 0);
 
-        rb.velocity = Vector3.zero;
-        rb.angularVelocity = Vector3.zero;
+        _rigidbody.velocity = Vector3.zero;
+        _rigidbody.angularVelocity = Vector3.zero;
     }
 
     private IEnumerator FlippingProcessing()

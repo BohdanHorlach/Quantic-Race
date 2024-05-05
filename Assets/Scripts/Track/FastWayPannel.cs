@@ -26,7 +26,7 @@ public class FastWayPannel : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.TryGetComponent(out AbilitiyController controller))
+        if (other.TryGetComponent(out AbilityControllerSinglePlayer controller))
         {
             if (controller.IsActive())
             {

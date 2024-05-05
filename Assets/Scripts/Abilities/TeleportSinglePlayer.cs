@@ -1,7 +1,7 @@
 using UnityEngine;
 
 
-public class Teleport : Ability
+public class TeleportSinglePlayer : AbilitySinglePlayer
 {
     private const string CAN_NOT_TELEPORT_ANIMATION_TRIGER = "CantTeleport";
     private const string ACTIVATE_TELEPORT_ANIMATION_TRIGER = "Activate";

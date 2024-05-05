@@ -15,5 +15,5 @@ MonoBehaviour:
   carName: Teleport Car
   singlePlayerUserPrefab: {fileID: 3123312094301109188, guid: c6746e19df6ba8142b9fce2ce62909e0, type: 3}
   singlePlayerBotPrefab: {fileID: 7137204960381996378, guid: 678ecb1711e907d49b6b7929fc097a68, type: 3}
+  multiplayerUserPrefab: {fileID: 7007149543944725496, guid: f697028f54fd6644d8e9031274f79848, type: 3}
   visualPrefab: {fileID: 7644360707672163555, guid: f430073c636116b4b9c0f5e6ddcde097, type: 3}
-  isSinglePlayer: 0

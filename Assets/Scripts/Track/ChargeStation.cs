@@ -18,8 +18,10 @@ public class ChargeStation : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.TryGetComponent(out AbilitiyController abilitiesController) == true)
-            GiveCharge(abilitiesController);
+        if (other.TryGetComponent(out AbilityControllerSinglePlayer controllerSinglePlayer) == true)
+            GiveCharge(controllerSinglePlayer);
+        else if (other.TryGetComponent(out AbilityControllerMultiplayer controllerMultiplayer) == true)
+            GiveCharge(controllerMultiplayer);
     }
 
 
@@ -31,7 +33,17 @@ public class ChargeStation : MonoBehaviour
     }
 
 
-    private void GiveCharge(AbilitiyController abilitiesController)
+    private void GiveCharge(AbilityControllerSinglePlayer abilitiesController)
+    {
+        _collider.enabled = false;
+
+        abilitiesController.AddCharge(_amountAddedCharges);
+        StartCoroutine(Recovery());
+    }
+
+
+    //TODO: Add ChargeStationMultyplayer class, and use [PubRPC] for syncronazed state
+    private void GiveCharge(AbilityControllerMultiplayer abilitiesController)
     {
         _collider.enabled = false;
 

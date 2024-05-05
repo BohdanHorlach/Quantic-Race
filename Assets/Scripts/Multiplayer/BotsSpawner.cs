@@ -1,9 +1,10 @@
 using Photon.Pun;
+using System;
 using System.Collections;
 using UnityEngine;
 
 
-public class BotSpawner : MonoBehaviourPunCallbacks
+public class BotsSpawner : MonoBehaviourPunCallbacks
 {
     [SerializeField] private CarPool _carPool;
     [SerializeField] private SpawnPoints _spawnPoints;
@@ -12,6 +13,7 @@ public class BotSpawner : MonoBehaviourPunCallbacks
 
     private bool _roomProprtiesIsUpdated;
 
+    public event Action OnAllBotsSpawned;
 
     private GameObject SpawnBot()
     {
@@ -32,7 +34,7 @@ public class BotSpawner : MonoBehaviourPunCallbacks
 
     private void AddToRaceStarter(GameObject bot)
     {
-        CarMovement carMovement = bot.GetComponent<CarMovement>();
+        CarMovementMultiplayer carMovement = bot.GetComponent<CarMovementMultiplayer>();
         _raceStarter.AddToListCars(carMovement);
     }
 
@@ -51,6 +53,8 @@ public class BotSpawner : MonoBehaviourPunCallbacks
 
             _roomProprtiesIsUpdated = false;
         }
+
+        OnAllBotsSpawned?.Invoke();
     }
 
 

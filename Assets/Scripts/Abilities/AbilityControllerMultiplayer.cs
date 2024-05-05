@@ -1,46 +1,42 @@
 using UnityEngine;
 using System.Collections;
-using UnityEngine.UI;
 using System;
+using Photon.Pun;
 
 
-public class AbilitiyController : Ability
+public class AbilityControllerMultiplayer : AbilityMultiplayer
 {
-    [SerializeField] private Ability _ability;
+    [SerializeField] private PhotonView _photonView;
+    [SerializeField] private AbilityMultiplayer _ability;
     [SerializeField] private float _cooldownTime;
     [SerializeField] private int _maxChargeCount;
 
     private int _currentChargeCount = 0;
-    private bool _canActivate = true;
+    private bool _isActive = true;
 
     public override TypeAbility Type { get => _ability.Type; }
     public event Action UseAbility;
-
-    public override bool IsActive()
-    {
-        return _ability.IsActive();
-    }
 
 
     private IEnumerator Cooldown()
     {
         yield return new WaitForSeconds(_cooldownTime);
 
-        _canActivate = true;
+        _isActive = true;
     }
 
 
     private void Recharge()
     {
         _currentChargeCount--;
-        _canActivate = false;
-        StartCoroutine(Cooldown());
+        _isActive = false;
+        StartCoroutine("Cooldown");
     }
 
 
     public override void Activate()
     {
-        if (_canActivate == false || _currentChargeCount <= 0)
+        if (_isActive == false || _currentChargeCount <= 0 || _photonView.IsMine == false)
             return;
 
         _ability.Activate();
@@ -50,15 +46,21 @@ public class AbilitiyController : Ability
     }
 
 
-    public void AddCharge(int amountCharges)
+    public bool AddCharge(int amountCharges)
     {
+        if(_currentChargeCount >= _maxChargeCount)
+            return false;
+
         _currentChargeCount = Mathf.Clamp(_currentChargeCount + amountCharges, 0, _maxChargeCount);
+        return true;
     }
 
-    //public int GetMaxChargeCount()
-    //{
-    //    return _maxChargeCount;
-    //}
+
+    public override bool IsActive()
+    {
+        return _ability.IsActive();
+    }
+
 
     public int GetCurrentChargeCount()
     {

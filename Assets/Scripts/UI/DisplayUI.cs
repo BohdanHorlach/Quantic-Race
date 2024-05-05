@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class DisplayUI : MonoBehaviour
 {
-    [SerializeField] private AbilitiyController abilitiyController;
+    [SerializeField] private AbilityControllerSinglePlayer abilityController;
 
 
     [SerializeField] private Image chargeAmountImageUI;
@@ -29,8 +29,8 @@ public class DisplayUI : MonoBehaviour
 
     void Update()
     {
-        chargeAmountImageUI.fillAmount = abilitiyController.GetChargeFillPercentage();
-        chargesCountTextUI.text = abilitiyController.GetCurrentChargeCount().ToString();
+        chargeAmountImageUI.fillAmount = abilityController.GetChargeFillPercentage();
+        chargesCountTextUI.text = abilityController.GetCurrentChargeCount().ToString();
         UpdateRacePositionUI();
     }
 
@@ -75,7 +75,7 @@ public class DisplayUI : MonoBehaviour
         finishingCanvas.transform.Find("PlayAgain").GetComponent<Button>().onClick.AddListener(onPlayAgain);
         finishingCanvas.transform.Find("MainMenu").GetComponent<Button>().onClick.AddListener(onMainMenu);
         raceUI.gameObject.SetActive(false);
-        PlayerInputDetector.PauseInput();
+        PlayerInputDetectorSinglePlayer.PauseInput();
         finishingCanvas.gameObject.SetActive(true);
         finishPositionTextUI.text = playerPositionTextUI.text + "th";
         carSpawner.SetBotsMovement(false);

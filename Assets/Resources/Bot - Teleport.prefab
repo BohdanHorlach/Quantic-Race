@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3661975968118580845}
-  - component: {fileID: 6095208559905361222}
+  - component: {fileID: 6180079375568974219}
   m_Layer: 3
   m_Name: Ability Helper
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 6637493328941272050}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6095208559905361222
+--- !u!114 &6180079375568974219
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,14 +41,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 6949325811857734419}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 08e4cb0957c6265418b8125fa85573a0, type: 3}
+  m_Script: {fileID: 11500000, guid: b058369bb5e61e94ca091ab73d443ffc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _ability: {fileID: 7442294715331506549}
+  _ability: {fileID: 4690491137987691057}
   _checkPointHandler: {fileID: 2676982037954734565}
   _positionCalculator: {fileID: 0}
   _distanceToTargetToUse: 40
-  _chanceOfUse: 0.3
+  _chanceOfUse: 0.5
   _isTeleport: 1
 --- !u!1001 &827161010233276152
 PrefabInstance:
@@ -175,10 +175,10 @@ PrefabInstance:
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 7521826613607082126, guid: 9766c96ac133dd8469a46885f7452bd1, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 7442294715331506549}
+      addedObject: {fileID: 4690491137987691057}
     - targetCorrespondingSourceObject: {fileID: 7521826613607082126, guid: 9766c96ac133dd8469a46885f7452bd1, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 747973208479207371}
+      addedObject: {fileID: 5331197333997534449}
     - targetCorrespondingSourceObject: {fileID: 7521826613607082126, guid: 9766c96ac133dd8469a46885f7452bd1, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5744389234538326688}
@@ -207,7 +207,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 7521826613607082126, guid: 9766c96ac133dd8469a46885f7452bd1, type: 3}
   m_PrefabInstance: {fileID: 827161010233276152}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &7442294715331506549
+--- !u!114 &4690491137987691057
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -216,14 +216,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 7140545159608983158}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 46d77b037649b0d41bc976a9a1adb1b2, type: 3}
+  m_Script: {fileID: 11500000, guid: 1eb4ea88ea6c9f24299f7bec91ddcfb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _photonView: {fileID: 8903977093618973905}
-  _ability: {fileID: 747973208479207371}
+  _ability: {fileID: 5331197333997534449}
   _cooldownTime: 1
   _maxChargeCount: 5
---- !u!114 &747973208479207371
+--- !u!114 &5331197333997534449
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -232,19 +232,19 @@ MonoBehaviour:
   m_GameObject: {fileID: 7140545159608983158}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 341819ca963635e458c891778f9aecb4, type: 3}
+  m_Script: {fileID: 11500000, guid: df27bfc9977297d4ebb8f5ba4ae962aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _car: {fileID: 6637493328941272050}
   _animator: {fileID: 5744389234538326688}
-  _teleportDistance: 50
-  _radiusOfSearchForFreeSpace: 4
+  _teleportDistance: 30
+  _freeSpaceRadius: 5
   _obstacleMask:
     serializedVersion: 2
-    m_Bits: 72
+    m_Bits: 520
   _wallsMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 192
 --- !u!95 &5744389234538326688
 Animator:
   serializedVersion: 5

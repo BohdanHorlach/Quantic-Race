@@ -1,11 +1,10 @@
 using System.Collections;
-using System.Runtime.CompilerServices;
 using UnityEngine;
 
 
 public class DistanceAbilityCaller : MonoBehaviour
 {
-    [SerializeField] private Ability _ability;
+    [SerializeField] private AbilitySinglePlayer _ability;
     [SerializeField] private CheckPointHandler _checkPointHandler;
     [SerializeField] private PositionCalculator _positionCalculator;
     [SerializeField, Min(0)] private float _distanceToTargetToUse;

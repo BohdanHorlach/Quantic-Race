@@ -97,7 +97,7 @@ public class CheckPointHandler : MonoBehaviour
     // distance from the car to specific target checkpoint
     public float GetDistanceToCheckPoint(int index)
     {
-        if (index == -1)
+        if (index == -1 || _checkPointsArray == null)
             return 0f;
 
         return Vector3.Distance(transform.position, _checkPointsArray[index].position);
