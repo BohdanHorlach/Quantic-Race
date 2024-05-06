@@ -22,20 +22,20 @@ public class PowerWaveMultiplayer : AbilityMultiplayer
 
     private void Awake()
     {
-        _enteredTheCoverageArea = new HashSet<PhotonView>();        
+        _enteredTheCoverageArea = new HashSet<PhotonView>();
     }
 
 
     private void OnTriggerEnter(Collider other)
     {
-        if(CanInteract(other))
+        if (CanInteract(other))
             _enteredTheCoverageArea.Add(other.GetComponent<PhotonView>());
     }
 
 
     private void OnTriggerExit(Collider other)
     {
-        if(CanInteract(other))
+        if (CanInteract(other))
             _enteredTheCoverageArea.Remove(other.GetComponent<PhotonView>());
     }
 
@@ -57,13 +57,15 @@ public class PowerWaveMultiplayer : AbilityMultiplayer
             if (player.TryGetComponent(out FastWayPannelMultiplayer pannel))
             {
                 pannel.Break();
-		continue;
             }
-            Vector3 direction = player.transform.position - transform.position;
-            float forceByDistance = _collider.radius / Vector3.Distance(transform.position, player.transform.position);
+            else
+            {
+                Vector3 direction = player.transform.position - transform.position;
+                float forceByDistance = _collider.radius / Vector3.Distance(transform.position, player.transform.position);
 
-            Vector3 resultForce = direction.normalized * forceByDistance * _pushForce;
-            playerIDsForceToPush.Add(player.ViewID, new SerializableVector3(resultForce));
+                Vector3 resultForce = direction.normalized * forceByDistance * _pushForce;
+                playerIDsForceToPush.Add(player.ViewID, new SerializableVector3(resultForce));
+            }
         }
 
         return playerIDsForceToPush;

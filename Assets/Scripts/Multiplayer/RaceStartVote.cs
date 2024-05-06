@@ -24,29 +24,29 @@ public class RaceStartVote : MonoBehaviourPunCallbacks
 
     private void Awake()
     {
-		_canvas.SetActive(true);
+        _canvas.SetActive(true);
         _flagsForReady = new List<Image>();
     }
 
 
-	private void Start()
-	{	
-		_readyPlayersCount = 0;
-	        _maxPlayersCount = PhotonNetwork.CurrentRoom.MaxPlayers;
-        	_connectedPlayersCount = PhotonNetwork.CurrentRoom.PlayerCount;
-	        FillFlagsForReady();
-        	SetColorToConnectedPlayer();
-	}
-
-
-    private void FillFlagsForReady() 
+    private void Start()
     {
-        for(int i = 0; i < _maxPlayersCount; i++)
+        _readyPlayersCount = 0;
+        _maxPlayersCount = PhotonNetwork.CurrentRoom.MaxPlayers;
+        _connectedPlayersCount = PhotonNetwork.CurrentRoom.PlayerCount;
+        FillFlagsForReady();
+        SetColorToConnectedPlayer();
+    }
+
+
+    private void FillFlagsForReady()
+    {
+        for (int i = 0; i < _maxPlayersCount; i++)
         {
             GameObject flagForReady = Instantiate(_readyFlagPrefab, _canvas.transform);
             Image image = flagForReady.GetComponent<Image>();
             image.color = _notConnectedColor;
-		_flagsForReady.Add(image);
+            _flagsForReady.Add(image);
         }
     }
 
@@ -79,7 +79,7 @@ public class RaceStartVote : MonoBehaviourPunCallbacks
     [PunRPC]
     private void PrepareToRace()
     {
-	_canvas.SetActive(false);
+        _canvas.SetActive(false);
         _botsSpawner.OnAllBotsSpawned += InvokeRaceStarter;
         _botsSpawner.Spawn();
     }
@@ -91,7 +91,7 @@ public class RaceStartVote : MonoBehaviourPunCallbacks
         _flagsForReady[_readyPlayersCount].color = _readyColor;
         _readyPlayersCount++;
 
-        if(_readyPlayersCount == _maxPlayersCount) 
+        if (_readyPlayersCount == _maxPlayersCount)
         {
             _photonView.RPC("PrepareToRace", RpcTarget.MasterClient);
         }
