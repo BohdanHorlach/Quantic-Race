@@ -39,7 +39,6 @@ public class PlayerSpawner : MonoBehaviourPunCallbacks
         DisplayUIMultiplayer display = player.GetComponent<DisplayUIMultiplayer>();
         
         display.Initialize(_positionCalculator, _sceneNavigator);
-        display.ActiveRaceUI = false;
     }
 
 

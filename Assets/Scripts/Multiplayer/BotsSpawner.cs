@@ -1,34 +1,47 @@
 using Photon.Pun;
+using Photon.Realtime;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 
 public class BotsSpawner : MonoBehaviourPunCallbacks
 {
+    [SerializeField] private PhotonView _photonView;
     [SerializeField] private CarPool _carPool;
     [SerializeField] private SpawnPoints _spawnPoints;
     [SerializeField] private RaceStarter _raceStarter;
     [SerializeField] private WayPoint _firstWayPoint;
 
-    private bool _roomProprtiesIsUpdated;
 
     public event Action OnAllBotsSpawned;
 
+
     private GameObject SpawnBot()
     {
-        GameObject bot = _carPool.SpawnRandom();
+        GameObject car = _carPool.GetRandomCar();
+        GameObject bot = PhotonNetwork.InstantiateRoomObject(car.name, car.transform.position, car.transform.rotation);
         _spawnPoints.SetTransformToNextPoint(bot.transform);
 
         return bot;
     }
 
 
-    private void AddWayPointToBot(GameObject bot)
+    [PunRPC]
+    private void AddWayPointToBotRPC(int viewID)
     {
-        BotsCarMovement botsCarMovement = bot.GetComponentInChildren<BotsCarMovement>();
+        PhotonView botView = PhotonNetwork.GetPhotonView(viewID);
+        BotsCarMovement botsCarMovement = botView.GetComponentInChildren<BotsCarMovement>();
         botsCarMovement.SetWayPoint(_firstWayPoint);
         botsCarMovement.enabled = true;
+    }
+
+
+    private void AddWayPointToBot(GameObject bot)
+    {
+        PhotonView botView = bot.GetComponent<PhotonView>();
+        _photonView.RPC("AddWayPointToBotRPC", RpcTarget.All, botView.ViewID);
     }
 
 
@@ -41,27 +54,18 @@ public class BotsSpawner : MonoBehaviourPunCallbacks
 
     private IEnumerator SpawnByWaitUpdate(int amount)
     {
-        _roomProprtiesIsUpdated = true;
-
         for (int i = 0; i < amount; i++)
         {
-            yield return new WaitUntil(() => _roomProprtiesIsUpdated);
+            yield return new WaitUntil(() => _spawnPoints.RoomPropertiesIsUpdated);
 
             GameObject bot = SpawnBot();
             AddWayPointToBot(bot);
             AddToRaceStarter(bot);
-
-            _roomProprtiesIsUpdated = false;
         }
 
         OnAllBotsSpawned?.Invoke();
     }
 
-
-    public override void OnRoomPropertiesUpdate(ExitGames.Client.Photon.Hashtable propertiesThatChanged)
-    {
-        _roomProprtiesIsUpdated = true;
-    }
 
 
     public void Spawn()

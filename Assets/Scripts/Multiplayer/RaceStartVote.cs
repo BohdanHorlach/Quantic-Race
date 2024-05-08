@@ -62,8 +62,8 @@ public class RaceStartVote : MonoBehaviourPunCallbacks
     {
         base.OnPlayerEnteredRoom(newPlayer);
 
-        int index = Mathf.Clamp(_connectedPlayersCount - 1, 0, _maxPlayersCount - 1);
-        _flagsForReady[index].color = _notConnectedColor;
+        int index = _connectedPlayersCount;
+        _flagsForReady[index].color = _notReadyColor;
         _connectedPlayersCount++;
     }
 
@@ -77,9 +77,14 @@ public class RaceStartVote : MonoBehaviourPunCallbacks
 
 
     [PunRPC]
-    private void PrepareToRace()
+    private void DisableRaceVote()
     {
         _canvas.SetActive(false);
+    }
+
+
+    private void PrepareToRace()
+    {
         _botsSpawner.OnAllBotsSpawned += InvokeRaceStarter;
         _botsSpawner.Spawn();
     }
@@ -91,9 +96,10 @@ public class RaceStartVote : MonoBehaviourPunCallbacks
         _flagsForReady[_readyPlayersCount].color = _readyColor;
         _readyPlayersCount++;
 
-        if (_readyPlayersCount == _maxPlayersCount)
+        if(_readyPlayersCount == _maxPlayersCount && PhotonNetwork.IsMasterClient)
         {
-            _photonView.RPC("PrepareToRace", RpcTarget.MasterClient);
+            _photonView.RPC("DisableRaceVote", RpcTarget.All);
+            PrepareToRace();
         }
     }
 

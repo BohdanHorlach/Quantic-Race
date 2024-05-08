@@ -7,8 +7,11 @@ public class SpawnPoints : MonoBehaviourPunCallbacks
 {
     [SerializeField] private Transform[] _spawnPositions;
 
+    private bool _roomPropertiesIsUpdated;
     private int CurrentIndex { get => (int)PhotonNetwork.CurrentRoom.CustomProperties ["CurrentSpawnIndex"]; }
+    
     public int CountFreePositions { get => _spawnPositions.Length - CurrentIndex; }
+    public bool RoomPropertiesIsUpdated { get => _roomPropertiesIsUpdated; }
 
 
     private void UpdateIndex()
@@ -19,6 +22,14 @@ public class SpawnPoints : MonoBehaviourPunCallbacks
         };
 
         PhotonNetwork.CurrentRoom.SetCustomProperties(properties);
+    }
+
+
+    public override void OnRoomPropertiesUpdate(ExitGames.Client.Photon.Hashtable propertiesThatChanged)
+    {
+        base.OnRoomPropertiesUpdate(propertiesThatChanged);
+
+        _roomPropertiesIsUpdated = true;
     }
 
 
@@ -34,6 +45,7 @@ public class SpawnPoints : MonoBehaviourPunCallbacks
         transform.position = point.position;
         transform.rotation = point.rotation;
 
+        _roomPropertiesIsUpdated = false;
         UpdateIndex();
     }
 }

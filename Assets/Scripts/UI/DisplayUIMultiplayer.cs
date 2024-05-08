@@ -37,6 +37,13 @@ public class DisplayUIMultiplayer : MonoBehaviour
     }
 
 
+    private void Awake()
+    {
+        raceUI.gameObject.SetActive(false);
+        finishingCanvas.gameObject.SetActive(false);
+    }
+
+
     void Update()
     {
         if (photonView.IsMine == false)
@@ -83,12 +90,6 @@ public class DisplayUIMultiplayer : MonoBehaviour
 
     public void Finishing()
     {
-        if (TryGetComponent(out CarMovementSinglePlayer component))
-        {
-            component.SlowDownTo0();
-        }
-        finishingCanvas.transform.Find("PlayAgain").GetComponent<Button>().onClick.AddListener(onPlayAgain);
-        finishingCanvas.transform.Find("MainMenu").GetComponent<Button>().onClick.AddListener(onMainMenu);
         PlayerInputDetectorMultiplayer.PauseInput();
         finishPositionTextUI.text = playerPositionTextUI.text + "th";
 
@@ -99,13 +100,15 @@ public class DisplayUIMultiplayer : MonoBehaviour
         finishingCanvas.gameObject.SetActive(true);
     }
 
-    private void onPlayAgain()
+    public void onPlayAgain()
     {
-        sceneNavigator.Multiplayer();
+        PhotonNetwork.LeaveRoom();
+        sceneNavigator.GoToLobby();
     }
 
-    private void onMainMenu()
+    public void onMainMenu()
     {
+        PhotonNetwork.LeaveRoom();
         sceneNavigator.CarSelectionMenu();
     }
 

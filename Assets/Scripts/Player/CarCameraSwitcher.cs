@@ -13,4 +13,10 @@ public class CarCameraSwitcher : MonoBehaviour
         _virtualCamera.SetActive(_isNeedActivate);
         _playerCamera.SetActive(_isNeedActivate);
     }
+
+    public void FreeCamera()
+    {
+        _virtualCamera.SetActive(false);
+        _playerCamera.transform.SetParent(null);
+    }
 }

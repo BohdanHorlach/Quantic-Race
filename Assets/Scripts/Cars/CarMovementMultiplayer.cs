@@ -83,11 +83,8 @@ public class CarMovementMultiplayer : MonoBehaviourPunCallbacks
 
     private void Update()
     {
-        if (_photonView.IsMine)
-        {
-            foreach (Axle axle in _axles)
-                axle.UpdateAxle();
-        }
+        foreach (Axle axle in _axles)
+            axle.UpdateAxle();
 
         if (isFlipped() && !isCoroutineRunning)
         {
@@ -101,9 +98,20 @@ public class CarMovementMultiplayer : MonoBehaviourPunCallbacks
     }
 
 
-    private void Gas(float force)
+    private bool CheckConditions()
     {
         if (IsCanMove == false)
+            return false;
+        else if (_photonView.IsMine == true)
+            return true;
+
+        return false;
+    }
+
+
+    private void Gas(float force)
+    {
+        if (CheckConditions() == false)
             return;
 
         foreach (Axle axle in _axles)
@@ -113,7 +121,7 @@ public class CarMovementMultiplayer : MonoBehaviourPunCallbacks
 
     private void Steering(float force)
     {
-        if (IsCanMove == false)
+        if (CheckConditions() == false)
             return;
 
         foreach (Axle axle in _axles)
@@ -123,7 +131,7 @@ public class CarMovementMultiplayer : MonoBehaviourPunCallbacks
 
     private void Brake(float force)
     {
-        if (IsCanMove == false)
+        if (CheckConditions() == false)
             return;
 
         foreach (Axle axle in _axles)
@@ -145,15 +153,6 @@ public class CarMovementMultiplayer : MonoBehaviourPunCallbacks
         {
             force = value * _brakeForce;
         }
-        if (_photonView.IsMine)
-        {
-            Gas(force);
-        }
-    }
-
-
-    public void SlowDownTo0()
-    {
-        GetComponent<Rigidbody>().drag = 100f;
+        Gas(force);
     }
 }

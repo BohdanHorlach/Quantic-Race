@@ -9,6 +9,7 @@ public class SceneNavigator : MonoBehaviour
     public const string TRACK_SELECTION_MENU = "TrackSelectionMenu";
     public const string TRACK1_SINGLE_PLAYER = "Track1Singleplayer";
     public const string MULTIPLAYER = "Connect";
+    public const string LOBBY = "Lobby";
     public const string GAME_CONTROL_SCENE = "GameControlScene";
 
     private void LoadSceneWithLoadingScreen(string sceneName)
@@ -38,6 +39,13 @@ public class SceneNavigator : MonoBehaviour
         UserDataManager.selectedGameOptionsSO.isSinglePlayer = false;
         LoadSceneWithoutLoadingScreen(MULTIPLAYER);
     }
+
+
+    public void GoToLobby()
+    {
+        LoadSceneWithoutLoadingScreen(LOBBY);
+    }
+
 
     public void Track1()
     {

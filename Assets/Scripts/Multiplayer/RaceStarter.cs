@@ -66,13 +66,25 @@ public class RaceStarter : MonoBehaviourPun
     }
 
 
-    public void AddToListCars(CarMovementMultiplayer car)
+
+    [PunRPC]
+    private void AddToListCarsRPC(int viewID)
     {
+        PhotonView carView = PhotonNetwork.GetPhotonView(viewID);
+        CarMovementMultiplayer car = carView.GetComponent<CarMovementMultiplayer>();
+
         if (car != null && _cars.Contains(car) != true)
         {
             _cars.Add(car);
             car.IsCanMove = false;
         }
+    }
+
+
+    public void AddToListCars(CarMovementMultiplayer car)
+    {
+        PhotonView carView = car.GetComponent<PhotonView>();
+        _photonView.RPC("AddToListCarsRPC", RpcTarget.All, carView.ViewID);
     }
 
 
