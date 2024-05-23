@@ -9,5 +9,6 @@ The main goal is to get to the finish line using the abilities of the car.
 
 ![image](https://github.com/BohdanHorlach/Quantic-Race/blob/main/Gameplay/Gameplay_QuanticRace_1.gif)
 
+**-**
 
 ![image](https://github.com/BohdanHorlach/Quantic-Race/blob/main/Gameplay/Gameplay_QuanticRace_2.gif)
